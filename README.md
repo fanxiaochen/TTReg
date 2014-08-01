@@ -23,7 +23,9 @@ This software package mainly includes three parts:
 1) Convert: we're not experts about structured-light reconstruction which is a hot topic in machine vision. So we get
 a library from another lab and convert the library(.lib) to executive program(.exe) for our use. In our program, by 
 invoking the exe we compute the reconstruction process.
+
 2) Capture: control the device and capture structured-light images.
+
 3) Compute: main software. Use it to generate point clouds from images view by view and then register the 12 views to 
 the whole point cloud of the object. Now the registration is a semiautomatic process with interactive assistance which is quite complicated.
 
