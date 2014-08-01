@@ -31,5 +31,13 @@ More details will be found in XXX file.
 
 ###Third-Party Dependencies
 
+Some third-party dependencies with recommended version is needed as follows:
+
+1) Qt4; 
+2) OpenSceneGraph 3.0; 
+3) Point Cloud Library 1.7(other needed dependencies has been integrated to PCL)
+
+
+
 
 
