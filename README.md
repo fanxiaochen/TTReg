@@ -14,8 +14,6 @@ the principle of structured-light and the turntable setting.
 We can first capture images from 12 views by efforts of turntable and then reconstruct 
 the whole 3d point cloud of the real object.
 
-###Third-Party Dependencies
-
 ###Main Features
 
 This software package mainly includes three parts: 
@@ -30,6 +28,8 @@ invoking the exe we compute the reconstruction process.
 the whole point cloud of the object. Now the registration is a semiautomatic process with interactive assistance which is quite complicated.
 
 More details will be found in XXX file.
+
+###Third-Party Dependencies
 
 
 
