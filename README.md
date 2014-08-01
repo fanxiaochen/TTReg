@@ -11,11 +11,23 @@ a specified software package for our particular scanning devices.
 The scanning device mainly consists of a turntable, a projector and a camera. It is based on
 the principle of structured-light and the turntable setting. 
 
-We can first get 12 special images from 12 views by efforts of turntable oand then reconstruct 
+We can first capture images from 12 views by efforts of turntable and then reconstruct 
 the whole 3d point cloud of the real object.
 
 ###Third-Party Dependencies
 
-###Package Contents
+###Main Features
+
+This software package mainly includes three parts: 
+
+1) Convert: we're not experts about structured-light reconstruction which is a hot topic in machine vision. So we get
+a library from another lab and convert the library(.lib) to executive program(.exe) for our use. In our program, by 
+invoking the exe we compute the reconstruction process.
+2) Capture: control the device and capture structured-light images.
+3) Compute: main software. Use it to generate point clouds from images view by view and then register the 12 views to 
+the whole point cloud of the object. Now the registration is a semiautomatic process with interactive assistance which is quite complicated.
+
+More details will be found in XXX file.
+
 
 
