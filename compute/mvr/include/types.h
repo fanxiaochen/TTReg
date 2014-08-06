@@ -5,14 +5,7 @@
 #include <pcl/point_types.h>
 #include <pcl/point_cloud.h>
 
-//struct RichPoint: public pcl::PointXYZRGBNormal
-//{
-//public:
-//  enum LABEL{LABEL_NOISE, LABEL_OBJECT} label;
-//};
-
 typedef pcl::PointXYZ PCLPoint;
-//typedef RichPoint PCLRichPoint;
 typedef pcl::PointXYZRGBNormal PCLRichPoint;
 typedef pcl::PointCloud<PCLPoint>  PCLPointCloud;
 typedef pcl::PointCloud<PCLRichPoint>  PCLRichPointCloud;

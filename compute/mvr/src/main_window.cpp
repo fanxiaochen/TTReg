@@ -11,6 +11,7 @@
 
 #include "point_cloud.h"
 #include "registrator.h"
+#include "task_dispatcher.h"
 #include "toggle_handler.h"
 #include "parameter_manager.h"
 #include "osg_viewer_widget.h"
@@ -20,6 +21,7 @@
 
 MainWindow::MainWindow(void)
   :registrator_(new Registrator),
+  task_dispatcher_(new TaskDispatcher(this)),
   osg_viewer_widget_(NULL),
   file_viewer_widget_(NULL),
   workspace_(".")
@@ -55,10 +57,10 @@ void MainWindow::keyPressEvent(QKeyEvent * event)
   switch (event->key())
   {
   case (Qt::Key_Up):
-    model->navigateToPreviousObject(type);
+    model->navigateToPreviousFrame(type);
     break;
   case (Qt::Key_Down):
-    model->navigateToNextObject(type);
+    model->navigateToNextFrame(type);
     break;
   case (Qt::Key_Left):
     model->navigateToPreviousView(type);
@@ -123,6 +125,11 @@ void MainWindow::init(void)
   connect(ui_.actionRefineAxis, SIGNAL(triggered()), registrator_, SLOT(refineAxis()));
   connect(ui_.actionGenerateObject, SIGNAL(triggered()), registrator_, SLOT(registration()));
   connect(ui_.actionAutoReg, SIGNAL(triggered()), registrator_, SLOT(automaticRegistration()));
+
+  //tasks menu
+  connect(ui_.actionPointCloudGeneration, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskPointsGeneration()));
+  connect(ui_.actionRegistrationProcess, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskRegistration()));
+
 
   loadSettings();
 

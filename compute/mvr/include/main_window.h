@@ -10,6 +10,7 @@
 
 
 class Registrator;
+class TaskDispatcher;
 class FileSystemModel;
 class OSGViewerWidget;
 class FileViewerWidget;
@@ -57,6 +58,7 @@ private:
 private:
   Ui::MainWindow                  ui_;
   Registrator*                    registrator_;
+  TaskDispatcher*				  task_dispatcher_;
   OSGViewerWidget*                osg_viewer_widget_;
   FileViewerWidget*               file_viewer_widget_;
   QString                         workspace_;

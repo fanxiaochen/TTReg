@@ -47,7 +47,8 @@ set (moc_incs   include/main_window.h
 				include/threaded_painter.h
 				include/osg_viewer_widget.h
 				include/registrator.h
-				include/parameter_dialog.h)
+				include/parameter_dialog.h
+				include/task_dispatcher.h)
 set (resources  resource/main_window.qrc)
 
 # Qt stuff
@@ -93,6 +94,7 @@ set (srcs 		${ui_srcs}
 				src/update_visitor.cpp
 				src/osg_utility.cpp
 				src/math_solvers.cpp
+				src/task_dispatcher.cpp
 				)
 
 # Organize files

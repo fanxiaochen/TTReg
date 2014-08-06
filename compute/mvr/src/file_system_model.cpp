@@ -16,8 +16,8 @@
 
 
 FileSystemModel::FileSystemModel()
-  :start_object_(-1),
-  end_object_(-1)
+  :start_frame_(-1),
+  end_frame_(-1)
 {
   setNameFilterDisables(false);
   QStringList allowed_file_extensions;
@@ -140,6 +140,32 @@ void FileSystemModel::limitPointCloudCacheSize(void)
   return;
 }
 
+std::string FileSystemModel::getImagesFolder(int frame)
+{
+	std::string points_folder = getPointsFolder(frame);
+	if (points_folder.empty())
+		return points_folder;
+
+	QString image_folder = QString(points_folder.c_str()).replace("/points/", "/images/");
+	if (!QDir(image_folder).exists())
+		return std::string();
+
+	return image_folder.toStdString();
+}
+
+std::string FileSystemModel::getImagesFolder(int frame, int view)
+{
+	std::string frame_folder = getImagesFolder(frame);
+	if (frame_folder.empty())
+		return frame_folder;
+
+	QString view_folder = QString("%1/slice_%2").arg(frame_folder.c_str()).arg(view, 2, 10, QChar('0'));
+	if (!QDir(view_folder).exists())
+		view_folder = QString("%1/view_%2").arg(frame_folder.c_str()).arg(view, 2, 10, QChar('0'));
+
+	return view_folder.toStdString();
+}
+
 osg::ref_ptr<PointCloud> FileSystemModel::getPointCloud(const std::string& filename)
 {
   QMutexLocker locker(&mutex_);
@@ -173,13 +199,13 @@ QModelIndex FileSystemModel::setRootPath ( const QString & newPath )
   checked_indexes_.clear();
 
   QModelIndex index = QFileSystemModel::setRootPath(newPath);
-  computeObjectRange();
-  if (start_object_ != -1)
+  computeFrameRange();
+  if (start_frame_ != -1)
   {
-    if (getPointCloud(start_object_) != NULL)
-      showPointCloud(start_object_, 12);
-    else if (getPointCloud(start_object_, 0) != NULL)
-      showPointCloud(start_object_, 0);
+    if (getPointCloud(start_frame_) != NULL)
+      showPointCloud(start_frame_, 12);
+    else if (getPointCloud(start_frame_, 0) != NULL)
+      showPointCloud(start_frame_, 0);
 
     MainWindow::getInstance()->getOSGViewerWidget()->centerScene();
   }
@@ -187,43 +213,43 @@ QModelIndex FileSystemModel::setRootPath ( const QString & newPath )
   return index;
 }
 
-static void extractStartEndObject(const QStringList& entries, int& start_object, int& end_object)
+static void extractStartEndFrame(const QStringList& entries, int& start_frame, int& end_frame)
 {
-  start_object = std::numeric_limits<int>::max();
-  end_object = std::numeric_limits<int>::min();
+  start_frame = std::numeric_limits<int>::max();
+  end_frame = std::numeric_limits<int>::min();
 
   for (QStringList::const_iterator entries_it = entries.begin();
     entries_it != entries.end(); ++ entries_it)
   {
-    if (!entries_it->contains("object_"))
+    if (!entries_it->contains("frame_"))
       continue;
 
     int index = entries_it->right(4).toInt();
-    if (start_object > index)
-      start_object = index;
-    if (end_object < index)
-      end_object = index;
+    if (start_frame > index)
+      start_frame = index;
+    if (end_frame < index)
+      end_frame = index;
   }
 
   return;
 }
 
-void FileSystemModel::computeObjectRange(void)
+void FileSystemModel::computeFrameRange(void)
 {
-  start_object_ = end_object_ = -1;
+  start_frame_ = end_frame_ = -1;
 
   QString root_path = rootPath();
   QModelIndex root_index = index(root_path);
 
-  if (root_path.contains("object_")) {
-    start_object_ = end_object_ = root_path.right(4).toInt();
+  if (root_path.contains("frame_")) {
+    start_frame_ = end_frame_ = root_path.right(4).toInt();
     return;
   }
 
   if (root_path.compare("points") == 0)
   {
     QStringList points_entries = QDir(root_path).entryList();
-    extractStartEndObject(points_entries, start_object_, end_object_);
+    extractStartEndFrame(points_entries, start_frame_, end_frame_);
     return;
   }
 
@@ -235,44 +261,44 @@ void FileSystemModel::computeObjectRange(void)
       continue;
 
     QStringList points_entries = QDir(root_path+"/"+*root_entries_it).entryList();
-    extractStartEndObject(points_entries, start_object_, end_object_);
+    extractStartEndFrame(points_entries, start_frame_, end_frame_);
     return;
   }
 
   return;
 }
 
-void FileSystemModel::getObjectRange(int &start, int &end)
+void FileSystemModel::getFrameRange(int &start, int &end)
 {
-  start = start_object_;
-  end = end_object_;
+  start = start_frame_;
+  end = end_frame_;
 }
 
-osg::ref_ptr<PointCloud> FileSystemModel::getPointCloud(int object)
+osg::ref_ptr<PointCloud> FileSystemModel::getPointCloud(int frame)
 {
-  return getPointCloud(getPointsFilename(object));
+  return getPointCloud(getPointsFilename(frame));
 }
 
-std::string FileSystemModel::getPointsFolder(int object)
+std::string FileSystemModel::getPointsFolder(int frame)
 {
   QModelIndex root_index = index(rootPath());
 
   int start, end;
-  getObjectRange(start, end);
+  getFrameRange(start, end);
   if (start < 0 || end < 0)
     return std::string();
 
   std::string folder;
 
   QString root_path = rootPath();
-  if (root_path.contains("object_"))
+  if (root_path.contains("frame_"))
   {
     folder =  root_path.toStdString();
   }
   else if (root_path.compare("points") == 0)
   {
-    QModelIndex object_index = index(object-start, 0, root_index);
-    folder = filePath(object_index).toStdString();
+    QModelIndex frame_index = index(frame-start, 0, root_index);
+    folder = filePath(frame_index).toStdString();
   }
   else
   {
@@ -283,7 +309,7 @@ std::string FileSystemModel::getPointsFolder(int object)
       if (root_entries_it->compare("points") != 0)
         continue;
 
-      folder = (root_path+QString("/%1/object_%2").arg(*root_entries_it).arg(object, 5, 10, QChar('0'))).toStdString();
+      folder = (root_path+QString("/%1/frame_%2").arg(*root_entries_it).arg(frame, 5, 10, QChar('0'))).toStdString();
       break;
     }
   }
@@ -291,41 +317,41 @@ std::string FileSystemModel::getPointsFolder(int object)
   return folder;
 }
 
-std::string FileSystemModel::getPointsFolder(int object, int view)
+std::string FileSystemModel::getPointsFolder(int frame, int view)
 {
-  std::string object_folder = getPointsFolder(object);
-  if (object_folder.empty() || view < 0 || view >= 12)
-    return object_folder;
+  std::string frame_folder = getPointsFolder(frame);
+  if (frame_folder.empty() || view < 0 || view >= 12)
+    return frame_folder;
 
-  QString view_folder = QString("%1/view_%2").arg(object_folder.c_str()).arg(view, 2, 10, QChar('0'));
+  QString view_folder = QString("%1/view_%2").arg(frame_folder.c_str()).arg(view, 2, 10, QChar('0'));
   if (!QDir(view_folder).exists())
-    view_folder = QString("%1/slice_%2").arg(object_folder.c_str()).arg(view, 2, 10, QChar('0'));
+    view_folder = QString("%1/slice_%2").arg(frame_folder.c_str()).arg(view, 2, 10, QChar('0'));
 
   return view_folder.toStdString();
 }
 
-std::string FileSystemModel::getPointsFilename(int object, int view)
+std::string FileSystemModel::getPointsFilename(int frame, int view)
 {
-  std::string folder = getPointsFolder(object, view);
+  std::string folder = getPointsFolder(frame, view);
   if (folder.empty())
     return folder;
 
   return folder+"/points.pcd";
 }
 
-std::string FileSystemModel::getPointsFilename(int object)
+std::string FileSystemModel::getPointsFilename(int frame)
 {
-  return getPointsFilename(object, 12);
+  return getPointsFilename(frame, 12);
 }
 
-osg::ref_ptr<PointCloud> FileSystemModel::getPointCloud(int object, int view)
+osg::ref_ptr<PointCloud> FileSystemModel::getPointCloud(int frame, int view)
 {
-  return getPointCloud(getPointsFilename(object, view));
+  return getPointCloud(getPointsFilename(frame, view));
 }
 
-void FileSystemModel::showPointCloud(int object, int view)
+void FileSystemModel::showPointCloud(int frame, int view)
 {
-  showPointCloud(getPointsFilename(object, view));
+  showPointCloud(getPointsFilename(frame, view));
 }
 
 void FileSystemModel::showPointCloud(const std::string& filename)
@@ -368,9 +394,9 @@ void FileSystemModel::hidePointCloud(const std::string& filename)
   hidePointCloud(index);
 }
 
-void FileSystemModel::hidePointCloud(int object, int view)
+void FileSystemModel::hidePointCloud(int frame, int view)
 {
-  hidePointCloud(getPointsFilename(object, view));
+  hidePointCloud(getPointsFilename(frame, view));
 }
 
 void FileSystemModel::hidePointCloud(const QPersistentModelIndex& index)
@@ -389,15 +415,15 @@ void FileSystemModel::hidePointCloud(const QPersistentModelIndex& index)
   return;
 }
 
-void FileSystemModel::hideAndShowPointCloud(int hide_object, int hide_view, int show_object, int show_view)
+void FileSystemModel::hideAndShowPointCloud(int hide_frame, int hide_view, int show_frame, int show_view)
 {
   bool to_hide = true;
   bool to_show = true;
 
-  osg::ref_ptr<PointCloud> show_cloud = getPointCloud(show_object, show_view);
-  osg::ref_ptr<PointCloud> hide_cloud = getPointCloud(hide_object, hide_view);
+  osg::ref_ptr<PointCloud> show_cloud = getPointCloud(show_frame, show_view);
+  osg::ref_ptr<PointCloud> hide_cloud = getPointCloud(hide_frame, hide_view);
 
-  QModelIndex show_index = this->index(QString(getPointsFilename(show_object, show_view).c_str()));
+  QModelIndex show_index = this->index(QString(getPointsFilename(show_frame, show_view).c_str()));
   checked_indexes_.insert(show_index);
   PointCloudMap::iterator point_cloud_map_it = point_cloud_map_.find(show_index);
   if (point_cloud_map_it == point_cloud_map_.end())
@@ -410,7 +436,7 @@ void FileSystemModel::hideAndShowPointCloud(int hide_object, int hide_view, int 
   else
     to_show = false;
 
-  QModelIndex hide_index = this->index(QString(getPointsFilename(hide_object, hide_view).c_str()));
+  QModelIndex hide_index = this->index(QString(getPointsFilename(hide_frame, hide_view).c_str()));
   checked_indexes_.remove(hide_index);
   point_cloud_map_it = point_cloud_map_.find(hide_index);
   if (point_cloud_map_it != point_cloud_map_.end())
@@ -422,9 +448,9 @@ void FileSystemModel::hideAndShowPointCloud(int hide_object, int hide_view, int 
   if (to_hide && to_show)
     osg_viewer_widget->replaceChild(hide_cloud, show_cloud, true);
   else if (to_hide)
-    osg_viewer_widget->removeChild(getPointCloud(hide_object, hide_view), true);
+    osg_viewer_widget->removeChild(getPointCloud(hide_frame, hide_view), true);
   else if (to_show)
-    osg_viewer_widget->addChild(getPointCloud(show_object, show_view), true);
+    osg_viewer_widget->addChild(getPointCloud(show_frame, show_view), true);
 
   showPointCloudSceneInformation();
 
@@ -444,48 +470,48 @@ void FileSystemModel::showPointCloudSceneInformation(void) const
   std::vector<std::pair<int, int> > sorted_scene_info;
   for (PointCloudMap::const_iterator it = point_cloud_map_.begin(); it != point_cloud_map_.end(); ++ it)
   {
-    int object = (*it)->getObject();
+    int frame = (*it)->getFrame();
     int view = (*it)->getView();
-    sorted_scene_info.push_back(std::make_pair(object, view));
+    sorted_scene_info.push_back(std::make_pair(frame, view));
   }
 
   std::sort(sorted_scene_info.begin(), sorted_scene_info.end());
   for (size_t i = 0, i_end = sorted_scene_info.size(); i < i_end; ++ i)
   {
-    int object = sorted_scene_info[i].first;
+    int frame = sorted_scene_info[i].first;
     int view = sorted_scene_info[i].second;
     if (view < 12)
-      information += QString("object %1 View %2\n").arg(object, 5, 10, QChar('0')).arg(view, 2, 10, QChar('0'));
+      information += QString("frame %1 View %2\n").arg(frame, 5, 10, QChar('0')).arg(view, 2, 10, QChar('0'));
     else
-      information += QString("object %1\n").arg(object, 5, 10, QChar('0'));
+      information += QString("frame %1\n").arg(frame, 5, 10, QChar('0'));
   }
 //  MainWindow::getInstance()->getInformation()->setText(information.toStdString(), 20, 20);
 
   return;
 }
 
-PointCloud* FileSystemModel::getDisplayFirstObject(void)
+PointCloud* FileSystemModel::getDisplayFirstFrame(void)
 {
   if (point_cloud_map_.empty())
     return NULL;
 
   osg::ref_ptr<PointCloud> first_cloud = *point_cloud_map_.begin();
-  int object = first_cloud->getObject();
+  int frame = first_cloud->getFrame();
   int view = first_cloud->getView();
 
   for (PointCloudMap::const_iterator it = point_cloud_map_.begin(); it != point_cloud_map_.end(); ++ it)
   {
     osg::ref_ptr<PointCloud> point_cloud = *it;
-    int this_object = point_cloud->getObject();
+    int this_frame = point_cloud->getFrame();
     int this_view = point_cloud->getView();
-    if (this_object < object)
+    if (this_frame < frame)
     {
-      object = this_object;
+      frame = this_frame;
       view = this_view;
     }
-    else if(this_object == object && this_view > view)
+    else if(this_frame == frame && this_view > view)
     {
-      object = this_object;
+      frame = this_frame;
       view = this_view;
     }
   }
@@ -493,46 +519,46 @@ PointCloud* FileSystemModel::getDisplayFirstObject(void)
   if (view != 12)
     return NULL;
 
-  return getPointCloud(object);
+  return getPointCloud(frame);
 }
 
-void FileSystemModel::getDisplayFirstObjectFirstView(int& object, int& view)
+void FileSystemModel::getDisplayFirstFrameFirstView(int& frame, int& view)
 {
   if (point_cloud_map_.empty())
   {
-    object = -1;
+    frame = -1;
     view = -1;
     return;
   }
 
   osg::ref_ptr<PointCloud> first_cloud = *point_cloud_map_.begin();
-  object = first_cloud->getObject();
+  frame = first_cloud->getFrame();
   view = first_cloud->getView();
 
   for (PointCloudMap::const_iterator it = point_cloud_map_.begin(); it != point_cloud_map_.end(); ++ it)
   {
     osg::ref_ptr<PointCloud> point_cloud = *it;
-    int this_object = point_cloud->getObject();
+    int this_frame = point_cloud->getFrame();
     int this_view = point_cloud->getView();
-    if (this_object < object)
+    if (this_frame < frame)
     {
-      object = this_object;
+      frame = this_frame;
       view = this_view;
     }
-    else if(this_object == object && this_view < view)
+    else if(this_frame == frame && this_view < view)
     {
-      object = this_object;
+      frame = this_frame;
       view = this_view;
     }
   }
   return;
 }
 
-void FileSystemModel::getDisplayFirstObjectLastView(int& object, int& view)
+void FileSystemModel::getDisplayFirstFrameLastView(int& frame, int& view)
 {
   if (point_cloud_map_.empty())
   {
-    object = -1;
+    frame = -1;
     view = -1;
     return;
   }
@@ -541,53 +567,53 @@ void FileSystemModel::getDisplayFirstObjectLastView(int& object, int& view)
   for (PointCloudMap::const_iterator it = point_cloud_map_.begin(); it != point_cloud_map_.end(); ++ it)
   {
     osg::ref_ptr<PointCloud> point_cloud = *it;
-    display_items.push_back(std::make_pair(point_cloud->getObject(), point_cloud->getView()));
+    display_items.push_back(std::make_pair(point_cloud->getFrame(), point_cloud->getView()));
   }
 
-  object = display_items[0].first;
+  frame = display_items[0].first;
   view = display_items[0].second;
   for (size_t i = 1, i_end = display_items.size(); i < i_end; ++ i)
   {
-    int this_object = display_items[i].first;
-    if (this_object > object)
-      object = this_object;
+    int this_frame = display_items[i].first;
+    if (this_frame > frame)
+      frame = this_frame;
   }
   for (size_t i = 1, i_end = display_items.size(); i < i_end; ++ i)
   {
-    int this_object = display_items[i].first;
+    int this_frame = display_items[i].first;
     int this_view = display_items[i].second;
-    if (this_object == object && this_view > view)
+    if (this_frame == frame && this_view > view)
       view = this_view;
   }
   return;
 }
 
-void FileSystemModel::getDisplayLastObjectLastView(int& object, int& view)
+void FileSystemModel::getDisplayLastFrameLastView(int& frame, int& view)
 {
   if (point_cloud_map_.empty())
   {
-    object = -1;
+    frame = -1;
     view = -1;
     return;
   }
 
   osg::ref_ptr<PointCloud> first_cloud = *point_cloud_map_.begin();
-  object = first_cloud->getObject();
+  frame = first_cloud->getFrame();
   view = first_cloud->getView();
 
   for (PointCloudMap::const_iterator it = point_cloud_map_.begin(); it != point_cloud_map_.end(); ++ it)
   {
     osg::ref_ptr<PointCloud> point_cloud = *it;
-    int this_object = point_cloud->getObject();
+    int this_frame = point_cloud->getFrame();
     int this_view = point_cloud->getView();
-    if (this_object > object)
+    if (this_frame > frame)
     {
-      object = this_object;
+      frame = this_frame;
       view = this_view;
     }
-    else if(this_object == object && this_view > view)
+    else if(this_frame == frame && this_view > view)
     {
-      object = this_object;
+      frame = this_frame;
       view = this_view;
     }
   }
@@ -608,101 +634,101 @@ bool FileSystemModel::recursiveCheck(const QModelIndex &index, const QVariant &v
   return true;
 }
 
-void FileSystemModel::updatePointCloud(int object, int view)
+void FileSystemModel::updatePointCloud(int frame, int view)
 {
-  std::string filename = getPointsFilename(object, view);
+  std::string filename = getPointsFilename(frame, view);
   if (point_cloud_cache_map_.find(filename) == point_cloud_cache_map_.end())
     return;
 
-  getPointCloud(object, view)->reload();
+  getPointCloud(frame, view)->reload();
 
   return;
 }
 
-void FileSystemModel::updatePointCloud(int object)
+void FileSystemModel::updatePointCloud(int frame)
 {
-  std::string filename = getPointsFilename(object);
+  std::string filename = getPointsFilename(frame);
   if (point_cloud_cache_map_.find(filename) == point_cloud_cache_map_.end())
     return;
 
-  getPointCloud(object)->reload();
+  getPointCloud(frame)->reload();
 
   return;
 }
 
 
-void FileSystemModel::navigateToPreviousObject(NavigationType type)
+void FileSystemModel::navigateToPreviousFrame(NavigationType type)
 {
-  int first_object, first_view;
-  getDisplayFirstObjectFirstView(first_object, first_view);
+  int first_frame, first_view;
+  getDisplayFirstFrameFirstView(first_frame, first_view);
 
-  if (first_object == -1 || first_view == -1)
+  if (first_frame == -1 || first_view == -1)
   {
-    showPointCloud(getStartObject(), 12);
+    showPointCloud(getStartFrame(), 12);
     return;
   }
 
   if (type == ERASE)
   {
-    hidePointCloud(first_object, first_view);
+    hidePointCloud(first_frame, first_view);
     return;
   }
 
-  int current_object = first_object-1;
-  if (current_object < getStartObject())
+  int current_frame = first_frame-1;
+  if (current_frame < getStartFrame())
     return;
 
   if (type == APPEND)
-    showPointCloud(current_object, first_view);
+    showPointCloud(current_frame, first_view);
   else
-    hideAndShowPointCloud(first_object, first_view, current_object, first_view);
+    hideAndShowPointCloud(first_frame, first_view, current_frame, first_view);
 
   return;
 }
 
-void FileSystemModel::navigateToNextObject(NavigationType type)
+void FileSystemModel::navigateToNextFrame(NavigationType type)
 {
-  int last_object, last_view;
-  getDisplayLastObjectLastView(last_object, last_view);
+  int last_frame, last_view;
+  getDisplayLastFrameLastView(last_frame, last_view);
 
-  if (last_object == -1 || last_view == -1)
+  if (last_frame == -1 || last_view == -1)
   {
-    showPointCloud(getEndObject(), 12);
+    showPointCloud(getEndFrame(), 12);
     return;
   }
 
   if (type == ERASE)
   {
-    hidePointCloud(last_object, last_view);
+    hidePointCloud(last_frame, last_view);
     return;
   }
 
-  int current_object = last_object+1;
-  if (current_object > getEndObject())
+  int current_frame = last_frame+1;
+  if (current_frame > getEndFrame())
     return;
 
   if (type == APPEND)
-    showPointCloud(current_object, last_view);
+    showPointCloud(current_frame, last_view);
   else
-    hideAndShowPointCloud(last_object, last_view, current_object, last_view);
+    hideAndShowPointCloud(last_frame, last_view, current_frame, last_view);
 
   return;
 }
 
 void FileSystemModel::navigateToPreviousView(NavigationType type)
 {
-  int first_object, first_view;
-  getDisplayFirstObjectFirstView(first_object, first_view);
+  int first_frame, first_view;
+  getDisplayFirstFrameFirstView(first_frame, first_view);
 
-  if (first_object == -1 || first_view == -1)
+  if (first_frame == -1 || first_view == -1)
   {
-    showPointCloud(getStartObject(), 0);
+    showPointCloud(getStartFrame(), 0);
     return;
   }
 
   if (type == ERASE)
   {
-    hidePointCloud(first_object, first_view);
+    hidePointCloud(first_frame, first_view);
     return;
   }
 
@@ -711,27 +737,27 @@ void FileSystemModel::navigateToPreviousView(NavigationType type)
     return;
 
   if (type == APPEND)
-    showPointCloud(first_object, current_view);
+    showPointCloud(first_frame, current_view);
   else
-    hideAndShowPointCloud(first_object, first_view, first_object, current_view);
+    hideAndShowPointCloud(first_frame, first_view, first_frame, current_view);
 
   return;
 }
 
 void FileSystemModel::navigateToNextView(NavigationType type)
 {
-  int first_object, last_view;
-  getDisplayFirstObjectLastView(first_object, last_view);
+  int first_frame, last_view;
+  getDisplayFirstFrameLastView(first_frame, last_view);
 
-  if (first_object == -1 || last_view == -1)
+  if (first_frame == -1 || last_view == -1)
   {
-    showPointCloud(getStartObject(), 11);
+    showPointCloud(getStartFrame(), 11);
     return;
   }
 
   if (type == ERASE)
   {
-    hidePointCloud(first_object, last_view);
+    hidePointCloud(first_frame, last_view);
     return;
   }
 
@@ -740,9 +766,9 @@ void FileSystemModel::navigateToNextView(NavigationType type)
     return;
 
   if (type == APPEND)
-    showPointCloud(first_object, current_view);
+    showPointCloud(first_frame, current_view);
   else
-    hideAndShowPointCloud(first_object, last_view, first_object, current_view);
+    hideAndShowPointCloud(first_frame, last_view, first_frame, current_view);
 
   return;
 }

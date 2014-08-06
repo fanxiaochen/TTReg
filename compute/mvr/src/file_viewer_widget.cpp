@@ -29,7 +29,7 @@ void FileViewerWidget::setWorkspace(const std::string& workspace)
 {
   QModelIndex root_index = model_->setRootPath(workspace.c_str());
   setRootIndex(root_index);
-  ParameterManager::getInstance().initObjectNumbers();
+  ParameterManager::getInstance().initFrameNumbers();
 
   return;
 }

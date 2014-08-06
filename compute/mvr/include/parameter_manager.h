@@ -17,27 +17,31 @@ public:
     return theSingleton;
   }
 
-  void initObjectNumbers(void);
+  void initFrameNumbers(void);
 
 
   double getRegistrationMaxDistance(void) const;
   double getTriangleLength(void) const;
 
-  bool getObjectParameter(int& object);
-  bool getObjectParameters(int& start_object, int& end_object, int& downsampling);
+  bool getFrameParameter(int& frame);
+  bool getFrameParameters(int& start_frame, int& end_frame, int& downsampling);
+
+  bool getGenerationParameters(int& ctr_threshold, int& sat_threshold);
+  bool getGenerationParameters(int& ctr_threshold, int& sat_threshold,
+	  int& start_frame, int& end_frame, bool with_frames=true);
 
   bool getRegistrationLUMParameters(int& segment_threshold, int& max_iterations, double& max_distance);
   bool getRegistrationLUMParameters(int& segment_threshold, int& max_iterations, double& max_distance,
-    int& start_object, int& end_object, bool with_objects=true);
-  bool getRegistrationLUMParameters(int& segment_threshold, int& max_iterations, double& max_distance, int& object);
-  bool getRegistrationICPParameters(int& max_iterations, double& max_distance, int& object, int& repeat_times);
-  bool getRegistrationParameters(int& object, int& segment_threshold);
-  bool getAutomaticRegistrationParameters(int& object, int& segment_threshold, int& max_iterations, int& repeat_times, double& max_distance, 
+    int& start_frame, int& end_frame, bool with_frames=true);
+  bool getRegistrationLUMParameters(int& segment_threshold, int& max_iterations, double& max_distance, int& frame);
+  bool getRegistrationICPParameters(int& max_iterations, double& max_distance, int& frame, int& repeat_times);
+  bool getRegistrationParameters(int& frame, int& segment_threshold);
+  bool getAutomaticRegistrationParameters(int& frame, int& segment_threshold, int& max_iterations, int& repeat_times, double& max_distance, 
     double& transformation_epsilon, double& euclidean_fitness_epsilon);
 
 protected:
-  void addObjectParameters(ParameterDialog* parameter_dialog, bool with_objects);
-  void getObjectparametersImpl(int& start_object, int& end_object, bool with_objects);
+  void addFrameParameters(ParameterDialog* parameter_dialog, bool with_frames);
+  void getFrameparametersImpl(int& start_frame, int& end_frame, bool with_frames);
 private:
   ParameterManager(void);
   ParameterManager(const ParameterManager &) {}            // copy ctor hidden
@@ -47,9 +51,9 @@ private:
   IntParameter*                                       registration_max_iterations_;
   DoubleParameter*                                    registration_max_distance_;
 
-  IntParameter*                                       start_object_;
-  IntParameter*                                       end_object_;
-  IntParameter*                                       current_object_;
+  IntParameter*                                       start_frame_;
+  IntParameter*                                       end_frame_;
+  IntParameter*                                       current_frame_;
 
   IntParameter*                                       repeat_times_;
 
@@ -58,6 +62,9 @@ private:
 
   DoubleParameter*                                    transformation_epsilon_;
   DoubleParameter*                                    euclidean_fitness_epsilon_;
+
+  IntParameter*                                       generator_ctr_threshold_;
+  IntParameter*                                       generator_sat_threshold_;
 
 };
 

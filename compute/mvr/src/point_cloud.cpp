@@ -217,18 +217,18 @@ void PointCloud::updateImpl()
 PointCloud* PointCloud::getPrevObject(void)
 {
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
-  return model->getPointCloud(getObject()-1);
+  return model->getPointCloud(getFrame()-1);
 }
 
 PointCloud* PointCloud::getNextObject(void)
 {
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
-  return model->getPointCloud(getObject()+1);
+  return model->getPointCloud(getFrame()+1);
 }
 
 
 
-int PointCloud::getObject(void) const      
+int PointCloud::getFrame(void) const      
 {
   QRegExp object("[\\/]object_([0-9]{5,5})[\\/]");
   object.indexIn(filename_.c_str());
@@ -359,7 +359,7 @@ void PointCloud::registration(int segment_threshold, int max_iterations, double 
     return;
 
   Registrator* registrator = MainWindow::getInstance()->getRegistrator();
-  registrator->registrationLUM(segment_threshold, max_iterations, max_distance, getObject());
+  registrator->registrationLUM(segment_threshold, max_iterations, max_distance, getFrame());
 
   expire();
 
@@ -376,7 +376,7 @@ void PointCloud::registration(void)
   QFutureWatcher<void>* watcher = new QFutureWatcher<void>(this);
   connect(watcher, SIGNAL(finished()), watcher, SLOT(deleteLater()));
 
-  int object = getObject();
+  int object = getFrame();
   QString running_message = QString("Computing registration for object %1!").arg(object);
   QString finished_message = QString("Registration for object %1 computed!").arg(object);
   Messenger* messenger = new Messenger(running_message, finished_message, this);

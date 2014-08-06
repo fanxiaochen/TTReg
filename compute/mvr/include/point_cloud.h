@@ -44,7 +44,7 @@ public:
   void registration(int segment_threshold, int max_iterations, double max_distance);
   void denoise(int segment_threshold, double triangle_length);
 
-  int getObject(void) const;
+  int getFrame(void) const;
   int getView(void) const;
   bool isShown(void) const;
   void initRotation(void);

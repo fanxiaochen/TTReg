@@ -20,7 +20,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -58,9 +58,17 @@
     <addaction name="separator"/>
     <addaction name="actionAutoReg"/>
    </widget>
+   <widget class="QMenu" name="menuTasks">
+    <property name="title">
+     <string>Batch Tasks</string>
+    </property>
+    <addaction name="actionPointCloudGeneration"/>
+    <addaction name="actionRegistrationProcess"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuRendering"/>
    <addaction name="menuRegistration"/>
+   <addaction name="menuTasks"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSetWorkspace">
@@ -149,6 +157,16 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionPointCloudGeneration">
+   <property name="text">
+    <string>Point Cloud Generation</string>
+   </property>
+  </action>
+  <action name="actionRegistrationProcess">
+   <property name="text">
+    <string>Registration Process</string>
    </property>
   </action>
  </widget>

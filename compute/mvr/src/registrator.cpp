@@ -275,18 +275,18 @@ void Registrator::load(const QString& filename)
 
 void Registrator::load(void)
 {
-  int object;
-  if (!ParameterManager::getInstance().getObjectParameter(object))
+  int frame;
+  if (!ParameterManager::getInstance().getFrameParameter(frame))
     return;
 
-  load(object);
+  load(frame);
 }
 
-void Registrator::load(int object)
+void Registrator::load(int frame)
 {
   MainWindow* main_window = MainWindow::getInstance();
   FileSystemModel* model = main_window->getFileSystemModel();
-  QString filename = QString((model->getPointsFolder(object)+"/axis.txt").c_str());
+  QString filename = QString((model->getPointsFolder(frame)+"/axis.txt").c_str());
     
   load(filename);
 }
@@ -309,19 +309,19 @@ void Registrator::save(const QString& filename)
 
 void Registrator::save()
 {
-  int object;
-  if (!ParameterManager::getInstance().getObjectParameter(object))
+  int frame;
+  if (!ParameterManager::getInstance().getFrameParameter(frame))
     return;
 
-  save(object);
+  save(frame);
 }
 
 
-void Registrator::save(int object)
+void Registrator::save(int frame)
 {
   MainWindow* main_window = MainWindow::getInstance();
   FileSystemModel* model = main_window->getFileSystemModel();
-  QString filename = QString((model->getPointsFolder(object)+"/axis.txt").c_str());
+  QString filename = QString((model->getPointsFolder(frame)+"/axis.txt").c_str());
   save(filename);
 
   return;
@@ -341,19 +341,19 @@ osg::Matrix Registrator::getRotationMatrix(double angle) const
   return matrix;
 }
 
-void Registrator::saveRegisteredPoints(int object, int segment_threshold)
+void Registrator::saveRegisteredPoints(int frame, int segment_threshold)
 {
   QMutexLocker locker(&mutex_);
 
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
-  std::string folder = model->getPointsFolder(object);
+  std::string folder = model->getPointsFolder(frame);
   if (folder.empty())
     return;
 
   PointCloud registered_points;
   for (size_t i = 0; i < 12; ++ i)
   {
-    osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(object, i);
+    osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, i);
     if (!point_cloud->isRegistered())
       continue;
 
@@ -378,7 +378,7 @@ void Registrator::saveRegisteredPoints(int object, int segment_threshold)
     }
   }
 
-  /*registered_points.denoise(object, segment_threshold);
+  /*registered_points.denoise(frame, segment_threshold);
   std::cout<<"finish denoise"<<std::endl;*/
   std::string filename = folder+"/points.pcd";
   registered_points.save(filename);
@@ -394,12 +394,12 @@ void Registrator::saveRegisteredPoints(int object, int segment_threshold)
    }
    fclose(file);
 
-  model->updatePointCloud(object);
+  model->updatePointCloud(frame);
 
   return;
 }
 
-void Registrator::refineAxis(int object)
+void Registrator::refineAxis(int frame)
 {
   QMutexLocker locker(&mutex_);
 
@@ -408,7 +408,7 @@ void Registrator::refineAxis(int object)
   std::vector<double>      angles;
   for (size_t i = 1; i < 12; ++ i)
   {
-    osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(object, i);
+    osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, i);
     if(!point_cloud->isRegistered())
       continue;
     matrices.push_back(point_cloud->getMatrix());
@@ -449,21 +449,21 @@ void Registrator::refineAxis(int object)
   pivot_point = osg::Vec3(x(0), x(1), x(2));
   setPivotPoint(pivot_point);
 
-  save((model->getPointsFolder(object)+"/axis.txt").c_str());
+  save((model->getPointsFolder(frame)+"/axis.txt").c_str());
 
   return;
 }
 
 void Registrator::refineAxis(void)
 {
-  int object;
-  if (!ParameterManager::getInstance().getObjectParameter(object))
+  int frame;
+  if (!ParameterManager::getInstance().getFrameParameter(frame))
     return;
 
-  refineAxis(object);
+  refineAxis(frame);
 }
 
-void Registrator::computeError(int object)
+void Registrator::computeError(int frame)
 {
   error_vertices_->clear();
   error_colors_->clear();
@@ -473,7 +473,7 @@ void Registrator::computeError(int object)
   shown_flag[0] = true;
   for (size_t i = 1; i < 12; ++ i)
   {
-    osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(object, i);
+    osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, i);
     shown_flag[i] = point_cloud->isShown();
     if (shown_flag[i])
       point_cloud->initRotation();
@@ -490,8 +490,8 @@ void Registrator::computeError(int object)
   PCLPointCloud::Ptr target(new PCLPointCloud);
   for (size_t i = 0, i_end = neighbor_pairs.size(); i < i_end; ++ i)
   {
-    model->getPointCloud(object, neighbor_pairs[i].first)->getTransformedPoints(*source);
-    model->getPointCloud(object, neighbor_pairs[i].second)->getTransformedPoints(*target);
+    model->getPointCloud(frame, neighbor_pairs[i].first)->getTransformedPoints(*source);
+    model->getPointCloud(frame, neighbor_pairs[i].second)->getTransformedPoints(*target);
 
     pcl::registration::CorrespondenceEstimation<PCLPoint, PCLPoint, float> correspondence_estimation;
     correspondence_estimation.setInputSource(source);
@@ -514,29 +514,29 @@ void Registrator::computeError(int object)
   return;
 }
 
-void Registrator::registrationICP(int max_iterations, double max_distance, int object, int repeat_times)
+void Registrator::registrationICP(int max_iterations, double max_distance, int frame, int repeat_times)
 {
 
   for(size_t i = 0; i < repeat_times; i++)
   {
-    registrationICP(max_iterations, max_distance, object);
+    registrationICP(max_iterations, max_distance, frame);
   }
 }
 
-void Registrator::registrationICP(int max_iterations, double max_distance, int object)
+void Registrator::registrationICP(int max_iterations, double max_distance, int frame)
 {
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
   std::vector<osg::ref_ptr<PointCloud> > point_clouds;
   for (size_t i = 1; i < 6; ++ i)
   {
-    osg::ref_ptr<PointCloud> front_cloud = model->getPointCloud(object, i);
+    osg::ref_ptr<PointCloud> front_cloud = model->getPointCloud(frame, i);
     if (front_cloud->isShown())
       point_clouds.push_back(front_cloud);
-    osg::ref_ptr<PointCloud> back_cloud = model->getPointCloud(object, 12-i);
+    osg::ref_ptr<PointCloud> back_cloud = model->getPointCloud(frame, 12-i);
     if (back_cloud->isShown())
       point_clouds.push_back(back_cloud);
   }
-  osg::ref_ptr<PointCloud> center_cloud = model->getPointCloud(object, 6);
+  osg::ref_ptr<PointCloud> center_cloud = model->getPointCloud(frame, 6);
   if (center_cloud->isShown())
     point_clouds.push_back(center_cloud);
   if (point_clouds.empty())
@@ -559,7 +559,7 @@ void Registrator::registrationICP(int max_iterations, double max_distance, int o
   // Set the euclidean distance difference epsilon (criterion 3)
   icp.setEuclideanFitnessEpsilon(64);
 
-  model->getPointCloud(object, 0)->getTransformedPoints(*target);
+  model->getPointCloud(frame, 0)->getTransformedPoints(*target);
   for (size_t i = 0, i_end = point_clouds.size(); i < i_end; ++ i)
   {
     point_clouds[i]->getTransformedPoints(*source);
@@ -579,7 +579,7 @@ void Registrator::registrationICP(int max_iterations, double max_distance, int o
   if (show_error_)
   {
     QMutexLocker locker(&mutex_);
-    computeError(object);
+    computeError(frame);
   }
 
   expire();
@@ -589,33 +589,33 @@ void Registrator::registrationICP(int max_iterations, double max_distance, int o
 
 void Registrator::registrationICP(void)
 {
-  int max_iterations, object, repeat_times;
+  int max_iterations, frame, repeat_times;
   double max_distance;
-  if (!ParameterManager::getInstance().getRegistrationICPParameters(max_iterations, max_distance, object, repeat_times))
+  if (!ParameterManager::getInstance().getRegistrationICPParameters(max_iterations, max_distance, frame, repeat_times))
     return;
 
   QFutureWatcher<void>* watcher = new QFutureWatcher<void>(this);
   connect(watcher, SIGNAL(finished()), watcher, SLOT(deleteLater()));
 
-  QString running_message = QString("ICP registration for object %1 is running!").arg(object);
-  QString finished_message = QString("ICP registration for object %1 finished!").arg(object);
+  QString running_message = QString("ICP registration for frame %1 is running!").arg(frame);
+  QString finished_message = QString("ICP registration for frame %1 finished!").arg(frame);
   Messenger* messenger = new Messenger(running_message, finished_message, this);
   connect(watcher, SIGNAL(started()), messenger, SLOT(sendRunningMessage()));
   connect(watcher, SIGNAL(finished()), messenger, SLOT(sendFinishedMessage()));
 
-  watcher->setFuture(QtConcurrent::run(this, &Registrator::registrationICP, max_iterations, max_distance, object, repeat_times));
+  watcher->setFuture(QtConcurrent::run(this, &Registrator::registrationICP, max_iterations, max_distance, frame, repeat_times));
 
   return;
 }
 
-void Registrator::registrationLUM(int segment_threshold, int max_iterations, double max_distance, int object)
+void Registrator::registrationLUM(int segment_threshold, int max_iterations, double max_distance, int frame)
 {
-  std::cout << "registrationLUM: object " << object << " running..." << std::endl;
+  std::cout << "registrationLUM: frame " << frame << " running..." << std::endl;
 
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
   for (size_t view = 0; view < 12; ++ view)
   {
-    osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(object, view);
+    osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, view);
     point_cloud->initRotation();
     point_cloud->setRegisterState(true);
   }
@@ -627,7 +627,7 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
     pcl::registration::LUM<PCLPoint> lum;
     for (size_t i = 0; i < 12; ++ i)
     {
-      osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(object, i);
+      osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, i);
       point_cloud->initRotation();
 
       PCLPointCloud::Ptr transformed_cloud(new PCLPointCloud);
@@ -657,7 +657,7 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
     {
       Eigen::Affine3f transformation = lum.getTransformation(i);
       osg::Matrix osg_transformation = PclMatrixCaster<osg::Matrix>(Eigen::Matrix4f(transformation.data()));
-      osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(object, i);
+      osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, i);
       point_cloud->setMatrix(point_cloud->getMatrix()*osg_transformation);
       point_cloud->setRegisterState(true);
     }
@@ -666,11 +666,11 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
   if (show_error_)
   {
     QMutexLocker locker(&mutex_);
-    computeError(object);
+    computeError(frame);
   }
 
-  saveRegisteredPoints(object, segment_threshold);
-  refineAxis(object);
+  saveRegisteredPoints(frame, segment_threshold);
+  refineAxis(frame);
 
   expire();
 
@@ -679,51 +679,51 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
 
 void Registrator::registrationLUM(void)
 {
-  int segment_threshold, max_iterations, object;
+  int segment_threshold, max_iterations, frame;
   double max_distance;
-  if (!ParameterManager::getInstance().getRegistrationLUMParameters(segment_threshold, max_iterations, max_distance, object))
+  if (!ParameterManager::getInstance().getRegistrationLUMParameters(segment_threshold, max_iterations, max_distance, frame))
     return;
 
   QFutureWatcher<void>* watcher = new QFutureWatcher<void>(this);
   connect(watcher, SIGNAL(finished()), watcher, SLOT(deleteLater()));
 
-  QString running_message = QString("LUM registration for object %1 is running!").arg(object);
-  QString finished_message = QString("LUM registration for object %1 finished!").arg(object);
+  QString running_message = QString("LUM registration for frame %1 is running!").arg(frame);
+  QString finished_message = QString("LUM registration for frame %1 finished!").arg(frame);
   Messenger* messenger = new Messenger(running_message, finished_message, this);
   connect(watcher, SIGNAL(started()), messenger, SLOT(sendRunningMessage()));
   connect(watcher, SIGNAL(finished()), messenger, SLOT(sendFinishedMessage()));
 
-  watcher->setFuture(QtConcurrent::run(this, &Registrator::registrationLUM, segment_threshold, max_iterations, max_distance, object));
+  watcher->setFuture(QtConcurrent::run(this, &Registrator::registrationLUM, segment_threshold, max_iterations, max_distance, frame));
 
   return;
 }
 
 void Registrator::registration(void)
 {
-  int object, segment_threshold;
-  if (!ParameterManager::getInstance().getRegistrationParameters(object, segment_threshold))
+  int frame, segment_threshold;
+  if (!ParameterManager::getInstance().getRegistrationParameters(frame, segment_threshold))
     return;
 
   QFutureWatcher<void>* watcher = new QFutureWatcher<void>(this);
   connect(watcher, SIGNAL(finished()), watcher, SLOT(deleteLater()));
 
-  QString running_message = QString("Registration for object %1 is running!").arg(object);
-  QString finished_message = QString("Registration for object %1 finished!").arg(object);
+  QString running_message = QString("Registration for frame %1 is running!").arg(frame);
+  QString finished_message = QString("Registration for frame %1 finished!").arg(frame);
   Messenger* messenger = new Messenger(running_message, finished_message, this);
   connect(watcher, SIGNAL(started()), messenger, SLOT(sendRunningMessage()));
   connect(watcher, SIGNAL(finished()), messenger, SLOT(sendFinishedMessage()));
 
-  watcher->setFuture(QtConcurrent::run(this, &Registrator::registration, object, segment_threshold));
+  watcher->setFuture(QtConcurrent::run(this, &Registrator::registration, frame, segment_threshold));
 }
 
-void Registrator::registration(int object, int segment_threshold)
+void Registrator::registration(int frame, int segment_threshold)
 {
-  std::cout << "registration: object " << object << " running..." << std::endl;
+  std::cout << "registration: frame " << frame << " running..." << std::endl;
 
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
   for (size_t view = 0; view < 12; ++ view)
   {
-    osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(object, view);
+    osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, view);
     point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
     point_cloud->initRotation();
     point_cloud->setRegisterState(true);
@@ -732,31 +732,31 @@ void Registrator::registration(int object, int segment_threshold)
   if (show_error_)
   {
     QMutexLocker locker(&mutex_);
-    computeError(object);
+    computeError(frame);
   }
 
-  saveRegisteredPoints(object, segment_threshold);
-  refineAxis(object);
+  saveRegisteredPoints(frame, segment_threshold);
+  refineAxis(frame);
 
   expire();
 
   return;
 }
 
-void Registrator::automaticRegistration(int object, int segment_threshold, int max_iterations, int repeat_times, double max_distance, 
+void Registrator::automaticRegistration(int frame, int segment_threshold, int max_iterations, int repeat_times, double max_distance, 
   double transformation_epsilon, double euclidean_fitness_epsilon)
 {
 
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
-  model->getPointCloud(object, 0)->getTransformedPoints(*target_);
+  model->getPointCloud(frame, 0)->getTransformedPoints(*target_);
   size_t view_number = 1;
   while (view_number < 12)
   {
-    automaticRegistrationICP(view_number,object,max_iterations,repeat_times,max_distance, 
+    automaticRegistrationICP(view_number,frame,max_iterations,repeat_times,max_distance, 
       transformation_epsilon,euclidean_fitness_epsilon);
 
     size_t source_index = view_number - 1;
-    osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(object, view_number);
+    osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, view_number);
     point_clouds_.push_back(point_cloud);
 
     if (point_clouds_.empty())
@@ -833,25 +833,25 @@ void Registrator::automaticRegistration(int object, int segment_threshold, int m
     *target_ += *source_;
     view_number ++;
 
-    refineAxis(object);
+    refineAxis(frame);
     expire();
   }
 
-  registration(object, segment_threshold);
+  registration(frame, segment_threshold);
   return;
 }
 
 void Registrator::automaticRegistration(void)
 {
-  int object, segment_threshold, max_iterations, repeat_times;
+  int frame, segment_threshold, max_iterations, repeat_times;
   double max_distance;
   double transformation_epsilon;
   double euclidean_fitness_epsilon;
 
-  if (!ParameterManager::getInstance().getAutomaticRegistrationParameters(object, segment_threshold, max_iterations, repeat_times, max_distance, 
+  if (!ParameterManager::getInstance().getAutomaticRegistrationParameters(frame, segment_threshold, max_iterations, repeat_times, max_distance, 
     transformation_epsilon, euclidean_fitness_epsilon))
 
-  if (!ParameterManager::getInstance().getAutomaticRegistrationParameters(object, segment_threshold, max_iterations, repeat_times,
+  if (!ParameterManager::getInstance().getAutomaticRegistrationParameters(frame, segment_threshold, max_iterations, repeat_times,
     max_distance, transformation_epsilon, euclidean_fitness_epsilon))
 
     return;
@@ -859,8 +859,8 @@ void Registrator::automaticRegistration(void)
   QFutureWatcher<void>* watcher = new QFutureWatcher<void>(this);
   connect(watcher, SIGNAL(finished()), watcher, SLOT(deleteLater()));
 
-  QString running_message = QString("Registration for object %1 is running!").arg(object);
-  QString finished_message = QString("Registration for object %1 finished!").arg(object);
+  QString running_message = QString("Registration for frame %1 is running!").arg(frame);
+  QString finished_message = QString("Registration for frame %1 finished!").arg(frame);
   Messenger* messenger = new Messenger(running_message, finished_message, this);
   connect(watcher, SIGNAL(started()), messenger, SLOT(sendRunningMessage()));
   connect(watcher, SIGNAL(finished()), messenger, SLOT(sendFinishedMessage()));
@@ -869,12 +869,12 @@ void Registrator::automaticRegistration(void)
   //binding an overloaded function
   watcher->setFuture(QtConcurrent::run(
 
-    boost::bind(static_cast<void (Registrator::*)(int,int,int,int,double,double,double)>(&Registrator::automaticRegistration), this, object, segment_threshold, max_iterations, repeat_times, max_distance, 
+    boost::bind(static_cast<void (Registrator::*)(int,int,int,int,double,double,double)>(&Registrator::automaticRegistration), this, frame, segment_threshold, max_iterations, repeat_times, max_distance, 
     transformation_epsilon, euclidean_fitness_epsilon)));
  
 }
 
-void Registrator::automaticRegistrationICP(int view_number, int object, int max_iterations, int repeat_times, double max_distance, 
+void Registrator::automaticRegistrationICP(int view_number, int frame, int max_iterations, int repeat_times, double max_distance, 
   double transformation_epsilon, double euclidean_fitness_epsilon)
 {
   QFile data_file("fitness_scores.txt");
@@ -885,7 +885,7 @@ void Registrator::automaticRegistrationICP(int view_number, int object, int max_
   
   for(size_t i = 1, i_end = view_number; i <= i_end; i ++)
   {
-    osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(object, i);
+    osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, i);
     point_clouds_.push_back(point_cloud);
   }
 
@@ -906,7 +906,7 @@ void Registrator::automaticRegistrationICP(int view_number, int object, int max_
   std::cout<<"View:"<<view_number<<std::endl;
   data_stream<<"View:"<<view_number<<"\n";
 //  addEuclideanFitnessEpsilon(euclidean_fitness_epsilon);
-  model->getPointCloud(object, 0)->getTransformedPoints(*target_);
+  model->getPointCloud(frame, 0)->getTransformedPoints(*target_);
   for (size_t i = 0, i_end = point_clouds_.size(); i < i_end; ++ i)
   {
     point_clouds_[i]->getTransformedPoints(*source_);
@@ -983,7 +983,7 @@ void Registrator::automaticRegistrationICP(int view_number, int object, int max_
   }
   data_file.close();
   point_clouds_.clear();
-  refineAxis(object);
+  refineAxis(frame);
   expire();
 
   return;
@@ -1000,7 +1000,7 @@ void Registrator::addEuclideanFitnessEpsilon(double euclidean_fitness_epsilon)
   /*euclidean_fitness_epsilons_.push_back(euclidean_fitness_epsilon);
   return;
 
-    boost::bind(static_cast<void (Registrator::*)(int,int,int,int,double,double,double)>(&Registrator::automaticRegistration), this, object, segment_threshold, max_iterations, repeat_times,
+    boost::bind(static_cast<void (Registrator::*)(int,int,int,int,double,double,double)>(&Registrator::automaticRegistration), this, frame, segment_threshold, max_iterations, repeat_times,
     max_distance, transformation_epsilon, euclidean_fitness_epsilon)));*/
  
 }

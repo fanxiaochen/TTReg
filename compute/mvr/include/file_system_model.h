@@ -31,27 +31,29 @@ public:
   bool isShown(const std::string& filename) const;
 
   osg::ref_ptr<PointCloud> getPointCloud(const std::string& filename);
-  osg::ref_ptr<PointCloud> getPointCloud(int object);   
-  osg::ref_ptr<PointCloud> getPointCloud(int object, int view);
-  void getObjectRange(int &start, int &end);
-  std::string getPointsFolder(int object);
-  std::string getPointsFolder(int object, int view);
+  osg::ref_ptr<PointCloud> getPointCloud(int frame);   
+  osg::ref_ptr<PointCloud> getPointCloud(int frame, int view);
+  void getFrameRange(int &start, int &end);
+  std::string getPointsFolder(int frame);
+  std::string getPointsFolder(int frame, int view);
+  std::string getImagesFolder(int frame);
+  std::string getImagesFolder(int frame, int view);
 
-  std::string getPointsFilename(int object, int view);
-  std::string getPointsFilename(int object);
+  std::string getPointsFilename(int frame, int view);
+  std::string getPointsFilename(int frame);
 
   void showPointCloud(const std::string& filename);
 
-  void hidePointCloud(int object, int view);
+  void hidePointCloud(int frame, int view);
   void hidePointCloud(const std::string& filename);
 
-  void updatePointCloud(int object, int view);
-  void updatePointCloud(int object);
+  void updatePointCloud(int frame, int view);
+  void updatePointCloud(int frame);
   const osg::Vec4& getColor(void) const {return color_;}
 
-  int getStartObject(void) const {return start_object_;}
-  int getEndObject(void) const {return end_object_;}
-  PointCloud* getDisplayFirstObject(void);
+  int getStartFrame(void) const {return start_frame_;}
+  int getEndFrame(void) const {return end_frame_;}
+  PointCloud* getDisplayFirstFrame(void);
 
   enum NavigationType
   {
@@ -59,20 +61,20 @@ public:
     APPEND,
     ERASE
   };
-  void navigateToPreviousObject(NavigationType type);
-  void navigateToNextObject(NavigationType type);
+  void navigateToPreviousFrame(NavigationType type);
+  void navigateToNextFrame(NavigationType type);
   void navigateToPreviousView(NavigationType type);
   void navigateToNextView(NavigationType type);
 
   public slots:
 
-    void showPointCloud(int object, int view);
-    void hideAndShowPointCloud(int hide_object, int hide_view, int show_object, int show_view);
+    void showPointCloud(int frame, int view);
+    void hideAndShowPointCloud(int hide_frame, int hide_view, int show_frame, int show_view);
 
 signals:
     void progressValueChanged(int value);
-    void timeToHideAndShowPointCloud(int hide_object, int hide_view, int show_object, int show_view);
-    void timeToShowPointCloud(int show_object, int show_view);
+    void timeToHideAndShowPointCloud(int hide_frame, int hide_view, int show_frame, int show_view);
+    void timeToShowPointCloud(int show_frame, int show_view);
 
 private:
   
@@ -87,12 +89,12 @@ private:
   
   void limitPointCloudCacheSize(void);
 
-  void getDisplayFirstObjectFirstView(int& object, int& view);
-  void getDisplayFirstObjectLastView(int& object, int& view);
-  void getDisplayLastObjectLastView(int& object, int& view);
+  void getDisplayFirstFrameFirstView(int& frame, int& view);
+  void getDisplayFirstFrameLastView(int& frame, int& view);
+  void getDisplayLastFrameLastView(int& frame, int& view);
 
   bool recursiveCheck(const QModelIndex &index, const QVariant &value);
-  void computeObjectRange(void);
+  void computeFrameRange(void);
 
 private:
 
@@ -102,8 +104,8 @@ private:
   QSet<QPersistentModelIndex>     checked_indexes_;
   PointCloudMap                   point_cloud_map_;
   PointCloudCacheMap              point_cloud_cache_map_;
-  int                             start_object_;
-  int                             end_object_;
+  int                             start_frame_;
+  int                             end_frame_;
   osg::Vec4                       color_;
   QMutex                          mutex_;
 };
