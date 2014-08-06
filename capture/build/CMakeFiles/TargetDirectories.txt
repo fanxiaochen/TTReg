@@ -1,3 +1,0 @@
-C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/EvoGeoCapture.dir
-C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/ZERO_CHECK.dir
