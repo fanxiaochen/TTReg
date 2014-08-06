@@ -1,0 +1,156 @@
+Determining if the Q_WS_X11 exist failed with the following output:
+Change Dir: C:/Users/xiaochenfan/Desktop/KingFisher/capture/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Windows/Microsoft.NET/Framework/v4.0.30319/MSBuild.exe" "cmTryCompileExec448284927.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=10.0"
+Microsoft (R) Build Engine Version 4.0.30319.1
+[Microsoft .NET Framework, Version 4.0.30319.225]
+Copyright (C) Microsoft Corporation 2007. All rights reserved.
+
+Build started 2014/8/5 9:52:51.
+Project "C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec448284927.vcxproj" on node 1 (default targets).
+PrepareForBuild:
+  Creating directory "cmTryCompileExec448284927.dir\Debug\".
+  Creating directory "C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\Debug\".
+InitializeBuildStatus:
+  Creating "cmTryCompileExec448284927.dir\Debug\cmTryCompileExec448284927.unsuccessfulbuild" because "AlwaysCreate" was specified.
+ClCompile:
+  c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\4.8.0\include /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:fast /Zc:wchar_t /Zc:forScope /GR /Fo"cmTryCompileExec448284927.dir\Debug\\" /Fd"cmTryCompileExec448284927.dir\Debug\vc100.pdb" /Gd /TP /wd4800 /wd4521 /wd4251 /wd4275 /wd4305 /wd4355 /wd4819 /errorReport:queue CheckSymbolExists.cxx  /bigobj 
+  Microsoft (R) C/C++ Optimizing Compiler Version 16.00.30319.01 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /IC:\Qt\4.8.0\include /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:fast /Zc:wchar_t /Zc:forScope /GR /Fo"cmTryCompileExec448284927.dir\Debug\\" /Fd"cmTryCompileExec448284927.dir\Debug\vc100.pdb" /Gd /TP /wd4800 /wd4521 /wd4251 /wd4275 /wd4305 /wd4355 /wd4819 /errorReport:queue CheckSymbolExists.cxx  /bigobj 
+  
+  CheckSymbolExists.cxx
+CheckSymbolExists.cxx(8): error C2065: 'Q_WS_X11' : undeclared identifier [C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec448284927.vcxproj]
+Done Building Project "C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec448284927.vcxproj" (default targets) -- FAILED.
+
+Build FAILED.
+
+"C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec448284927.vcxproj" (default target) (1) ->
+(ClCompile target) -> 
+  CheckSymbolExists.cxx(8): error C2065: 'Q_WS_X11' : undeclared identifier [C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec448284927.vcxproj]
+
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:00.32
+
+File C:/Users/xiaochenfan/Desktop/KingFisher/capture/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_X11
+  return ((int*)(&Q_WS_X11))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_QWS exist failed with the following output:
+Change Dir: C:/Users/xiaochenfan/Desktop/KingFisher/capture/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Windows/Microsoft.NET/Framework/v4.0.30319/MSBuild.exe" "cmTryCompileExec2048677913.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=10.0"
+Microsoft (R) Build Engine Version 4.0.30319.1
+[Microsoft .NET Framework, Version 4.0.30319.225]
+Copyright (C) Microsoft Corporation 2007. All rights reserved.
+
+Build started 2014/8/5 9:52:53.
+Project "C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec2048677913.vcxproj" on node 1 (default targets).
+PrepareForBuild:
+  Creating directory "cmTryCompileExec2048677913.dir\Debug\".
+  Creating directory "C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\Debug\".
+InitializeBuildStatus:
+  Creating "cmTryCompileExec2048677913.dir\Debug\cmTryCompileExec2048677913.unsuccessfulbuild" because "AlwaysCreate" was specified.
+ClCompile:
+  c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\4.8.0\include /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:fast /Zc:wchar_t /Zc:forScope /GR /Fo"cmTryCompileExec2048677913.dir\Debug\\" /Fd"cmTryCompileExec2048677913.dir\Debug\vc100.pdb" /Gd /TP /wd4800 /wd4521 /wd4251 /wd4275 /wd4305 /wd4355 /wd4819 /errorReport:queue CheckSymbolExists.cxx  /bigobj 
+  Microsoft (R) C/C++ Optimizing Compiler Version 16.00.30319.01 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /IC:\Qt\4.8.0\include /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:fast /Zc:wchar_t /Zc:forScope /GR /Fo"cmTryCompileExec2048677913.dir\Debug\\" /Fd"cmTryCompileExec2048677913.dir\Debug\vc100.pdb" /Gd /TP /wd4800 /wd4521 /wd4251 /wd4275 /wd4305 /wd4355 /wd4819 /errorReport:queue CheckSymbolExists.cxx  /bigobj 
+  
+  CheckSymbolExists.cxx
+CheckSymbolExists.cxx(8): error C2065: 'Q_WS_QWS' : undeclared identifier [C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec2048677913.vcxproj]
+Done Building Project "C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec2048677913.vcxproj" (default targets) -- FAILED.
+
+Build FAILED.
+
+"C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec2048677913.vcxproj" (default target) (1) ->
+(ClCompile target) -> 
+  CheckSymbolExists.cxx(8): error C2065: 'Q_WS_QWS' : undeclared identifier [C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec2048677913.vcxproj]
+
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:00.32
+
+File C:/Users/xiaochenfan/Desktop/KingFisher/capture/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_QWS
+  return ((int*)(&Q_WS_QWS))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_MAC exist failed with the following output:
+Change Dir: C:/Users/xiaochenfan/Desktop/KingFisher/capture/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Windows/Microsoft.NET/Framework/v4.0.30319/MSBuild.exe" "cmTryCompileExec1482972778.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=10.0"
+Microsoft (R) Build Engine Version 4.0.30319.1
+[Microsoft .NET Framework, Version 4.0.30319.225]
+Copyright (C) Microsoft Corporation 2007. All rights reserved.
+
+Build started 2014/8/5 9:52:53.
+Project "C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec1482972778.vcxproj" on node 1 (default targets).
+PrepareForBuild:
+  Creating directory "cmTryCompileExec1482972778.dir\Debug\".
+  Creating directory "C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\Debug\".
+InitializeBuildStatus:
+  Creating "cmTryCompileExec1482972778.dir\Debug\cmTryCompileExec1482972778.unsuccessfulbuild" because "AlwaysCreate" was specified.
+ClCompile:
+  c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\4.8.0\include /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:fast /Zc:wchar_t /Zc:forScope /GR /Fo"cmTryCompileExec1482972778.dir\Debug\\" /Fd"cmTryCompileExec1482972778.dir\Debug\vc100.pdb" /Gd /TP /wd4800 /wd4521 /wd4251 /wd4275 /wd4305 /wd4355 /wd4819 /errorReport:queue CheckSymbolExists.cxx  /bigobj 
+  Microsoft (R) C/C++ Optimizing Compiler Version 16.00.30319.01 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /IC:\Qt\4.8.0\include /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:fast /Zc:wchar_t /Zc:forScope /GR /Fo"cmTryCompileExec1482972778.dir\Debug\\" /Fd"cmTryCompileExec1482972778.dir\Debug\vc100.pdb" /Gd /TP /wd4800 /wd4521 /wd4251 /wd4275 /wd4305 /wd4355 /wd4819 /errorReport:queue CheckSymbolExists.cxx  /bigobj 
+  
+  CheckSymbolExists.cxx
+CheckSymbolExists.cxx(8): error C2065: 'Q_WS_MAC' : undeclared identifier [C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec1482972778.vcxproj]
+Done Building Project "C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec1482972778.vcxproj" (default targets) -- FAILED.
+
+Build FAILED.
+
+"C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec1482972778.vcxproj" (default target) (1) ->
+(ClCompile target) -> 
+  CheckSymbolExists.cxx(8): error C2065: 'Q_WS_MAC' : undeclared identifier [C:\Users\xiaochenfan\Desktop\KingFisher\capture\build\CMakeFiles\CMakeTmp\cmTryCompileExec1482972778.vcxproj]
+
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:00.34
+
+File C:/Users/xiaochenfan/Desktop/KingFisher/capture/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_MAC
+  return ((int*)(&Q_WS_MAC))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+

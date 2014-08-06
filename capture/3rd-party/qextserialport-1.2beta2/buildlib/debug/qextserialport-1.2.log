@@ -1,0 +1,36 @@
+﻿Build started 2014/8/5 16:59:44.
+     1>Project "C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\buildlib\qextserialport-1.2.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "debug\qextserialport-1.2.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       CustomBuild:
+         MOC ..\src\qextserialenumerator.h
+         MOC ..\src\qextserialport.h
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /Ic:\Qt\4.8.0\include\QtCore /Ic:\Qt\4.8.0\include\QtGui /Ic:\Qt\4.8.0\include /I..\src /Ic:\Qt\4.8.0\include\ActiveQt /Idebug /Ic:\Qt\4.8.0\mkspecs\default /Zi /nologo /W3 /WX- /O2 /D _WINDOWS /D UNICODE /D WIN32 /D QT_LARGEFILE_SUPPORT /D QEXTSERIALPORT_BUILD_SHARED /D QT_DLL /D QT_GUI_LIB /D QT_CORE_LIB /D QT_HAVE_MMX /D QT_HAVE_3DNOW /D QT_HAVE_SSE /D QT_HAVE_MMXEXT /D QT_HAVE_SSE2 /D QT_THREAD_SUPPORT /D _WINDLL /Gm- /EHsc /MDd /GS- /fp:precise /Zc:wchar_t- /Zc:forScope /GR /Fo"debug\\" /Fd".\vc100.pdb" /Gd /TP /errorReport:prompt ..\src\qextserialenumerator.cpp ..\src\qextserialenumerator_win.cpp ..\src\qextserialport.cpp ..\src\qextserialport_win.cpp -Zm200 -w34100 -w34189 
+         qextserialenumerator.cpp
+         qextserialenumerator_win.cpp
+         qextserialport.cpp
+         qextserialport_win.cpp
+         Generating Code...
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\lib\\qextserialport-1.2d.dll" /NOLOGO /LIBPATH:c:\Qt\4.8.0\lib setupapi.lib advapi32.lib user32.lib c:\Qt\4.8.0\lib\QtGuid4.lib c:\Qt\4.8.0\lib\QtCored4.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"debug\qextserialport-1.2d.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\lib\qextserialport-1.2d.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 /DLL debug\qextserialenumerator.obj
+         debug\qextserialenumerator_win.obj
+         debug\qextserialport.obj
+         debug\qextserialport_win.obj
+            Creating library ..\lib\\qextserialport-1.2d.lib and object ..\lib\\qextserialport-1.2d.exp
+         qextserialport-1.2.vcxproj -> C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\buildlib\..\lib\qextserialport-1.2d.dll
+       Manifest:
+         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"..\lib\\qextserialport-1.2d.dll;#2" /manifest "debug\qextserialport-1.2d.dll.intermediate.manifest"
+       PostBuildEvent:
+         Description: Copy qextserialport-1.2d.dll to c:\Qt\4.8.0\bin
+         copy  "C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\buildlib\..\lib\qextserialport-1.2d.dll" "c:\Qt\4.8.0\bin"
+         :VCEnd
+         已复制         1 个文件。
+       FinalizeBuildStatus:
+         Deleting file "debug\qextserialport-1.2.unsuccessfulbuild".
+         Touching "debug\qextserialport-1.2.lastbuildstate".
+     1>Done Building Project "C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\buildlib\qextserialport-1.2.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:05.38

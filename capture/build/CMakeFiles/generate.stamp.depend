@@ -1,0 +1,36 @@
+# CMake generation dependency list for this directory.
+C:/Users/xiaochenfan/Desktop/KingFisher/capture/CMakeLists.txt
+C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/3.0.0/CMakeSystem.cmake
+C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/3.0.0/CMakeCCompiler.cmake
+C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/3.0.0/CMakeCXXCompiler.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeSystemSpecificInformation.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeGenericSystem.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Platform/Windows.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Platform/WindowsPaths.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeCInformation.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Platform/Windows-MSVC-C.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Platform/Windows-MSVC.cmake
+C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/3.0.0/CMakeRCCompiler.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeRCInformation.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeCommonLanguageInclude.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeCXXInformation.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Platform/Windows-MSVC-CXX.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Platform/Windows-MSVC.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeCommonLanguageInclude.cmake
+C:/Users/xiaochenfan/Desktop/KingFisher/capture/cmake/Find3rdParty.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/FindOpenGL.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/FindPackageHandleStandardArgs.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/FindPackageMessage.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeParseArguments.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/FindQt4.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CheckCXXSymbolExists.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CheckSymbolExists.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/MacroAddFileDependencies.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/FindPackageHandleStandardArgs.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/FindPackageMessage.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeParseArguments.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Qt4ConfigDependentSettings.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Qt4Macros.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/FindBoost.cmake
+D:/Program Files (x86)/CMake/share/cmake-3.0/Modules/UseQt4.cmake
+C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.qrc

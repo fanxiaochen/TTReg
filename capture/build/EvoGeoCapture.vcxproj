@@ -1,0 +1,864 @@
+﻿<?xml version="1.0" encoding="Windows-1252"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{40C5CD70-1F71-4A70-987F-B2DE39DBE286}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>EvoGeoCapture</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\Debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EvoGeoCapture.dir\Debug\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EvoGeoCapture</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\Release\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EvoGeoCapture.dir\Release\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EvoGeoCapture</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\MinSizeRel\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">EvoGeoCapture.dir\MinSizeRel\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">EvoGeoCapture</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\RelWithDebInfo\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">EvoGeoCapture.dir\RelWithDebInfo\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">EvoGeoCapture</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalOptions> /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\src;C:\Libraries\FlyCapture\include;C:\Users\xiaochenfan\Desktop\TTReg\capture\build;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include;C:\Libraries\Boost\include;C:\Qt\4.8.0\include;C:\Qt\4.8.0\include\QtOpenGL;C:\Qt\4.8.0\include\QtGui;C:\Qt\4.8.0\include\QtXml;C:\Qt\4.8.0\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4800;4521;4251;4275;4305;4355;4819</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;BOOST_ALL_NO_LIB;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;QT_DLL;QT_OPENGL_LIB;QT_GUI_LIB;QT_XML_LIB;QT_CORE_LIB;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;BOOST_ALL_NO_LIB;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;QT_DLL;QT_OPENGL_LIB;QT_GUI_LIB;QT_XML_LIB;QT_CORE_LIB;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\src;C:\Libraries\FlyCapture\include;C:\Users\xiaochenfan\Desktop\TTReg\capture\build;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include;C:\Libraries\Boost\include;C:\Qt\4.8.0\include;C:\Qt\4.8.0\include\QtOpenGL;C:\Qt\4.8.0\include\QtGui;C:\Qt\4.8.0\include\QtXml;C:\Qt\4.8.0\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\src;C:\Libraries\FlyCapture\include;C:\Users\xiaochenfan\Desktop\TTReg\capture\build;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include;C:\Libraries\Boost\include;C:\Qt\4.8.0\include;C:\Qt\4.8.0\include\QtOpenGL;C:\Qt\4.8.0\include\QtGui;C:\Qt\4.8.0\include\QtXml;C:\Qt\4.8.0\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:x64 /debug %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;qextserialport-1.2d.lib;FlyCapture2d_v100.lib;glu32.lib;opengl32.lib;C:\Qt\4.8.0\lib\QtOpenGLd4.lib;C:\Qt\4.8.0\lib\QtGuid4.lib;C:\Qt\4.8.0\lib\QtXmld4.lib;C:\Qt\4.8.0\lib\QtCored4.lib;C:\Libraries\Boost\lib\libboost_thread-vc100-mt-gd-1_50.lib;C:\Libraries\Boost\lib\libboost_date_time-vc100-mt-gd-1_50.lib;C:\Libraries\Boost\lib\libboost_system-vc100-mt-gd-1_50.lib;C:\Libraries\Boost\lib\libboost_chrono-vc100-mt-gd-1_50.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Users/xiaochenfan/Desktop/KingFisher/capture/3rd-party/qextserialport-1.2beta2/lib;C:/Users/xiaochenfan/Desktop/KingFisher/capture/3rd-party/qextserialport-1.2beta2/lib/$(Configuration);;C:/Libraries/FlyCapture/lib64;C:/Libraries/FlyCapture/lib64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>C:/Users/xiaochenfan/Desktop/TTReg/capture/build/Debug/EvoGeoCapture.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/xiaochenfan/Desktop/TTReg/capture/build/Debug/EvoGeoCapture.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalOptions> /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\src;C:\Libraries\FlyCapture\include;C:\Users\xiaochenfan\Desktop\TTReg\capture\build;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include;C:\Libraries\Boost\include;C:\Qt\4.8.0\include;C:\Qt\4.8.0\include\QtOpenGL;C:\Qt\4.8.0\include\QtGui;C:\Qt\4.8.0\include\QtXml;C:\Qt\4.8.0\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4800;4521;4251;4275;4305;4355;4819;4800</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <DebugInformationFormat></DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BOOST_ALL_NO_LIB;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;QT_DLL;QT_NO_DEBUG;QT_OPENGL_LIB;QT_GUI_LIB;QT_XML_LIB;QT_CORE_LIB;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BOOST_ALL_NO_LIB;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;QT_DLL;QT_NO_DEBUG;QT_OPENGL_LIB;QT_GUI_LIB;QT_XML_LIB;QT_CORE_LIB;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\src;C:\Libraries\FlyCapture\include;C:\Users\xiaochenfan\Desktop\TTReg\capture\build;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include;C:\Libraries\Boost\include;C:\Qt\4.8.0\include;C:\Qt\4.8.0\include\QtOpenGL;C:\Qt\4.8.0\include\QtGui;C:\Qt\4.8.0\include\QtXml;C:\Qt\4.8.0\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\src;C:\Libraries\FlyCapture\include;C:\Users\xiaochenfan\Desktop\TTReg\capture\build;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include;C:\Libraries\Boost\include;C:\Qt\4.8.0\include;C:\Qt\4.8.0\include\QtOpenGL;C:\Qt\4.8.0\include\QtGui;C:\Qt\4.8.0\include\QtXml;C:\Qt\4.8.0\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:x64 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;qextserialport-1.2.lib;FlyCapture2_v100.lib;glu32.lib;opengl32.lib;C:\Qt\4.8.0\lib\QtOpenGL4.lib;C:\Qt\4.8.0\lib\QtGui4.lib;C:\Qt\4.8.0\lib\QtXml4.lib;C:\Qt\4.8.0\lib\QtCore4.lib;C:\Libraries\Boost\lib\libboost_thread-vc100-mt-1_50.lib;C:\Libraries\Boost\lib\libboost_date_time-vc100-mt-1_50.lib;C:\Libraries\Boost\lib\libboost_system-vc100-mt-1_50.lib;C:\Libraries\Boost\lib\libboost_chrono-vc100-mt-1_50.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Users/xiaochenfan/Desktop/KingFisher/capture/3rd-party/qextserialport-1.2beta2/lib;C:/Users/xiaochenfan/Desktop/KingFisher/capture/3rd-party/qextserialport-1.2beta2/lib/$(Configuration);;C:/Libraries/FlyCapture/lib64;C:/Libraries/FlyCapture/lib64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ImportLibrary>C:/Users/xiaochenfan/Desktop/TTReg/capture/build/Release/EvoGeoCapture.lib</ImportLibrary>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <ProgramDataBaseFile>C:/Users/xiaochenfan/Desktop/TTReg/capture/build/Release/EvoGeoCapture.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalOptions> /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\src;C:\Libraries\FlyCapture\include;C:\Users\xiaochenfan\Desktop\TTReg\capture\build;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include;C:\Libraries\Boost\include;C:\Qt\4.8.0\include;C:\Qt\4.8.0\include\QtOpenGL;C:\Qt\4.8.0\include\QtGui;C:\Qt\4.8.0\include\QtXml;C:\Qt\4.8.0\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4800;4521;4251;4275;4305;4355;4819</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat></DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BOOST_ALL_NO_LIB;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;QT_DLL;QT_NO_DEBUG;QT_OPENGL_LIB;QT_GUI_LIB;QT_XML_LIB;QT_CORE_LIB;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BOOST_ALL_NO_LIB;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;QT_DLL;QT_NO_DEBUG;QT_OPENGL_LIB;QT_GUI_LIB;QT_XML_LIB;QT_CORE_LIB;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\src;C:\Libraries\FlyCapture\include;C:\Users\xiaochenfan\Desktop\TTReg\capture\build;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include;C:\Libraries\Boost\include;C:\Qt\4.8.0\include;C:\Qt\4.8.0\include\QtOpenGL;C:\Qt\4.8.0\include\QtGui;C:\Qt\4.8.0\include\QtXml;C:\Qt\4.8.0\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\src;C:\Libraries\FlyCapture\include;C:\Users\xiaochenfan\Desktop\TTReg\capture\build;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include;C:\Libraries\Boost\include;C:\Qt\4.8.0\include;C:\Qt\4.8.0\include\QtOpenGL;C:\Qt\4.8.0\include\QtGui;C:\Qt\4.8.0\include\QtXml;C:\Qt\4.8.0\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:x64 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;qextserialport-1.2.lib;FlyCapture2_v100.lib;glu32.lib;opengl32.lib;C:\Qt\4.8.0\lib\QtOpenGL4.lib;C:\Qt\4.8.0\lib\QtGui4.lib;C:\Qt\4.8.0\lib\QtXml4.lib;C:\Qt\4.8.0\lib\QtCore4.lib;C:\Libraries\Boost\lib\libboost_thread-vc100-mt-1_50.lib;C:\Libraries\Boost\lib\libboost_date_time-vc100-mt-1_50.lib;C:\Libraries\Boost\lib\libboost_system-vc100-mt-1_50.lib;C:\Libraries\Boost\lib\libboost_chrono-vc100-mt-1_50.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Users/xiaochenfan/Desktop/KingFisher/capture/3rd-party/qextserialport-1.2beta2/lib;C:/Users/xiaochenfan/Desktop/KingFisher/capture/3rd-party/qextserialport-1.2beta2/lib/$(Configuration);;C:/Libraries/FlyCapture/lib64;C:/Libraries/FlyCapture/lib64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ImportLibrary>C:/Users/xiaochenfan/Desktop/TTReg/capture/build/MinSizeRel/EvoGeoCapture.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/xiaochenfan/Desktop/TTReg/capture/build/MinSizeRel/EvoGeoCapture.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalOptions> /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\src;C:\Libraries\FlyCapture\include;C:\Users\xiaochenfan\Desktop\TTReg\capture\build;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include;C:\Libraries\Boost\include;C:\Qt\4.8.0\include;C:\Qt\4.8.0\include\QtOpenGL;C:\Qt\4.8.0\include\QtGui;C:\Qt\4.8.0\include\QtXml;C:\Qt\4.8.0\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4800;4521;4251;4275;4305;4355;4819</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BOOST_ALL_NO_LIB;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;QT_DLL;QT_NO_DEBUG;QT_OPENGL_LIB;QT_GUI_LIB;QT_XML_LIB;QT_CORE_LIB;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BOOST_ALL_NO_LIB;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;QT_DLL;QT_NO_DEBUG;QT_OPENGL_LIB;QT_GUI_LIB;QT_XML_LIB;QT_CORE_LIB;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\src;C:\Libraries\FlyCapture\include;C:\Users\xiaochenfan\Desktop\TTReg\capture\build;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include;C:\Libraries\Boost\include;C:\Qt\4.8.0\include;C:\Qt\4.8.0\include\QtOpenGL;C:\Qt\4.8.0\include\QtGui;C:\Qt\4.8.0\include\QtXml;C:\Qt\4.8.0\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\xiaochenfan\Desktop\KingFisher\capture\3rd-party\qextserialport-1.2beta2\src;C:\Libraries\FlyCapture\include;C:\Users\xiaochenfan\Desktop\TTReg\capture\build;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include;C:\Libraries\Boost\include;C:\Qt\4.8.0\include;C:\Qt\4.8.0\include\QtOpenGL;C:\Qt\4.8.0\include\QtGui;C:\Qt\4.8.0\include\QtXml;C:\Qt\4.8.0\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:x64 /debug %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;qextserialport-1.2.lib;FlyCapture2_v100.lib;glu32.lib;opengl32.lib;C:\Qt\4.8.0\lib\QtOpenGL4.lib;C:\Qt\4.8.0\lib\QtGui4.lib;C:\Qt\4.8.0\lib\QtXml4.lib;C:\Qt\4.8.0\lib\QtCore4.lib;C:\Libraries\Boost\lib\libboost_thread-vc100-mt-1_50.lib;C:\Libraries\Boost\lib\libboost_date_time-vc100-mt-1_50.lib;C:\Libraries\Boost\lib\libboost_system-vc100-mt-1_50.lib;C:\Libraries\Boost\lib\libboost_chrono-vc100-mt-1_50.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Users/xiaochenfan/Desktop/KingFisher/capture/3rd-party/qextserialport-1.2beta2/lib;C:/Users/xiaochenfan/Desktop/KingFisher/capture/3rd-party/qextserialport-1.2beta2/lib/$(Configuration);;C:/Libraries/FlyCapture/lib64;C:/Libraries/FlyCapture/lib64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>C:/Users/xiaochenfan/Desktop/TTReg/capture/build/RelWithDebInfo/EvoGeoCapture.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/xiaochenfan/Desktop/TTReg/capture/build/RelWithDebInfo/EvoGeoCapture.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\KingFisher\capture\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/xiaochenfan/Desktop/KingFisher/capture/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"D:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/Users/xiaochenfan/Desktop/KingFisher/capture -BC:/Users/xiaochenfan/Desktop/TTReg/capture/build --check-stamp-file C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/xiaochenfan/Desktop/KingFisher/capture/CMakeLists.txt;C:\Users\xiaochenfan\Desktop\KingFisher\capture\CMakeLists.txt;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeSystem.cmake;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeCCompiler.cmake;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeCXXCompiler.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeGenericSystem.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\WindowsPaths.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC.cmake;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeRCCompiler.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeRCInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCXXInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\xiaochenfan\Desktop\KingFisher\capture\cmake\Find3rdParty.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindOpenGL.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageMessage.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeParseArguments.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindQt4.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CheckCXXSymbolExists.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CheckSymbolExists.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\MacroAddFileDependencies.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageMessage.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeParseArguments.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Qt4ConfigDependentSettings.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Qt4Macros.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindBoost.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\UseQt4.cmake;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\main_window.qrc;C:\Users\xiaochenfan\Desktop\KingFisher\capture\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/xiaochenfan/Desktop/KingFisher/capture/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"D:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/Users/xiaochenfan/Desktop/KingFisher/capture -BC:/Users/xiaochenfan/Desktop/TTReg/capture/build --check-stamp-file C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/xiaochenfan/Desktop/KingFisher/capture/CMakeLists.txt;C:\Users\xiaochenfan\Desktop\KingFisher\capture\CMakeLists.txt;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeSystem.cmake;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeCCompiler.cmake;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeCXXCompiler.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeGenericSystem.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\WindowsPaths.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC.cmake;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeRCCompiler.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeRCInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCXXInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\xiaochenfan\Desktop\KingFisher\capture\cmake\Find3rdParty.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindOpenGL.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageMessage.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeParseArguments.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindQt4.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CheckCXXSymbolExists.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CheckSymbolExists.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\MacroAddFileDependencies.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageMessage.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeParseArguments.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Qt4ConfigDependentSettings.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Qt4Macros.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindBoost.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\UseQt4.cmake;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\main_window.qrc;C:\Users\xiaochenfan\Desktop\KingFisher\capture\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/xiaochenfan/Desktop/KingFisher/capture/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"D:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/Users/xiaochenfan/Desktop/KingFisher/capture -BC:/Users/xiaochenfan/Desktop/TTReg/capture/build --check-stamp-file C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/xiaochenfan/Desktop/KingFisher/capture/CMakeLists.txt;C:\Users\xiaochenfan\Desktop\KingFisher\capture\CMakeLists.txt;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeSystem.cmake;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeCCompiler.cmake;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeCXXCompiler.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeGenericSystem.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\WindowsPaths.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC.cmake;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeRCCompiler.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeRCInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCXXInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\xiaochenfan\Desktop\KingFisher\capture\cmake\Find3rdParty.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindOpenGL.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageMessage.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeParseArguments.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindQt4.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CheckCXXSymbolExists.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CheckSymbolExists.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\MacroAddFileDependencies.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageMessage.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeParseArguments.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Qt4ConfigDependentSettings.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Qt4Macros.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindBoost.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\UseQt4.cmake;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\main_window.qrc;C:\Users\xiaochenfan\Desktop\KingFisher\capture\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/xiaochenfan/Desktop/KingFisher/capture/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"D:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/Users/xiaochenfan/Desktop/KingFisher/capture -BC:/Users/xiaochenfan/Desktop/TTReg/capture/build --check-stamp-file C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/xiaochenfan/Desktop/KingFisher/capture/CMakeLists.txt;C:\Users\xiaochenfan\Desktop\KingFisher\capture\CMakeLists.txt;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeSystem.cmake;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeCCompiler.cmake;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeCXXCompiler.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeGenericSystem.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\WindowsPaths.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC.cmake;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\3.0.0\CMakeRCCompiler.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeRCInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCXXInformation.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Platform\Windows-MSVC.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\xiaochenfan\Desktop\KingFisher\capture\cmake\Find3rdParty.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindOpenGL.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageMessage.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeParseArguments.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindQt4.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CheckCXXSymbolExists.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CheckSymbolExists.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\MacroAddFileDependencies.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindPackageMessage.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\CMakeParseArguments.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Qt4ConfigDependentSettings.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\Qt4Macros.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\FindBoost.cmake;D:\Program Files (x86)\CMake\share\cmake-3.0\Modules\UseQt4.cmake;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\main_window.qrc;C:\Users\xiaochenfan\Desktop\KingFisher\capture\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\CMakeFiles\generate.stamp</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\KingFisher\capture\Resources\main_window.ui">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating ui_main_window.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\Qt\4.8.0\bin\uic.exe -o C:/Users/xiaochenfan/Desktop/TTReg/capture/build/ui_main_window.h C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.ui
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.ui;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\main_window.ui;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\ui_main_window.h</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating ui_main_window.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\Qt\4.8.0\bin\uic.exe -o C:/Users/xiaochenfan/Desktop/TTReg/capture/build/ui_main_window.h C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.ui
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.ui;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\main_window.ui;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\ui_main_window.h</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating ui_main_window.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\Qt\4.8.0\bin\uic.exe -o C:/Users/xiaochenfan/Desktop/TTReg/capture/build/ui_main_window.h C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.ui
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.ui;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\main_window.ui;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\ui_main_window.h</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating ui_main_window.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\Qt\4.8.0\bin\uic.exe -o C:/Users/xiaochenfan/Desktop/TTReg/capture/build/ui_main_window.h C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.ui
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.ui;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\main_window.ui;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\ui_main_window.h</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeFiles\73234b93523dfca7913b2550fb1f52d3\moc_main_window.cxx.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating include/moc_main_window.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_main_window.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_main_window.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\main_window.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_main_window.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating include/moc_main_window.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_main_window.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_main_window.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\main_window.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_main_window.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating include/moc_main_window.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_main_window.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_main_window.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\main_window.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_main_window.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating include/moc_main_window.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_main_window.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_main_window.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\main_window.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_main_window.cxx</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeFiles\73234b93523dfca7913b2550fb1f52d3\moc_parameter_dialog.cxx.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating include/moc_parameter_dialog.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_parameter_dialog.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_parameter_dialog.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\parameter_dialog.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_parameter_dialog.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating include/moc_parameter_dialog.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_parameter_dialog.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_parameter_dialog.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\parameter_dialog.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_parameter_dialog.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating include/moc_parameter_dialog.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_parameter_dialog.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_parameter_dialog.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\parameter_dialog.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_parameter_dialog.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating include/moc_parameter_dialog.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_parameter_dialog.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_parameter_dialog.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\parameter_dialog.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_parameter_dialog.cxx</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeFiles\73234b93523dfca7913b2550fb1f52d3\moc_pattern_projector.cxx.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating include/moc_pattern_projector.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_pattern_projector.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_pattern_projector.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\pattern_projector.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_pattern_projector.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating include/moc_pattern_projector.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_pattern_projector.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_pattern_projector.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\pattern_projector.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_pattern_projector.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating include/moc_pattern_projector.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_pattern_projector.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_pattern_projector.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\pattern_projector.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_pattern_projector.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating include/moc_pattern_projector.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_pattern_projector.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_pattern_projector.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\pattern_projector.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_pattern_projector.cxx</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeFiles\73234b93523dfca7913b2550fb1f52d3\moc_plain_text_viewer.cxx.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating include/moc_plain_text_viewer.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_plain_text_viewer.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_plain_text_viewer.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\plain_text_viewer.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_plain_text_viewer.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating include/moc_plain_text_viewer.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_plain_text_viewer.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_plain_text_viewer.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\plain_text_viewer.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_plain_text_viewer.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating include/moc_plain_text_viewer.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_plain_text_viewer.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_plain_text_viewer.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\plain_text_viewer.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_plain_text_viewer.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating include/moc_plain_text_viewer.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_plain_text_viewer.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_plain_text_viewer.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\plain_text_viewer.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_plain_text_viewer.cxx</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeFiles\73234b93523dfca7913b2550fb1f52d3\moc_image_grabber.cxx.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating include/moc_image_grabber.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_image_grabber.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_image_grabber.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\image_grabber.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_image_grabber.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating include/moc_image_grabber.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_image_grabber.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_image_grabber.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\image_grabber.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_image_grabber.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating include/moc_image_grabber.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_image_grabber.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_image_grabber.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\image_grabber.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_image_grabber.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating include/moc_image_grabber.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_image_grabber.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_image_grabber.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\image_grabber.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_image_grabber.cxx</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeFiles\73234b93523dfca7913b2550fb1f52d3\moc_turn_table.cxx.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating include/moc_turn_table.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_turn_table.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_turn_table.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\turn_table.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_turn_table.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating include/moc_turn_table.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_turn_table.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_turn_table.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\turn_table.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_turn_table.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating include/moc_turn_table.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_turn_table.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_turn_table.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\turn_table.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_turn_table.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating include/moc_turn_table.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.0\bin\moc.exe @C:/Users/xiaochenfan/Desktop/TTReg/capture/build/include/moc_turn_table.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/xiaochenfan/Desktop/TTReg/capture/build/CMakeFiles/73234b93523dfca7913b2550fb1f52d3/moc_turn_table.cxx.rule;C:\Users\xiaochenfan\Desktop\KingFisher\capture\include\turn_table.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\include\moc_turn_table.cxx</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\KingFisher\capture\Resources\main_window.qrc">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating qrc_main_window.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\Qt\4.8.0\bin\rcc.exe -name main_window -o C:/Users/xiaochenfan/Desktop/TTReg/capture/build/qrc_main_window.cxx C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.qrc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.qrc;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\10.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\11.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\12.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\13.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\14.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\15.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\16.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\17.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\18.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\19.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\20.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\21.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\22.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\23.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\24.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\25.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\26.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\27.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\28.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\29.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\10.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\11.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\12.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\13.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\14.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\15.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\16.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\17.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\18.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\19.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\20.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\21.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\22.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\23.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\10.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\11.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\12.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\13.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\14.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\15.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\16.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\17.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\18.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\19.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\20.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\21.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\22.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\23.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\24.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\25.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\26.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\27.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\28.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\29.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\00.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\01.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\02.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\03.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\04.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\05.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\06.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\07.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\08.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\09.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\00.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\01.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\02.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\03.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\04.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\05.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\06.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\07.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\08.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\09.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\00.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\01.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\02.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\03.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\04.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\05.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\06.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\07.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\08.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\09.bmp;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\Resources\main_window.qrc.depends;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\main_window.qrc;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\qrc_main_window.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating qrc_main_window.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\Qt\4.8.0\bin\rcc.exe -name main_window -o C:/Users/xiaochenfan/Desktop/TTReg/capture/build/qrc_main_window.cxx C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.qrc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.qrc;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\10.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\11.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\12.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\13.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\14.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\15.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\16.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\17.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\18.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\19.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\20.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\21.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\22.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\23.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\24.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\25.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\26.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\27.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\28.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\29.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\10.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\11.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\12.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\13.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\14.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\15.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\16.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\17.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\18.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\19.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\20.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\21.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\22.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\23.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\10.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\11.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\12.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\13.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\14.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\15.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\16.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\17.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\18.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\19.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\20.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\21.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\22.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\23.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\24.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\25.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\26.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\27.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\28.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\29.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\00.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\01.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\02.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\03.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\04.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\05.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\06.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\07.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\08.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\09.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\00.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\01.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\02.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\03.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\04.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\05.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\06.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\07.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\08.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\09.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\00.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\01.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\02.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\03.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\04.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\05.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\06.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\07.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\08.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\09.bmp;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\Resources\main_window.qrc.depends;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\main_window.qrc;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\qrc_main_window.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating qrc_main_window.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\Qt\4.8.0\bin\rcc.exe -name main_window -o C:/Users/xiaochenfan/Desktop/TTReg/capture/build/qrc_main_window.cxx C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.qrc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.qrc;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\10.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\11.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\12.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\13.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\14.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\15.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\16.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\17.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\18.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\19.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\20.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\21.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\22.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\23.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\24.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\25.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\26.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\27.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\28.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\29.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\10.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\11.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\12.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\13.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\14.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\15.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\16.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\17.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\18.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\19.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\20.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\21.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\22.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\23.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\10.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\11.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\12.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\13.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\14.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\15.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\16.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\17.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\18.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\19.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\20.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\21.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\22.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\23.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\24.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\25.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\26.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\27.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\28.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\29.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\00.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\01.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\02.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\03.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\04.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\05.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\06.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\07.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\08.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\09.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\00.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\01.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\02.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\03.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\04.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\05.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\06.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\07.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\08.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\09.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\00.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\01.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\02.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\03.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\04.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\05.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\06.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\07.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\08.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\09.bmp;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\Resources\main_window.qrc.depends;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\main_window.qrc;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\qrc_main_window.cxx</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating qrc_main_window.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\Qt\4.8.0\bin\rcc.exe -name main_window -o C:/Users/xiaochenfan/Desktop/TTReg/capture/build/qrc_main_window.cxx C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.qrc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/xiaochenfan/Desktop/KingFisher/capture/Resources/main_window.qrc;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\10.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\11.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\12.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\13.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\14.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\15.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\16.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\17.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\18.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\19.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\20.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\21.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\22.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\23.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\24.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\25.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\26.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\27.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\28.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\29.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\10.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\11.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\12.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\13.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\14.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\15.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\16.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\17.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\18.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\19.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\20.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\21.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\22.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\23.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\10.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\11.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\12.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\13.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\14.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\15.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\16.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\17.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\18.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\19.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\20.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\21.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\22.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\23.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\24.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\25.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\26.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\27.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\28.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\29.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\00.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\01.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\02.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\03.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\04.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\05.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\06.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\07.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\08.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\800x600x30\09.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\00.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\01.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\02.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\03.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\04.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\05.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\06.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\07.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\08.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x24\09.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\00.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\01.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\02.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\03.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\04.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\05.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\06.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\07.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\08.bmp;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\1024x768x30\09.bmp;C:\Users\xiaochenfan\Desktop\TTReg\capture\build\Resources\main_window.qrc.depends;C:\Users\xiaochenfan\Desktop\KingFisher\capture\Resources\main_window.qrc;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\xiaochenfan\Desktop\TTReg\capture\build\qrc_main_window.cxx</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ui_main_window.h" />
+    <ClInclude Include="..\..\..\KingFisher\capture\include\main_window.h" />
+    <ClInclude Include="..\..\..\KingFisher\capture\include\parameter_dialog.h" />
+    <ClInclude Include="..\..\..\KingFisher\capture\include\pattern_projector.h" />
+    <ClInclude Include="..\..\..\KingFisher\capture\include\plain_text_viewer.h" />
+    <ClInclude Include="..\..\..\KingFisher\capture\include\image_grabber.h" />
+    <ClInclude Include="..\..\..\KingFisher\capture\include\turn_table.h" />
+    <ClInclude Include="..\..\..\KingFisher\capture\include\image_viewer.h" />
+    <ClInclude Include="..\..\..\KingFisher\capture\include\parameter.h" />
+    <ClInclude Include="..\..\..\KingFisher\capture\include\impl\parameter.hpp" />
+    <ClCompile Include="..\..\..\KingFisher\capture\src\main.cpp"  />
+    <ClCompile Include="..\..\..\KingFisher\capture\src\main_window.cpp"  />
+    <ClCompile Include="..\..\..\KingFisher\capture\src\parameter.cpp"  />
+    <ClCompile Include="..\..\..\KingFisher\capture\src\parameter_dialog.cpp"  />
+    <ClCompile Include="..\..\..\KingFisher\capture\src\turn_table.cpp"  />
+    <ClCompile Include="..\..\..\KingFisher\capture\src\pattern_projector.cpp"  />
+    <ClCompile Include="..\..\..\KingFisher\capture\src\image_grabber.cpp"  />
+    <ClCompile Include="..\..\..\KingFisher\capture\src\image_viewer.cpp"  />
+    <ClCompile Include="..\..\..\KingFisher\capture\src\plain_text_viewer.cpp"  />
+    <ClCompile Include="include\moc_main_window.cxx"  />
+    <ClCompile Include="include\moc_parameter_dialog.cxx"  />
+    <ClCompile Include="include\moc_pattern_projector.cxx"  />
+    <ClCompile Include="include\moc_plain_text_viewer.cxx"  />
+    <ClCompile Include="include\moc_image_grabber.cxx"  />
+    <ClCompile Include="include\moc_turn_table.cxx"  />
+    <ClCompile Include="qrc_main_window.cxx"  />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/Users/xiaochenfan/Desktop/TTReg/capture/build/ZERO_CHECK.vcxproj">
+      <Project>3936BD96-F76A-40E3-9096-25D27569305B</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
