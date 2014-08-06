@@ -163,10 +163,16 @@
    <property name="text">
     <string>Point Cloud Generation</string>
    </property>
+   <property name="shortcut">
+    <string>Alt+G</string>
+   </property>
   </action>
   <action name="actionRegistrationProcess">
    <property name="text">
     <string>Registration Process</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+R</string>
    </property>
   </action>
  </widget>
