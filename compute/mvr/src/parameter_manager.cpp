@@ -16,6 +16,8 @@ ParameterManager::ParameterManager(void)
   end_frame_(new IntParameter("End frame", "End frame", -1, -1, -1, 1)),
   current_frame_(new IntParameter("Current frame", "Current frame", -1, -1, -1, 1)),
   repeat_times_(new IntParameter("Repeat times", "Repeat times", 5, 1, 1000, 1)),
+  generator_ctr_threshold_(new IntParameter("CTR Threshold", "CTR Threshold", 25, 1, 255, 1)),
+  generator_sat_threshold_(new IntParameter("SAT Threshold", "SAT Threshold", 500, 1, 1000, 1)),
   triangle_length_(new DoubleParameter("Triangle Length", "Triangle Length", 2.5, 1.0, 8.0, 0.1)),
   segment_threshold_(new IntParameter("Segment Threshold", "Segment Threshold", 10, 10, 500, 10)),
   transformation_epsilon_(new DoubleParameter("Transformation Epsilon", "Transformation Epsilon", 100, 1e-8, 100, 1)),
