@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent, Qt::WFlags flags)
   view_timer_id_(0),
   frame_time_("Frame Period", "The time gap between frames", 300, 120, 1200, 60),
   start_frame_("Start Frame", "Which frame index to start with", 0, 0, 10000, 1),
-  view_time_("View Time", "How long is allocated for each view", 7.5, 7.5, 15, 0.5)
+  view_time_("View Time", "How long is allocated for each view", 15, 7.5, 15, 0.5)
 {
   ui_.setupUi(this);
   ui_.actionStop->setDisabled(true);

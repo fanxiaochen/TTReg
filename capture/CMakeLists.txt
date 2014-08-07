@@ -1,4 +1,4 @@
-project(EvoGeoCapture)
+project(TTReg-Capture)
 cmake_minimum_required(VERSION 2.8)
 
 if(MSVC)
@@ -85,6 +85,6 @@ IF (${CMAKE_BUILD_TOOL} MATCHES "devenv")
   SET (srcs ${srcs} ${uis})
 ENDIF (${CMAKE_BUILD_TOOL} MATCHES "devenv")
 
-add_executable(EvoGeoCapture 	${srcs} ${ui_srcs} ${moc_srcs} ${resource_srcs} ${srcs} ${incs} ${impl_incs})
+add_executable(TTReg-Capture 	${srcs} ${ui_srcs} ${moc_srcs} ${resource_srcs} ${srcs} ${incs} ${impl_incs})
 
-target_link_libraries(EvoGeoCapture  ${ThirdParty_LIBS} ${OPENGL_LIBRARIES} ${QT_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(TTReg-Capture  ${ThirdParty_LIBS} ${OPENGL_LIBRARIES} ${QT_LIBRARIES} ${Boost_LIBRARIES})

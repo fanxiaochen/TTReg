@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>EvoGeoCaptureClass</class>
- <widget class="QMainWindow" name="EvoGeoCaptureClass">
+ <class>TTRegCaptureClass</class>
+ <widget class="QMainWindow" name="TTRegCaptureClass">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>EvoGeoCapture</string>
+   <string>TTRegCapture</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="sizePolicy">

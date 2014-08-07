@@ -95,7 +95,7 @@ bool ImageGrabber::setCamera(bool is_snapshot)
   Error error;
 
   VideoMode video_mode = is_snapshot?VIDEOMODE_1280x960RGB:VIDEOMODE_1280x960Y8;
-  FrameRate frame_rate = is_snapshot?FRAMERATE_15:FRAMERATE_30;
+  FrameRate frame_rate = is_snapshot?FRAMERATE_7_5:FRAMERATE_30;
   camera_->SetVideoModeAndFrameRate (video_mode, frame_rate);
 
   Property gain_property(GAIN);

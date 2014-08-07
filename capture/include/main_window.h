@@ -51,7 +51,7 @@ private slots:
   void stopCapture(void);
 
 private:
-  Ui::EvoGeoCaptureClass  ui_;
+  Ui::TTRegCaptureClass  ui_;
   TurnTable               *turn_table_;
   ImageViewer             *image_viewer_;
   ImageGrabber            *image_grabber_;
