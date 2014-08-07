@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     if (pos != std::string::npos) {
       exe_filename = exe_filename.substr(pos+1);
     }
-    std::cout << "[EvoGeoConvert-YY]-Usage: " << exe_filename << " image_folder ctr_threshold sat_threshold" << std::endl;
+    std::cout << "[Convert-YY]-Usage: " << exe_filename << " image_folder ctr_threshold sat_threshold" << std::endl;
     return 1;
   }
 
