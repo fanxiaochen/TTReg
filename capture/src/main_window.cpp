@@ -178,7 +178,7 @@ void MainWindow::startCapture()
   saveParameters();
   ui_.actionStop->setEnabled(true);
 
-  frame_timer_id_ = startTimer(5*60*1000);
+  frame_timer_id_ = startTimer(1000*frame_time_);
   view_timer_id_ = startTimer(1000*view_time_);
 }
 
