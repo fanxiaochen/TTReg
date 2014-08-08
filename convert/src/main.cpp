@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 {
   if (argc != 4) {
     std::string exe_filename(argv[0]);
-    size_t pos = exe_filename.find_last_of('\\');
+    size_t pos = exe_filename.find_last_of('/');
     if (pos != std::string::npos) {
       exe_filename = exe_filename.substr(pos+1);
     }
