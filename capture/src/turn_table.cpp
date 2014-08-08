@@ -5,7 +5,8 @@
 TurnTable::TurnTable(void)
   : serial_port_(NULL),
   com_port_("COM Port", "COM port to the turn table", "COM4", std::map<std::string, std::string>()),
-  view_number_("View Number", "How many views to form a complete frame", 12, 6, 36, 6)
+  view_number_("View Number", "How many views to form a complete frame", 12, 1, 36, 1),
+  is_rotate_("Rotation","rotate or not", true)
 {
   std::map<std::string, std::string> port_map;
   port_map["COM1"] = "COM1";
@@ -45,6 +46,10 @@ bool TurnTable::init(void)
 
 void TurnTable::rotate(double time)
 {
+	
+  if (!is_rotate_)
+	return;
+
   if(time < 4000)
     std::cout << "Warning:\tthere's no enough time for rotation!" << std::endl;
 

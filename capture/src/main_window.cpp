@@ -139,6 +139,7 @@ void MainWindow::startCapture()
   ParameterDialog parameter_dialog("Capture Parameters", this);
   parameter_dialog.addParameter(&start_frame_);
   parameter_dialog.addParameter(&frame_time_);
+  parameter_dialog.addParameter(&(turn_table_->is_rotate_));
   parameter_dialog.addParameter(&(turn_table_->com_port_));
   parameter_dialog.addParameter(&(pattern_projector_->stripe_set_));
   parameter_dialog.addParameter(&(turn_table_->view_number_));

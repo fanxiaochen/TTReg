@@ -24,6 +24,7 @@ public slots:
 public:
   EnumParameter<std::string>    com_port_;
   IntParameter                  view_number_;
+  BoolParameter					is_rotate_;
 
 private:
   QextSerialPort    *serial_port_;
