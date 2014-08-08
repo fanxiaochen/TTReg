@@ -45,10 +45,6 @@ public:
   void registration(int object, int segment_threshold);
 
 
-  void automaticRegistration(int object, int segment_threshold, int max_iterations, int repeat_times, double max_distance, 
-    double transformation_epsilon, double euclidean_fitness_epsilon);
-
-
   public slots:
     void load(void);
     void save(void);
@@ -56,7 +52,6 @@ public:
     void registrationICP(void);
     void registrationLUM(void);
     void registration(void);
-    void automaticRegistration(void);
 
 protected:
   virtual void clear();
@@ -66,16 +61,6 @@ protected:
   void visualizeAxis(void);
   void save(const QString& filename);
   void load(const QString& filename);
-
-  void setCriteria(int source_number);
-  void addEuclideanFitnessEpsilon(double euclidean_fitness_epsilon);
-  void automaticRegistrationICP(int view_number, int object, int max_iterations, int repeat_times, double max_distance, 
-    double transformation_epsilon, double euclidean_fitness_epsilon);
-  void refineTransformation(int repeat_times, int source_index);
-
-  void automaticRefineTransformation(int max_iterations, size_t source_index);
-
-
 
 protected:
   osg::ref_ptr<osg::MatrixTransform>                  pivot_point_;

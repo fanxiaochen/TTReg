@@ -10,11 +10,11 @@ int main(int argc, char *argv[])
 {
   if (argc != 4) {
     std::string exe_filename(argv[0]);
-    size_t pos = exe_filename.find_last_of('/');
+    size_t pos = exe_filename.find_last_of('\\');
     if (pos != std::string::npos) {
       exe_filename = exe_filename.substr(pos+1);
     }
-    std::cout << "[Convert-YY]-Usage: " << exe_filename << " image_folder ctr_threshold sat_threshold" << std::endl;
+    std::cout << "[TTReg-Convert]-Usage: " << exe_filename << " image_folder ctr_threshold sat_threshold" << std::endl;
     return 1;
   }
 
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
   std::cout << "Decoding images in folder [" << folder << "]"
     << " with ctr_threshold=" << ctr_threshold
     << " and sat_threshold=" << sat_threshold << "...";
-  num_points = DecodeImgs(CString(folder.c_str()), ctr_threshold, sat_threshold);
+  num_points = DecodeImgs(folder.c_str(), ctr_threshold, sat_threshold);
   std::cout << "Done with " << num_points << " points." << std::endl;
 
   if(num_points == 0)

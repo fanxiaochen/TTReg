@@ -1,8 +1,9 @@
-#include <afx.h>
+//#include <afx.h>
+#include "windows.h"
 
 
-int DecodeImgs(CString filepath, int Threshold_Contrast, int Threshold_Saturation);
- 
+int DecodeImgs(LPCSTR filepath, int Threshold_Contrast, int Threshold_Saturation);
+
 unsigned char** Create2DArrayChar(int h, int w);
 
 double** Create2DArrayDouble(int h, int w);
@@ -15,9 +16,9 @@ void CreatBMPfromArrayDouble(unsigned char *lpimg, double **array, int imgW, int
 
 void ReleaseMemory();
 
-void SaveData(CString savefilename, bool b_outputXC, bool outputXP);
+void SaveData(LPCTSTR savefilename, bool b_outputXC, bool outputXP);
 
-void SaveData_Img(CString savefilename);
+void SaveData_Img(LPCTSTR savefilename);
 
 double **GetXC();
 

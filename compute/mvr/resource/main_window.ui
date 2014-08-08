@@ -55,8 +55,6 @@
     <addaction name="actionICP"/>
     <addaction name="actionRefineAxis"/>
     <addaction name="actionGenerateObject"/>
-    <addaction name="separator"/>
-    <addaction name="actionAutoReg"/>
    </widget>
    <widget class="QMenu" name="menuTasks">
     <property name="title">
