@@ -286,14 +286,14 @@ void MainWindow::recordWaterEvent()
 
 void MainWindow::loadGlobalSettings()
 {
-  QSettings global_settings("EvoGeo", "Capture");
+  QSettings global_settings("TTReg", "Capture");
 
   base_folder_ = global_settings.value("base_folder").toString();
 }
 
 void MainWindow::saveGlobalSettings()
 {
-  QSettings global_settings("EvoGeo", "Capture");
+  QSettings global_settings("TTReg", "Capture");
 
   global_settings.setValue("base_folder", base_folder_);
 }

@@ -139,7 +139,7 @@ void ImageGrabber::grabImpl(size_t view, size_t stripe)
   else if (stripe == 0)
     setCamera(false);
   int set_camera_time = timer.restart();
-
+  // there will be much faster with no sleep here
   boost::this_thread::sleep(boost::posix_time::milliseconds(200));
   int sleep_time = timer.restart();
 
