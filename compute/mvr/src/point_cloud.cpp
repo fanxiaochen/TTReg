@@ -214,13 +214,13 @@ void PointCloud::updateImpl()
 
 
 
-PointCloud* PointCloud::getPrevObject(void)
+PointCloud* PointCloud::getPrevFrame(void)
 {
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
   return model->getPointCloud(getFrame()-1);
 }
 
-PointCloud* PointCloud::getNextObject(void)
+PointCloud* PointCloud::getNextFrame(void)
 {
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
   return model->getPointCloud(getFrame()+1);
@@ -230,18 +230,18 @@ PointCloud* PointCloud::getNextObject(void)
 
 int PointCloud::getFrame(void) const      
 {
-  QRegExp object("[\\/]object_([0-9]{5,5})[\\/]");
-  object.indexIn(filename_.c_str());
-  QString index = object.cap(1);
+  QRegExp frame("[\\/]frame_([0-9]{5,5})[\\/]");
+  frame.indexIn(filename_.c_str());
+  QString index = frame.cap(1);
 
   return index.toInt();
 }
 
 int PointCloud::getView(void) const
 {
-  QRegExp object("[\\/]view_([0-9]{2,2})[\\/]");
-  object.indexIn(filename_.c_str());
-  QString index = object.cap(1);
+  QRegExp frame("[\\/]view_([0-9]{2,2})[\\/]");
+  frame.indexIn(filename_.c_str());
+  QString index = frame.cap(1);
   if (index.isEmpty())
     return 12;
 
@@ -376,9 +376,9 @@ void PointCloud::registration(void)
   QFutureWatcher<void>* watcher = new QFutureWatcher<void>(this);
   connect(watcher, SIGNAL(finished()), watcher, SLOT(deleteLater()));
 
-  int object = getFrame();
-  QString running_message = QString("Computing registration for object %1!").arg(object);
-  QString finished_message = QString("Registration for object %1 computed!").arg(object);
+  int frame = getFrame();
+  QString running_message = QString("Computing registration for frame %1!").arg(frame);
+  QString finished_message = QString("Registration for frame %1 computed!").arg(frame);
   Messenger* messenger = new Messenger(running_message, finished_message, this);
   connect(watcher, SIGNAL(started()), messenger, SLOT(sendRunningMessage()));
   connect(watcher, SIGNAL(finished()), messenger, SLOT(sendFinishedMessage()));

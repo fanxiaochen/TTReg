@@ -211,7 +211,7 @@ bool MainWindow::setWorkspace(void)
       return false;
 
 
-    if (directory.contains("object_"))
+    if (directory.contains("frame_"))
       valid_workspace = true;
     else if (directory.contains("points"))
       valid_workspace = true;

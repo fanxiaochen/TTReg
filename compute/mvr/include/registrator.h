@@ -2,7 +2,7 @@
 #ifndef REGISTRATOR_H
 #define REGISTRATOR_H
 
-#include <QObject>
+#include <Qframe>
 #include <pcl/registration/icp.h>
 
 #include "types.h"
@@ -18,6 +18,7 @@ namespace osgManipulator
 class Registrator : public QObject, public Renderable
 {
   Q_OBJECT
+
 public:
   Registrator(void);
   virtual ~Registrator(void);
@@ -33,16 +34,15 @@ public:
 
   void setPivotPoint(const osg::Vec3& pivot_point);
   void setAxisNormal(const osg::Vec3& axis_normal);
-  void save(int object);
-  void load(int object);
+
   virtual void toggleRendering(void);
 
-  void saveRegisteredPoints(int object, int segment_threshold);
-  void refineAxis(int object);
-  void registrationLUM(int segment_threshold, int max_iterations, double max_distance, int object);
-  void registrationICP(int max_iterations, double max_distance, int object);
-  void registrationICP(int max_iterations, double max_distance, int object, int repeat_times);
-  void registration(int object, int segment_threshold);
+  void saveRegisteredPoints(int frame, int segment_threshold);
+  void refineAxis(int frame);
+  void registrationLUM(int segment_threshold, int max_iterations, double max_distance, int frame);
+  void registrationICP(int max_iterations, double max_distance, int frame);
+  void registrationICP(int max_iterations, double max_distance, int frame, int repeat_times);
+  void registration(int frame, int segment_threshold);
 
 
   public slots:
@@ -56,7 +56,7 @@ public:
 protected:
   virtual void clear();
   virtual void updateImpl();
-  void computeError(int object);
+  void computeError(int frame);
   void visualizeError(void);
   void visualizeAxis(void);
   void save(const QString& filename);

@@ -57,6 +57,7 @@ QT4_WRAP_CPP(moc_srcs ${moc_incs} OPTIONS -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED)
 QT4_ADD_RESOURCES(resource_srcs ${resources})
 
 set (incs       ${moc_incs}
+				include/color_map.h
 				include/types.h
 				include/file_viewer_widget.h
 				include/light_source.h
@@ -76,6 +77,7 @@ set (srcs 		${ui_srcs}
 				${moc_srcs}
 				${resource_srcs}
                 src/main.cpp
+				src/color_map.cpp
 				src/main_window.cpp
 				src/point_cloud.cpp
 				src/file_system_model.cpp

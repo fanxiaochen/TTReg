@@ -31,7 +31,7 @@
 #include "osg_viewer_widget.h"
 #include "file_system_model.h"
 #include "osg_utility.h"
-
+#include "color_map.h"
 #include "registrator.h"
 
 Registrator::Registrator(void)
@@ -182,15 +182,15 @@ void Registrator::visualizeError(void)
   size_t partition_num = (item_num+partition_size-1)/partition_size;
   osg::Geode* geode = new osg::Geode;
   for (size_t i = 0, i_end = partition_num; i < i_end; ++ i) {
-//    osg::UIntArray* vertices_indices = OSGUtility::generateIndices(partition_size, i, item_num, 2);
-//    osg::UIntArray* color_indices = OSGUtility::generateIndices(partition_size, i, item_num);
+    osg::UIntArray* vertices_indices = OSGUtility::generateIndices(partition_size, i, item_num, 2);
+    osg::UIntArray* color_indices = OSGUtility::generateIndices(partition_size, i, item_num);
 
     osg::Geometry* geometry = new osg::Geometry;
     geometry->setUseDisplayList(true);
     geometry->setUseVertexBufferObjects(true);
-//    geometry->setVertexData(osg::Geometry::ArrayData(error_vertices_, vertices_indices, osg::Geometry::BIND_PER_PRIMITIVE));
-//    geometry->setColorData(osg::Geometry::ArrayData(error_colors_, color_indices, osg::Geometry::BIND_PER_PRIMITIVE));
-//    geometry->addPrimitiveSet(new osg::DrawArrays(osg::PrimitiveSet::LINES, 0, vertices_indices->size()));
+    geometry->setVertexData(osg::Geometry::ArrayData(error_vertices_, vertices_indices, osg::Geometry::BIND_PER_PRIMITIVE));
+    geometry->setColorData(osg::Geometry::ArrayData(error_colors_, color_indices, osg::Geometry::BIND_PER_PRIMITIVE));
+    geometry->addPrimitiveSet(new osg::DrawArrays(osg::PrimitiveSet::LINES, 0, vertices_indices->size()));
 
     geode->addDrawable(geometry);
   }
@@ -275,20 +275,8 @@ void Registrator::load(const QString& filename)
 
 void Registrator::load(void)
 {
-  int frame;
-  if (!ParameterManager::getInstance().getFrameParameter(frame))
-    return;
-
-  load(frame);
-}
-
-void Registrator::load(int frame)
-{
-  MainWindow* main_window = MainWindow::getInstance();
-  FileSystemModel* model = main_window->getFileSystemModel();
-  QString filename = QString((model->getPointsFolder(frame)+"/axis.txt").c_str());
-    
-  load(filename);
+	const QString& workspace = MainWindow::getInstance()->getWorkspace();
+	return load(workspace+"/axis.txt");
 }
 
 void Registrator::save(const QString& filename)
@@ -309,22 +297,15 @@ void Registrator::save(const QString& filename)
 
 void Registrator::save()
 {
-  int frame;
-  if (!ParameterManager::getInstance().getFrameParameter(frame))
-    return;
+	MainWindow* main_window = MainWindow::getInstance();
+	QString filename = QFileDialog::getSaveFileName(main_window,
+		"Save Registrator", main_window->getWorkspace(), "Registrator (*.txt)");
+	if (filename.isEmpty())
+		return;
 
-  save(frame);
-}
+	save(filename);
 
-
-void Registrator::save(int frame)
-{
-  MainWindow* main_window = MainWindow::getInstance();
-  FileSystemModel* model = main_window->getFileSystemModel();
-  QString filename = QString((model->getPointsFolder(frame)+"/axis.txt").c_str());
-  save(filename);
-
-  return;
+	return;
 }
 
 
@@ -504,10 +485,15 @@ void Registrator::computeError(int frame)
     for (size_t i = 0, i_end = correspondences->size(); i < i_end; ++ i)
     {
       const pcl::Correspondence& correspondence = correspondences->at(i);
-
-      /*error_vertices_->push_back(source->at(correspondence.index_query).cast<osg::Vec3>());
-      error_vertices_->push_back(target->at(correspondence.index_match).cast<osg::Vec3>());
-      error_colors_->push_back(ColorMap::Instance().getColor(ColorMap::JET, correspondence.distance, 0, distance_threshold));*/
+	  const PCLPoint& source_point = source->at(correspondence.index_query);
+	  const PCLPoint& target_point = target->at(correspondence.index_match);
+	  osg::Vec3 source_error(source_point.x, source_point.y, source_point.z);
+	  osg::Vec3 target_error(target_point.x, target_point.y, target_point.z);
+	  error_vertices_->push_back(source_error);
+	  error_vertices_->push_back(target_error);
+     /* error_vertices_->push_back(source->at(correspondence.index_query).cast<osg::Vec3>());
+      error_vertices_->push_back(target->at(correspondence.index_match).cast<osg::Vec3>());*/
+      error_colors_->push_back(ColorMap::Instance().getColor(ColorMap::JET, correspondence.distance, 0, distance_threshold));
     }
     }
 
@@ -568,8 +554,6 @@ void Registrator::registrationICP(int max_iterations, double max_distance, int f
     PCLPointCloud transformed_source;
     icp.align(transformed_source);
    
-    if(i == i_end-1)
-      std::cout<<"i:"<<i<<" "<<icp.getFitnessScore()<<std::endl;
     osg::Matrix result_matrix = PclMatrixCaster<osg::Matrix>(icp.getFinalTransformation());
     point_clouds[i]->setMatrix(point_clouds[i]->getMatrix()*result_matrix);
 

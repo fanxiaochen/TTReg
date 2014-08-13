@@ -62,8 +62,8 @@ protected:
   virtual void clearData();
   virtual void updateImpl();
 
-  PointCloud* getPrevObject(void);
-  PointCloud* getNextObject(void);
+  PointCloud* getPrevFrame(void);
+  PointCloud* getNextFrame(void);
 
   
   void initPointGraph(double distance_threshold);
