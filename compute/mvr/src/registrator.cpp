@@ -335,6 +335,8 @@ void Registrator::saveRegisteredPoints(int frame, int segment_threshold)
   for (size_t i = 0; i < 12; ++ i)
   {
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, i);
+	point_cloud->extractByPlane();
+
     if (!point_cloud->isRegistered())
       continue;
 
@@ -342,6 +344,9 @@ void Registrator::saveRegisteredPoints(int frame, int segment_threshold)
     for (size_t j = 0, j_end = point_cloud->size(); j < j_end; ++ j)
     {
       PCLRichPoint registered_point = point_cloud->at(j);
+
+	  if (point_cloud->isNoise(j))
+		  continue;
 
       osg::Vec3 point(registered_point.x, registered_point.y, registered_point.z);
       point = matrix.preMult(point);
@@ -359,21 +364,8 @@ void Registrator::saveRegisteredPoints(int frame, int segment_threshold)
     }
   }
 
-  /*registered_points.denoise(frame, segment_threshold);
-  std::cout<<"finish denoise"<<std::endl;*/
   std::string filename = folder+"/points.pcd";
   registered_points.save(filename);
-
-  /*filename = folder+"/points.asc";
-  FILE *file = fopen(filename.c_str(),"w");
-  if (file == NULL)
-  return;
-  for (size_t i = 0, i_end = registered_points.size(); i < i_end; ++ i)
-  {
-  const PCLRichPoint& point = registered_points[i];
-  fprintf(file, "%f %f %f %d %d %d\n", point.x, point.y, point.z, point.r, point.g, point.b);
-  }
-  fclose(file);*/
 
   model->updatePointCloud(frame);
 

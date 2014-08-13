@@ -412,49 +412,31 @@ void PointCloud::initRotation(void)
   return;
 }
 
-//struct CompareByLabel
-//{
-//  bool operator()(const PCLRichPoint& a, const PCLRichPoint& b)
-//  {
-//    return a.label > b.label;
-//  }
-//};
 
 void PointCloud::denoise(int segment_threshold, double triangle_length)
 {
   QMutexLocker locker(&mutex_);
   
   points_num_ = size();
-  std::cout<<"triangle length:"<<ParameterManager::getInstance().getTriangleLength()<<std::endl;
   initPointGraph(ParameterManager::getInstance().getTriangleLength());
 
   boost::PointGraph& g_point = *point_graph_;
-  std::cout<<"g_point size:"<<boost::num_vertices(g_point)<<std::endl;
   std::vector<boost::PointGraphTraits::vertex_descriptor> component(boost::num_vertices(g_point));
   size_t component_num = boost::connected_components(g_point, &component[0]);
-  std::cout<<"component num:"<<component_num<<std::endl;
 
   std::vector<std::vector<boost::PointGraphTraits::vertex_descriptor> > components(component_num);
   for (size_t i = 0; i < points_num_; ++ i)
     components[component[i]].push_back(i);
   
-  osg::ref_ptr<PointCloud> denoised_cloud = new PointCloud; 
+
   for (size_t i = 0, i_end = components.size(); i < i_end; ++ i)
   {
-    if (components[i].size() >= segment_threshold)
-    {
+    if (components[i].size() < segment_threshold)
+    {	
       for (size_t j = 0, j_end = components[i].size(); j < j_end; ++ j)
-        denoised_cloud->push_back(at(components[i][j]));
-      continue;
+		  indicateNoise(components[i][j]);
     }
-
-    noise_points_num_ += components[i].size();
   }
-
-  for(size_t i = 0, i_end = denoised_cloud->size(); i < i_end; i++)
-    at(i) = denoised_cloud->at(i);
-  points_num_ = denoised_cloud->size();
-  points.resize(points_num_);
     
   triangulation_->clear();
   g_point.clear();
@@ -462,6 +444,51 @@ void PointCloud::denoise(int segment_threshold, double triangle_length)
   expire();
 
   return;
+}
+
+void PointCloud::indicateNoise(size_t i)
+{
+	 // indicate special number to remove 
+	PCLRichPoint& point = at(i);
+	point.x = 0;
+	point.y = 0;
+	point.z = 0;
+
+	return;
+}
+
+bool PointCloud::isNoise(size_t i)
+{
+	PCLRichPoint& point = at(i);
+	if (point.x == 0 && point.y == 0 && point.z == 0)
+		return true;
+	return false;
+}
+
+void PointCloud::extractByPlane()
+{
+	QMutexLocker locker(&mutex_);
+
+	Registrator* registrator = MainWindow::getInstance()->getRegistrator();
+	osg::Vec3 pivot_point = registrator->getPivotPoint();
+	osg::Vec3 axis_normal = registrator->getAxisNormal();
+	osg::Vec4 plane = osg::Plane(axis_normal, pivot_point).asVec4();
+	double a = plane.x();
+	double b = plane.y();
+	double c = plane.z();
+	double d = plane.w();
+
+	for (size_t i = 0, i_end = size();i < i_end; i++) 
+	{
+		const PCLRichPoint& point = at(i);
+		double check = a*point.x + b*point.y + c*point.z + d;
+		if (check <= 0)
+			indicateNoise(i);
+	}
+
+	locker.unlock();
+
+	return;
 }
 
 void PointCloud::initPointGraph(double distance_threshold)
@@ -502,7 +529,7 @@ void PointCloud::triangulate() const
 {
   if (triangulation_->number_of_vertices() != 0)
     return;
-  std::cout<<"initial triangulation vertices num:"<<triangulation_->number_of_vertices()<<std::endl;
+  
   for (size_t i = 0, i_end = points_num_; i < i_end; ++ i)
   {
     const PCLRichPoint& point = at(i);
@@ -510,6 +537,6 @@ void PointCloud::triangulate() const
     CGAL::Delaunay::Vertex_handle vertex_handle = triangulation_->insert(delaunay_point);
     vertex_handle->info() = i;
   }
-  std::cout<<"final triangulation vertices num:"<<triangulation_->number_of_vertices()<<std::endl;
+  
   return;
 }

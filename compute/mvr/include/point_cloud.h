@@ -42,7 +42,11 @@ public:
   void setRegisterState(bool registered);
 
   void registration(int segment_threshold, int max_iterations, double max_distance);
+
+  void indicateNoise(size_t i);
+  bool isNoise(size_t i);
   void denoise(int segment_threshold, double triangle_length);
+  void extractByPlane(void);
 
   int getFrame(void) const;
   int getView(void) const;
@@ -64,7 +68,6 @@ protected:
 
   PointCloud* getPrevFrame(void);
   PointCloud* getNextFrame(void);
-
   
   void initPointGraph(double distance_threshold);
   void triangulate(void) const;
