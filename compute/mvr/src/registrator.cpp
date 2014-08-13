@@ -364,16 +364,16 @@ void Registrator::saveRegisteredPoints(int frame, int segment_threshold)
   std::string filename = folder+"/points.pcd";
   registered_points.save(filename);
 
-   filename = folder+"/points.asc";
-   FILE *file = fopen(filename.c_str(),"w");
-   if (file == NULL)
-     return;
-   for (size_t i = 0, i_end = registered_points.size(); i < i_end; ++ i)
-   {
-     const PCLRichPoint& point = registered_points[i];
-     fprintf(file, "%f %f %f %d %d %d\n", point.x, point.y, point.z, point.r, point.g, point.b);
-   }
-   fclose(file);
+  /*filename = folder+"/points.asc";
+  FILE *file = fopen(filename.c_str(),"w");
+  if (file == NULL)
+  return;
+  for (size_t i = 0, i_end = registered_points.size(); i < i_end; ++ i)
+  {
+  const PCLRichPoint& point = registered_points[i];
+  fprintf(file, "%f %f %f %d %d %d\n", point.x, point.y, point.z, point.r, point.g, point.b);
+  }
+  fclose(file);*/
 
   model->updatePointCloud(frame);
 
@@ -600,6 +600,7 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
   for (size_t view = 0; view < 12; ++ view)
   {
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, view);
+	point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
     point_cloud->initRotation();
     point_cloud->setRegisterState(true);
   }
