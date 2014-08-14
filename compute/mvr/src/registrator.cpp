@@ -322,7 +322,7 @@ osg::Matrix Registrator::getRotationMatrix(double angle) const
   return matrix;
 }
 
-void Registrator::saveRegisteredPoints(int frame, int segment_threshold)
+void Registrator::saveRegisteredPoints(int frame)
 {
   QMutexLocker locker(&mutex_);
 
@@ -592,7 +592,8 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
   for (size_t view = 0; view < 12; ++ view)
   {
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, view);
-	point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
+	//   point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
+	point_cloud->denoise(segment_threshold);
     point_cloud->initRotation();
     point_cloud->setRegisterState(true);
   }
@@ -646,7 +647,7 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
     computeError(frame);
   }
 
-  saveRegisteredPoints(frame, segment_threshold);
+  saveRegisteredPoints(frame);
   refineAxis(frame);
 
   expire();
@@ -701,7 +702,8 @@ void Registrator::registration(int frame, int segment_threshold)
   for (size_t view = 0; view < 12; ++ view)
   {
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, view);
-    point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
+ //   point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
+	point_cloud->denoise(segment_threshold);
     point_cloud->initRotation();
     point_cloud->setRegisterState(true);
   }
@@ -712,7 +714,7 @@ void Registrator::registration(int frame, int segment_threshold)
     computeError(frame);
   }
 
-  saveRegisteredPoints(frame, segment_threshold);
+  saveRegisteredPoints(frame);
   refineAxis(frame);
 
   expire();

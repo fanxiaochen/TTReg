@@ -36,8 +36,7 @@ public:
   bool getRegistrationLUMParameters(int& segment_threshold, int& max_iterations, double& max_distance, int& frame);
   bool getRegistrationICPParameters(int& max_iterations, double& max_distance, int& frame, int& repeat_times);
   bool getRegistrationParameters(int& frame, int& segment_threshold);
-  bool getAutomaticRegistrationParameters(int& frame, int& segment_threshold, int& max_iterations, int& repeat_times, double& max_distance, 
-    double& transformation_epsilon, double& euclidean_fitness_epsilon);
+
 
 protected:
   void addFrameParameters(ParameterDialog* parameter_dialog, bool with_frames);

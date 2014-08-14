@@ -1,3 +1,5 @@
+#include <numeric>
+
 #include <QRegExp>
 #include <QFileInfo>
 #include <QFileDialog>
@@ -444,6 +446,96 @@ void PointCloud::denoise(int segment_threshold, double triangle_length)
   expire();
 
   return;
+}
+
+// this method is based on the paper -- Consolidation of Low-quality Point Clouds from Outdoor Scenes
+void PointCloud::denoise(int k)
+{
+	QMutexLocker locker(&mutex_);
+
+	const float w = 1.25;
+	std::vector<std::vector<int> > point_index;
+	std::vector<std::vector<float> > point_dist;
+
+	std::vector<float> d_k_vector;
+	std::vector<float> D_k_vector;
+	std::vector<float> DDF_k_vector;
+	std::vector<float> theta_k_vector;
+
+	pcl::KdTreeFLANN<PCLRichPoint> kdtree;
+	PointCloud::Ptr cloud(new PointCloud);
+	PointCloud::iterator itr = this->begin();
+	while (itr != this->end())
+	{
+		cloud->push_back(*itr);
+		itr ++;
+	}
+
+	kdtree.setInputCloud (cloud);
+
+	points_num_ = size();
+
+	//K nearest neighbor search
+	for (size_t i = 0, i_end = points_num_; i < i_end; i ++)
+	{
+		const PCLRichPoint& search_point = at(i);
+
+		std::vector<int> pointIdxNKNSearch(k);
+		std::vector<float> pointNKNSquaredDistance(k);
+		kdtree.nearestKSearch (search_point, k, pointIdxNKNSearch, pointNKNSquaredDistance);
+
+		for (std::vector<float>::iterator itr = pointNKNSquaredDistance.begin(); itr != pointNKNSquaredDistance.end(); itr++)
+		{
+			*itr = sqrt(*itr); 
+		}
+
+		point_index.push_back(pointIdxNKNSearch);
+		point_dist.push_back(pointNKNSquaredDistance);
+
+
+		std::vector<float> dists = point_dist.at(i);
+		float sum = 0;
+		for (size_t j = 0, j_end = dists.size(); j < j_end; j ++)
+		{
+			sum += dists[j];
+		}
+		int num = dists.size();
+		d_k_vector.push_back(sum / num);
+	}
+
+	for (size_t i = 0, i_end = points_num_; i < i_end; i ++)
+	{
+		std::vector<int> index = point_index.at(i);
+		float sum = 0;
+
+		for (size_t j = 0, j_end = index.size(); j < j_end; j ++)
+		{
+			sum += d_k_vector.at(index[j]);
+		}
+		int num = index.size();
+
+		D_k_vector.push_back(sum / num);
+		DDF_k_vector.push_back(abs(1-d_k_vector[i]/D_k_vector[i]));
+	}
+
+	for (size_t i = 0, i_end = points_num_; i < i_end; i ++)
+	{
+		std::vector<int> index = point_index.at(i);
+		float sum = 0;
+		for (size_t j = 0, j_end = index.size(); j < j_end; j ++)
+		{
+			sum += pow(d_k_vector[index[j]] - D_k_vector[i], 2);
+		}
+		float theta = sqrt(sum / index.size());
+		theta_k_vector.push_back(theta / D_k_vector[i]);
+
+		if (DDF_k_vector[i] > theta_k_vector[i] * w)
+			indicateNoise(i);
+	}
+
+	expire();
+
+	return;
 }
 
 void PointCloud::indicateNoise(size_t i)
