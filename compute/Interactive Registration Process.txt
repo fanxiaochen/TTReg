@@ -1,0 +1,6 @@
+1.press button r to show the axis
+2.give an inital position of the axis
+3.add point cloud of next view and icp operations(many times)
+4.refine axis
+5.continue from step 3 to get a better axis and save it
+6.batch taskes can be used for registration of every frame
