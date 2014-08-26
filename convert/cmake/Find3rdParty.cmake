@@ -2,7 +2,7 @@ set(ThirdParty_DIR ${PROJECT_SOURCE_DIR}/3rd-party)
 
 set(GCSS3DLib_INCLUDE_DIR ${ThirdParty_DIR}/GCSS3DLib/include)
 set(GCSS3DLib_LIBRARY_DIRS ${ThirdParty_DIR}/GCSS3DLib/lib)
-set(GCSS3DLib_LIBRARY optimized GCSS3DLib-cs3.lib debug GCSS3DLib-cs3.lib)
+set(GCSS3DLib_LIBRARY optimized GCSS3DLib-zc820.lib debug GCSS3DLib-zc820.lib)
 
 include_directories(${GCSS3DLib_INCLUDE_DIR})
 link_directories(${GCSS3DLib_LIBRARY_DIRS})
