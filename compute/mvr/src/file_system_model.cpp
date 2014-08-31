@@ -17,7 +17,8 @@
 
 FileSystemModel::FileSystemModel()
   :start_frame_(-1),
-  end_frame_(-1)
+  end_frame_(-1),
+  view_number_(12)
 {
   setNameFilterDisables(false);
   QStringList allowed_file_extensions;
@@ -203,7 +204,7 @@ QModelIndex FileSystemModel::setRootPath ( const QString & newPath )
   if (start_frame_ != -1)
   {
     if (getPointCloud(start_frame_) != NULL)
-      showPointCloud(start_frame_, 12);
+      showPointCloud(start_frame_, view_number_);
     else if (getPointCloud(start_frame_, 0) != NULL)
       showPointCloud(start_frame_, 0);
 
@@ -320,7 +321,7 @@ std::string FileSystemModel::getPointsFolder(int frame)
 std::string FileSystemModel::getPointsFolder(int frame, int view)
 {
   std::string frame_folder = getPointsFolder(frame);
-  if (frame_folder.empty() || view < 0 || view >= 12)
+  if (frame_folder.empty() || view < 0 || view >= view_number_)
     return frame_folder;
 
   QString view_folder = QString("%1/view_%2").arg(frame_folder.c_str()).arg(view, 2, 10, QChar('0'));
@@ -341,7 +342,7 @@ std::string FileSystemModel::getPointsFilename(int frame, int view)
 
 std::string FileSystemModel::getPointsFilename(int frame)
 {
-  return getPointsFilename(frame, 12);
+  return getPointsFilename(frame, view_number_);
 }
 
 osg::ref_ptr<PointCloud> FileSystemModel::getPointCloud(int frame, int view)
@@ -480,7 +481,7 @@ void FileSystemModel::showPointCloudSceneInformation(void) const
   {
     int frame = sorted_scene_info[i].first;
     int view = sorted_scene_info[i].second;
-    if (view < 12)
+    if (view < view_number_)
       information += QString("frame %1 View %2\n").arg(frame, 5, 10, QChar('0')).arg(view, 2, 10, QChar('0'));
     else
       information += QString("frame %1\n").arg(frame, 5, 10, QChar('0'));
@@ -516,7 +517,7 @@ PointCloud* FileSystemModel::getDisplayFirstFrame(void)
     }
   }
 
-  if (view != 12)
+  if (view != view_number_)
     return NULL;
 
   return getPointCloud(frame);
@@ -664,7 +665,7 @@ void FileSystemModel::navigateToPreviousFrame(NavigationType type)
 
   if (first_frame == -1 || first_view == -1)
   {
-    showPointCloud(getStartFrame(), 12);
+    showPointCloud(getStartFrame(), view_number_);
     return;
   }
 
@@ -693,7 +694,7 @@ void FileSystemModel::navigateToNextFrame(NavigationType type)
 
   if (last_frame == -1 || last_view == -1)
   {
-    showPointCloud(getEndFrame(), 12);
+    showPointCloud(getEndFrame(), view_number_);
     return;
   }
 
@@ -762,7 +763,7 @@ void FileSystemModel::navigateToNextView(NavigationType type)
   }
 
   int current_view = last_view+1;
-  if (current_view > 12)
+  if (current_view > view_number_)
     return;
 
   if (type == APPEND)

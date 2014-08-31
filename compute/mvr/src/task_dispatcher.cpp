@@ -327,6 +327,9 @@ void TaskDispatcher::runTasks(QList<Task>& tasks, const QString& task_name, bool
 
 void TaskDispatcher::dispatchTaskPointsGeneration(void)
 {
+  FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+  int view_number = model->getViewNumber();
+
   if (!points_generation_tasks_.isEmpty())
   {
     QMessageBox::warning(MainWindow::getInstance(), "Points Generation Task Warning",
@@ -348,7 +351,7 @@ void TaskDispatcher::dispatchTaskPointsGeneration(void)
   }
 
   for (int frame = start_frame; frame <= end_frame; frame ++)
-    for (int view = 0; view < 12; ++ view)
+    for (int view = 0; view < view_number; ++ view)
       points_generation_tasks_.push_back(Task(new TaskPointsGeneration(frame, view, ctr_threshold, sat_threshold)));
 
   runTasks(points_generation_tasks_, "Points Generation");

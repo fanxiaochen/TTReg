@@ -241,20 +241,26 @@ int PointCloud::getFrame(void) const
 
 int PointCloud::getView(void) const
 {
+  FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+
   QRegExp frame("[\\/]view_([0-9]{2,2})[\\/]");
   frame.indexIn(filename_.c_str());
   QString index = frame.cap(1);
   if (index.isEmpty())
-    return 12;
+	  return model->getViewNumber();
 
   return index.toInt();
 }
 
 void PointCloud::setRotation(void)
 {
+  FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+  int view_number = model->getViewNumber();
+  float delta_angle = 360.0 / view_number;
+
   ParameterDialog parameter_dialog("Rotation Parameters", MainWindow::getInstance());
   int view = getView();
-  DoubleParameter rotation_angle("Rotation Angle", "Rotation Angle", (view<7)?(-view*30):(12-view)*30, -180, 180, 30);
+  DoubleParameter rotation_angle("Rotation Angle", "Rotation Angle", -view * delta_angle, -360, 0, delta_angle);
   parameter_dialog.addParameter(&rotation_angle);
   if (!parameter_dialog.exec() == QDialog::Accepted)
     return;
@@ -357,7 +363,10 @@ void PointCloud::deleteTransformation(void)
 
 void PointCloud::registration(int segment_threshold, int max_iterations, double max_distance)
 {
-  if (getView() != 12)
+  FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+  int view_number = model->getViewNumber();
+
+  if (getView() != view_number)
     return;
 
   Registrator* registrator = MainWindow::getInstance()->getRegistrator();
@@ -401,6 +410,9 @@ bool PointCloud::isShown(void) const
 
 void PointCloud::initRotation(void)
 {
+  FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+  int view_number = model->getViewNumber();
+
   if (!getMatrix().isIdentity())
     return;
 
@@ -408,7 +420,7 @@ void PointCloud::initRotation(void)
   if (view == 0)
     return;
 
-  double angle = ((view<7)?(-view):(12-view))*M_PI/6;
+  double angle = -2 * view * M_PI / view_number;
   setMatrix(MainWindow::getInstance()->getRegistrator()->getRotationMatrix(angle));
 
   return;

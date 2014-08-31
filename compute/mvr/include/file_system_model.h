@@ -53,6 +53,7 @@ public:
 
   int getStartFrame(void) const {return start_frame_;}
   int getEndFrame(void) const {return end_frame_;}
+  int getViewNumber(void) const {return view_number_;}
   PointCloud* getDisplayFirstFrame(void);
 
   enum NavigationType
@@ -106,6 +107,7 @@ private:
   PointCloudCacheMap              point_cloud_cache_map_;
   int                             start_frame_;
   int                             end_frame_;
+  int							  view_number_;
   osg::Vec4                       color_;
   QMutex                          mutex_;
 };

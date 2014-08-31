@@ -327,12 +327,13 @@ void Registrator::saveRegisteredPoints(int frame)
   QMutexLocker locker(&mutex_);
 
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+  int view_number = model->getViewNumber();
   std::string folder = model->getPointsFolder(frame);
   if (folder.empty())
     return;
 
   PointCloud registered_points;
-  for (size_t i = 0; i < 12; ++ i)
+  for (size_t i = 0; i < view_number; ++ i)
   {
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, i);
 	point_cloud->extractByPlane();
@@ -377,15 +378,16 @@ void Registrator::refineAxis(int frame)
   QMutexLocker locker(&mutex_);
 
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+  int view_number = model->getViewNumber();
   std::vector<osg::Matrix> matrices;
   std::vector<double>      angles;
-  for (size_t i = 1; i < 12; ++ i)
+  for (size_t i = 1; i < view_number; ++ i)
   {
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, i);
     if(!point_cloud->isRegistered())
       continue;
     matrices.push_back(point_cloud->getMatrix());
-    double angle = (i < 7)?(-i*M_PI/6.0):((12-i)*M_PI/6.0);
+    double angle = -i * 2 * M_PI / view_number;
     angles.push_back(angle);
   }
 
@@ -442,9 +444,10 @@ void Registrator::computeError(int frame)
   error_colors_->clear();
 
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
-  std::vector<bool> shown_flag(12, false);
+  int view_number = model->getViewNumber();
+  std::vector<bool> shown_flag(view_number, false);
   shown_flag[0] = true;
-  for (size_t i = 1; i < 12; ++ i)
+  for (size_t i = 1; i < view_number; ++ i)
   {
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, i);
     shown_flag[i] = point_cloud->isShown();
@@ -452,12 +455,13 @@ void Registrator::computeError(int frame)
       point_cloud->initRotation();
   }
 
+  const int last_view = view_number - 1;
   std::vector<std::pair<size_t, size_t> > neighbor_pairs;
-  for (size_t i = 0; i < 11; ++ i)
+  for (size_t i = 0; i < view_number-1; ++ i)
     if (shown_flag[i] && shown_flag[i+1])
       neighbor_pairs.push_back(std::make_pair(i, i+1));
-  if (shown_flag[0] && shown_flag[11])
-    neighbor_pairs.push_back(std::make_pair(0, 11));
+  if (shown_flag[0] && shown_flag[last_view])
+    neighbor_pairs.push_back(std::make_pair(0, last_view));
 
   PCLPointCloud::Ptr source(new PCLPointCloud);
   PCLPointCloud::Ptr target(new PCLPointCloud);
@@ -504,19 +508,34 @@ void Registrator::registrationICP(int max_iterations, double max_distance, int f
 void Registrator::registrationICP(int max_iterations, double max_distance, int frame)
 {
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+  int view_number = model->getViewNumber();
   std::vector<osg::ref_ptr<PointCloud> > point_clouds;
-  for (size_t i = 1; i < 6; ++ i)
+  for (size_t i = 1; i < view_number/2; ++ i)
   {
     osg::ref_ptr<PointCloud> front_cloud = model->getPointCloud(frame, i);
     if (front_cloud->isShown())
       point_clouds.push_back(front_cloud);
-    osg::ref_ptr<PointCloud> back_cloud = model->getPointCloud(frame, 12-i);
+    osg::ref_ptr<PointCloud> back_cloud = model->getPointCloud(frame, view_number-i);
     if (back_cloud->isShown())
       point_clouds.push_back(back_cloud);
   }
-  osg::ref_ptr<PointCloud> center_cloud = model->getPointCloud(frame, 6);
-  if (center_cloud->isShown())
-    point_clouds.push_back(center_cloud);
+
+  if (view_number / 2 == 0)
+  {
+	osg::ref_ptr<PointCloud> center_cloud = model->getPointCloud(frame, view_number / 2);
+	if (center_cloud->isShown())
+	  point_clouds.push_back(center_cloud);
+  }
+  else
+  {
+	osg::ref_ptr<PointCloud> left_center = model->getPointCloud(frame, view_number / 2);
+	osg::ref_ptr<PointCloud> right_center = model->getPointCloud(frame, view_number / 2 + 1);
+	if (left_center->isShown())
+	  point_clouds.push_back(left_center);
+	if (right_center->isShown())
+	  point_clouds.push_back(right_center);
+  }
+  
   if (point_clouds.empty())
     return;
 
@@ -589,11 +608,12 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
   std::cout << "registrationLUM: frame " << frame << " running..." << std::endl;
 
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
-  for (size_t view = 0; view < 12; ++ view)
+  int view_number = model->getViewNumber();
+  for (size_t view = 0; view < view_number; ++ view)
   {
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, view);
-	//   point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
-	point_cloud->denoise(segment_threshold);
+    point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
+//	point_cloud->denoise(segment_threshold);
     point_cloud->initRotation();
     point_cloud->setRegisterState(true);
   }
@@ -603,7 +623,7 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
   for (size_t loop = 0; loop < outer_loop_num; ++ loop)
   {
     pcl::registration::LUM<PCLPoint> lum;
-    for (size_t i = 0; i < 12; ++ i)
+    for (size_t i = 0; i < view_number; ++ i)
     {
       osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, i);
       point_cloud->initRotation();
@@ -615,10 +635,10 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
       
     }
 
-    for (size_t i = 0; i < 12; ++ i)
+    for (size_t i = 0; i < view_number; ++ i)
     {
       int source_idx = i;
-      int target_idx = (i==11)?(0):(i+1);
+      int target_idx = (i==view_number-1)?(0):(i+1);
       pcl::registration::CorrespondenceEstimation<PCLPoint, PCLPoint, float> correspondence_estimation;
       correspondence_estimation.setInputSource(lum.getPointCloud(source_idx));
       correspondence_estimation.setInputTarget(lum.getPointCloud(target_idx));
@@ -631,7 +651,7 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
     lum.setMaxIterations(lum_max_iterations);
     lum.compute();
     
-    for (size_t i = 0; i < 12; ++ i)
+    for (size_t i = 0; i < view_number; ++ i)
     {
       Eigen::Affine3f transformation = lum.getTransformation(i);
       osg::Matrix osg_transformation = PclMatrixCaster<osg::Matrix>(Eigen::Matrix4f(transformation.data()));
@@ -699,11 +719,12 @@ void Registrator::registration(int frame, int segment_threshold)
   std::cout << "registration: frame " << frame << " running..." << std::endl;
 
   FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
-  for (size_t view = 0; view < 12; ++ view)
+  int view_number = model->getViewNumber();
+  for (size_t view = 0; view < view_number; ++ view)
   {
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, view);
- //   point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
-	point_cloud->denoise(segment_threshold);
+    point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
+//	point_cloud->denoise(segment_threshold);
     point_cloud->initRotation();
     point_cloud->setRegisterState(true);
   }
