@@ -169,6 +169,7 @@ void PointCloud::visualizePoints(size_t start, size_t end)
     vertices->push_back(osg::Vec3(point.x, point.y, point.z));
     normals->push_back(osg::Vec3(point.normal_x, point.normal_y, point.normal_z));
     colors->push_back(osg::Vec4(point.r/255.0, point.g/255.0, point.b/255.0, 1.0));
+	//colors->push_back(osg::Vec4(0.0, 0.0, 0.0, 1.0));
   }
 
   size_t item_num = vertices->size();

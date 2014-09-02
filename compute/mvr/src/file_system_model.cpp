@@ -18,7 +18,7 @@
 FileSystemModel::FileSystemModel()
   :start_frame_(-1),
   end_frame_(-1),
-  view_number_(12)
+  view_number_(-1)
 {
   setNameFilterDisables(false);
   QStringList allowed_file_extensions;
@@ -201,6 +201,7 @@ QModelIndex FileSystemModel::setRootPath ( const QString & newPath )
 
   QModelIndex index = QFileSystemModel::setRootPath(newPath);
   computeFrameRange();
+  computeViewNumber();
   if (start_frame_ != -1)
   {
     if (getPointCloud(start_frame_) != NULL)
@@ -225,6 +226,7 @@ static void extractStartEndFrame(const QStringList& entries, int& start_frame, i
     if (!entries_it->contains("frame_"))
       continue;
 
+
     int index = entries_it->right(4).toInt();
     if (start_frame > index)
       start_frame = index;
@@ -233,6 +235,20 @@ static void extractStartEndFrame(const QStringList& entries, int& start_frame, i
   }
 
   return;
+}
+
+static void extractViews(const QStringList& entries, int& view_number)
+{
+	int view_count = 0;
+	for (QStringList::const_iterator entries_it = entries.begin();
+		entries_it != entries.end(); ++ entries_it)
+	{
+		if (entries_it->contains("view_"))
+			view_count++;
+	}
+	view_number = view_count;
+
+	return;
 }
 
 void FileSystemModel::computeFrameRange(void)
@@ -267,6 +283,36 @@ void FileSystemModel::computeFrameRange(void)
   }
 
   return;
+}
+
+void FileSystemModel::computeViewNumber(void)
+{
+	QString root_path = rootPath();
+	QModelIndex root_index = index(root_path);
+
+	QString init_frame("frame_00000");
+
+	if (root_path.contains("points"))
+	{
+		QString view_root = root_path + "/" + init_frame;
+		QStringList views_entries = QDir(view_root).entryList();
+		extractViews(views_entries, view_number_);
+		return;
+	}
+
+	QStringList root_entries = QDir(root_path).entryList();
+	for (QStringList::const_iterator root_entries_it = root_entries.begin();
+		root_entries_it != root_entries.end(); ++ root_entries_it)
+	{
+		if (root_entries_it->compare("points") != 0)
+			continue;
+		
+		QString view_root = root_path + "/points/" + init_frame;
+		QStringList views_entries = QDir(view_root).entryList();
+		extractViews(views_entries, view_number_);
+		return;
+	}
+
 }
 
 void FileSystemModel::getFrameRange(int &start, int &end)

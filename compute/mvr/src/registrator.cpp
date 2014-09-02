@@ -361,6 +361,7 @@ void Registrator::saveRegisteredPoints(int frame)
       registered_point.normal_y = normal.y();
       registered_point.normal_z = normal.z();
 
+
       registered_points.push_back(registered_point);
     }
   }
@@ -612,8 +613,11 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
   for (size_t view = 0; view < view_number; ++ view)
   {
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, view);
-    point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
-//	point_cloud->denoise(segment_threshold);
+	// Delaunay Triangulation Denoise Method
+    // point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
+
+	// Point Density Denoise Method
+	point_cloud->denoise(segment_threshold);
     point_cloud->initRotation();
     point_cloud->setRegisterState(true);
   }
@@ -723,11 +727,15 @@ void Registrator::registration(int frame, int segment_threshold)
   for (size_t view = 0; view < view_number; ++ view)
   {
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, view);
-    point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
-//	point_cloud->denoise(segment_threshold);
+	// Delaunay Triangulation Denoise Method
+    // point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
+
+	// Point Density Denoise Method
+	point_cloud->denoise(segment_threshold);
     point_cloud->initRotation();
     point_cloud->setRegisterState(true);
   }
+
 
   if (show_error_)
   {

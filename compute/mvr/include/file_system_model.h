@@ -96,6 +96,7 @@ private:
 
   bool recursiveCheck(const QModelIndex &index, const QVariant &value);
   void computeFrameRange(void);
+  void computeViewNumber(void);
 
 private:
 
