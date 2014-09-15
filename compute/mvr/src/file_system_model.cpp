@@ -120,7 +120,7 @@ bool FileSystemModel::setData(const QModelIndex &index, const QVariant &value, i
 
 void FileSystemModel::limitPointCloudCacheSize(void)
 {
-  size_t threshold = 32;
+  size_t threshold = 64;
 
   if (point_cloud_cache_map_.size() <= threshold)
     return;
