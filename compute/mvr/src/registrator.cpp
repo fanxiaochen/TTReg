@@ -322,7 +322,7 @@ osg::Matrix Registrator::getRotationMatrix(double angle) const
   return matrix;
 }
 
-void Registrator::saveRegisteredPoints(int frame, int segment_threshold)
+void Registrator::saveRegisteredPoints(int frame)
 {
   QMutexLocker locker(&mutex_);
 
@@ -338,11 +338,12 @@ void Registrator::saveRegisteredPoints(int frame, int segment_threshold)
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, i);
 	point_cloud->extractByPlane();
 
+	// if I put the denoise code here, the program couldn't run in parallel mode...
 	// Delaunay Triangulation Denoise Method
 	// point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
 
 	// Point Density Denoise Method
-	point_cloud->denoise(segment_threshold);
+	// point_cloud->denoise(segment_threshold);
 
     if (!point_cloud->isRegistered())
       continue;
@@ -619,6 +620,11 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
   for (size_t view = 0; view < view_number; ++ view)
   {
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, view);
+	// Delaunay Triangulation Denoise Method
+	// point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
+
+	// Point Density Denoise Method
+	point_cloud->denoise(segment_threshold);
     point_cloud->initRotation();
     point_cloud->setRegisterState(true);
   }
@@ -672,7 +678,7 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
     computeError(frame);
   }
 
-  saveRegisteredPoints(frame, segment_threshold);
+  saveRegisteredPoints(frame);
   refineAxis(frame);
 
   expire();
@@ -728,6 +734,11 @@ void Registrator::registration(int frame, int segment_threshold)
   for (size_t view = 0; view < view_number; ++ view)
   {
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, view);
+	// Delaunay Triangulation Denoise Method
+	// point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
+
+	// Point Density Denoise Method
+	point_cloud->denoise(segment_threshold);
     point_cloud->initRotation();
     point_cloud->setRegisterState(true);
   }
@@ -739,7 +750,7 @@ void Registrator::registration(int frame, int segment_threshold)
     computeError(frame);
   }
 
-  saveRegisteredPoints(frame, segment_threshold);
+  saveRegisteredPoints(frame);
   refineAxis(frame);
 
   expire();
