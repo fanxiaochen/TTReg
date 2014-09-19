@@ -207,3 +207,36 @@ bool ParameterManager::getRegistrationParameters(int& frame, int& segment_thresh
   return true;
 }
 
+bool ParameterManager::getDenoiseParameters(int& segment_threshold, int& start_frame, int& end_frame, bool with_frames)
+{
+	ParameterDialog parameter_dialog("Denoise Parameters", MainWindow::getInstance());
+	parameter_dialog.addParameter(segment_threshold_);
+	parameter_dialog.addParameter(start_frame_);
+	parameter_dialog.addParameter(end_frame_);
+	addFrameParameters(&parameter_dialog, with_frames);
+	if (!parameter_dialog.exec() == QDialog::Accepted)
+		return false;
+
+	segment_threshold = *segment_threshold_;
+	start_frame = *start_frame_;
+	end_frame = *end_frame_;
+	getFrameparametersImpl(start_frame, end_frame, with_frames);
+
+	return true;
+}
+
+bool ParameterManager::getDataCompletionParameters(int& start_frame, int& end_frame, bool with_frames)
+{
+	ParameterDialog parameter_dialog("Data Completion Parameters", MainWindow::getInstance());
+	parameter_dialog.addParameter(start_frame_);
+	parameter_dialog.addParameter(end_frame_);
+	addFrameParameters(&parameter_dialog, with_frames);
+	if (!parameter_dialog.exec() == QDialog::Accepted)
+		return false;
+
+	start_frame = *start_frame_;
+	end_frame = *end_frame_;
+	getFrameparametersImpl(start_frame, end_frame, with_frames);
+
+	return true;
+}

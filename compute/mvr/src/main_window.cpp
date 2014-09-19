@@ -128,6 +128,10 @@ void MainWindow::init(void)
   //batch tasks menu
   connect(ui_.actionPointCloudGeneration, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskPointsGeneration()));
   connect(ui_.actionRegistrationProcess, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskRegistration()));
+  //connect(ui_.actionDenoise, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDenoise())); // cannot be used in parallel mode
+  connect(ui_.actionDenoise, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDenoiseBySerialOrder()));
+  connect(ui_.actionDataCompletion, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDataCompletion()));
+
 
 
   loadSettings();

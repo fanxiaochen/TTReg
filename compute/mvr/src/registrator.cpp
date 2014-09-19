@@ -624,7 +624,7 @@ void Registrator::registrationLUM(int segment_threshold, int max_iterations, dou
 	// point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
 
 	// Point Density Denoise Method
-	point_cloud->denoise(segment_threshold);
+    // point_cloud->denoise(segment_threshold);
     point_cloud->initRotation();
     point_cloud->setRegisterState(true);
   }
@@ -738,7 +738,7 @@ void Registrator::registration(int frame, int segment_threshold)
 	// point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
 
 	// Point Density Denoise Method
-	point_cloud->denoise(segment_threshold);
+	//point_cloud->denoise(segment_threshold);
     point_cloud->initRotation();
     point_cloud->setRegisterState(true);
   }

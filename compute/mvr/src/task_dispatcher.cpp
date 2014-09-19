@@ -396,3 +396,108 @@ void TaskDispatcher::dispatchTaskRegistration(void)
   return;
 }
 
+TaskDenoise::TaskDenoise(int frame, int segment_threshold)
+	:TaskImpl(frame, -1), segment_threshold_(segment_threshold)
+{}
+
+TaskDenoise::~TaskDenoise(void)
+{}
+
+void TaskDenoise::run(void) const
+{
+	FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+	PointCloud* point_cloud = model->getPointCloud(frame_);
+	// Delaunay Triangulation Denoise Method
+	point_cloud->denoise(segment_threshold_, ParameterManager::getInstance().getTriangleLength());
+
+	// Point Density Denoise Method
+	// point_cloud->denoise(segment_threshold);
+	point_cloud->removeNoise();
+
+	return;
+}
+
+void TaskDispatcher::dispatchTaskDenoise(void)
+{
+	if (!denoise_tasks_.isEmpty())
+	{
+		QMessageBox::warning(MainWindow::getInstance(), "Denoise Task Warning",
+			"Run denoise task after the previous one has finished");
+		return;
+	}
+
+	int segment_threshold, start_frame, end_frame;
+	if (!ParameterManager::getInstance().getDenoiseParameters(segment_threshold, start_frame, end_frame))
+		return;
+
+	for (int frame = start_frame; frame <= end_frame; frame ++)
+		denoise_tasks_.push_back(Task(new TaskDenoise(frame, segment_threshold)));
+
+	runTasks(denoise_tasks_, "Denoise Frames");
+
+	return;
+}
+
+void TaskDispatcher::dispatchTaskDenoiseBySerialOrder()
+{
+	int segment_threshold, start_frame, end_frame;
+	if (!ParameterManager::getInstance().getDenoiseParameters(segment_threshold, start_frame, end_frame))
+		return;
+
+	for (int frame = start_frame; frame <= end_frame; frame ++)
+	{
+		FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+		PointCloud* point_cloud = model->getPointCloud(frame);
+		// Delaunay Triangulation Denoise Method
+		//point_cloud->denoise(segment_threshold, ParameterManager::getInstance().getTriangleLength());
+
+		// Point Density Denoise Method
+		point_cloud->denoise(segment_threshold);
+		point_cloud->removeNoise();
+	}
+
+	return;
+}
+
+void TaskDispatcher::dispatchTaskDataCompletion()
+{
+	int start_frame, end_frame;
+	if (!ParameterManager::getInstance().getDataCompletionParameters(start_frame, end_frame))
+		return;
+
+	FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+	int boundary = model->getStartFrame();
+
+	for (int frame = start_frame; frame <= end_frame; frame ++)
+	{	
+		std::cout << "Data Completion: frame " << frame << std::endl;
+
+		if (frame == boundary)
+			continue;
+
+		PointCloud* source = model->getPointCloud(frame-1);
+		PointCloud* target = model->getPointCloud(frame);
+
+		target->insert(target->end(), source->begin(), source->end());
+	
+		std::vector<size_t> indices(target->size());
+		for (size_t i = 0, i_end = indices.size(); i < i_end; ++ i)
+			indices[i] = i;
+		std::random_shuffle(indices.begin(), indices.end());
+		
+		osg::ref_ptr<PointCloud> full_target(new PointCloud());
+		size_t points_size = indices.size()/2;
+		for (size_t i = 0; i < points_size; i ++)
+		{
+			full_target->push_back(target->at(indices[i]));
+		}
+		model->updatePointCloudCache(frame, full_target);
+		
+		/*std::string points_folder = model->getPointsFolder(frame);
+		target->save(points_folder + "/points.pcd");*/
+	}
+
+	std::cout << "Data Completion Finished!" << std::endl;
+
+	return;
+}

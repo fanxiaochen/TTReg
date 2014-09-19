@@ -36,7 +36,9 @@ public:
   bool getRegistrationLUMParameters(int& segment_threshold, int& max_iterations, double& max_distance, int& frame);
   bool getRegistrationICPParameters(int& max_iterations, double& max_distance, int& frame, int& repeat_times);
   bool getRegistrationParameters(int& frame, int& segment_threshold);
-
+  
+  bool getDenoiseParameters(int& segment_threshold, int& start_frame, int& end_frame, bool with_frames=true);
+  bool getDataCompletionParameters(int& start_frame, int& end_frame, bool with_frames=true);
 
 protected:
   void addFrameParameters(ParameterDialog* parameter_dialog, bool with_frames);

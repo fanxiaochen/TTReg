@@ -49,6 +49,7 @@ public:
 
   void updatePointCloud(int frame, int view);
   void updatePointCloud(int frame);
+  void updatePointCloudCache(int frame, osg::ref_ptr<PointCloud> point_cloud);
   const osg::Vec4& getColor(void) const {return color_;}
 
   int getStartFrame(void) const {return start_frame_;}

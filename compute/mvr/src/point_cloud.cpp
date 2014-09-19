@@ -551,6 +551,30 @@ void PointCloud::denoise(int k)
 	return;
 }
 
+// remove by iterator
+void PointCloud::removeNoise()
+{
+	int frame = getFrame();
+	std::cout << "Denoise: frame " << frame << std::endl;
+
+	PointCloud::iterator itr = this->begin();
+	while (itr != this->end())
+	{
+		PCLRichPoint& point = *itr;
+		if (point.x == 0 && point.y == 0 && point.z == 0)
+			itr = this->erase(itr);
+		else
+			itr ++;
+	}
+
+	FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+	std::string folder = model->getPointsFolder(frame);
+	std::string filename = folder+"/points.pcd";
+	save(filename);
+
+	model->updatePointCloud(frame);
+}
+
 void PointCloud::indicateNoise(size_t i)
 {
 	 // indicate special number to remove 

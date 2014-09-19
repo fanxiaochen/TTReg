@@ -77,6 +77,18 @@ private:
   double max_distance_;
 };
 
+class TaskDenoise : public TaskImpl
+{
+public:
+	TaskDenoise(int frame, int segment_threshold);
+	virtual ~TaskDenoise();
+
+	virtual void run(void) const;
+
+private:
+	int segment_threshold_;
+};
+
 class TaskDispatcher : public QObject
 {
   Q_OBJECT
@@ -91,6 +103,9 @@ public slots:
   void cancelRunningTasks(bool wait=false);
   void dispatchTaskPointsGeneration(void);
   void dispatchTaskRegistration(void);
+  void dispatchTaskDenoise(void); // could not be used, I don't know why...
+  void dispatchTaskDenoiseBySerialOrder(void);
+  void dispatchTaskDataCompletion(void);
   void updateDisplayQueue(int frame, int view);
   void clearDisplayQueue(void);
   void removeFinishedWatchers(void);
@@ -103,6 +118,7 @@ protected slots:
 private:
   QList<Task>                         points_generation_tasks_;
   QList<Task>                         registration_tasks_;
+  QList<Task>						  denoise_tasks_;
 
   std::vector<QObject*>               active_watchers_;
   typedef std::list<std::pair<int, int> > DisplayQueue;

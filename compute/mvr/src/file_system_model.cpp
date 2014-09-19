@@ -120,7 +120,7 @@ bool FileSystemModel::setData(const QModelIndex &index, const QVariant &value, i
 
 void FileSystemModel::limitPointCloudCacheSize(void)
 {
-  size_t threshold = 64;
+  size_t threshold = 128;
 
   if (point_cloud_cache_map_.size() <= threshold)
     return;
@@ -703,6 +703,15 @@ void FileSystemModel::updatePointCloud(int frame)
   return;
 }
 
+void FileSystemModel::updatePointCloudCache(int frame, osg::ref_ptr<PointCloud> point_cloud)
+{
+	std::string filename = getPointsFilename(frame);
+	if (point_cloud_cache_map_.find(filename) == point_cloud_cache_map_.end())
+		return;
+
+	point_cloud_cache_map_[filename] = point_cloud;
+	return;
+}
 
 void FileSystemModel::navigateToPreviousFrame(NavigationType type)
 {

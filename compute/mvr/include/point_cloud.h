@@ -47,6 +47,7 @@ public:
   bool isNoise(size_t i);
   void denoise(int segment_threshold, double triangle_length);
   void denoise(int k);
+  void removeNoise(void);
   void extractByPlane(void);
 
   int getFrame(void) const;

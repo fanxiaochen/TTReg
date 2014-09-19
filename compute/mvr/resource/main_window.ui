@@ -56,17 +56,25 @@
     <addaction name="actionRefineAxis"/>
     <addaction name="actionGenerateObject"/>
    </widget>
-   <widget class="QMenu" name="menuTasks">
+   <widget class="QMenu" name="menuDataGeneration">
     <property name="title">
-     <string>Batch Tasks</string>
+     <string>Data Generation</string>
     </property>
     <addaction name="actionPointCloudGeneration"/>
     <addaction name="actionRegistrationProcess"/>
+    <addaction name="actionDenoise"/>
+   </widget>
+   <widget class="QMenu" name="menuDataProcessing">
+    <property name="title">
+     <string>Data Processing</string>
+    </property>
+    <addaction name="actionDataCompletion"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuRendering"/>
    <addaction name="menuRegistration"/>
-   <addaction name="menuTasks"/>
+   <addaction name="menuDataGeneration"/>
+   <addaction name="menuDataProcessing"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSetWorkspace">
@@ -171,6 +179,19 @@
    </property>
    <property name="shortcut">
     <string>Alt+R</string>
+   </property>
+  </action>
+  <action name="actionDenoise">
+   <property name="text">
+    <string>Denoise</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+D</string>
+   </property>
+  </action>
+  <action name="actionDataCompletion">
+   <property name="text">
+    <string>Data Completion</string>
    </property>
   </action>
  </widget>
