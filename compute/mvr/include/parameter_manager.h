@@ -39,6 +39,7 @@ public:
   
   bool getDenoiseParameters(int& segment_threshold, int& start_frame, int& end_frame, bool with_frames=true);
   bool getDataCompletionParameters(int& start_frame, int& end_frame, bool with_frames=true);
+  bool getExtractImagesParameters(int& view_number, int& start_frame, int& end_frame, bool with_frames=true);
 
 protected:
   void addFrameParameters(ParameterDialog* parameter_dialog, bool with_frames);
@@ -60,6 +61,7 @@ private:
 
   DoubleParameter*                                    triangle_length_;
   IntParameter*                                       segment_threshold_;
+  IntParameter*										  view_number_;
 
   DoubleParameter*                                    transformation_epsilon_;
   DoubleParameter*                                    euclidean_fitness_epsilon_;

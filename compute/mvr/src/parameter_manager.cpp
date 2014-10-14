@@ -19,7 +19,8 @@ ParameterManager::ParameterManager(void)
   generator_ctr_threshold_(new IntParameter("CTR Threshold", "CTR Threshold", 25, 1, 255, 1)),
   generator_sat_threshold_(new IntParameter("SAT Threshold", "SAT Threshold", 500, 1, 1000, 1)),
   triangle_length_(new DoubleParameter("Triangle Length", "Triangle Length", 2.5, 1.0, 8.0, 0.1)),
-  segment_threshold_(new IntParameter("Segment Threshold", "Segment Threshold", 10, 10, 500, 10))
+  segment_threshold_(new IntParameter("Segment Threshold", "Segment Threshold", 10, 10, 500, 10)),
+  view_number_(new IntParameter("View Number", "View Number", 0, 0, 20, 1))
 {
 }
 
@@ -234,6 +235,24 @@ bool ParameterManager::getDataCompletionParameters(int& start_frame, int& end_fr
 	if (!parameter_dialog.exec() == QDialog::Accepted)
 		return false;
 
+	start_frame = *start_frame_;
+	end_frame = *end_frame_;
+	getFrameparametersImpl(start_frame, end_frame, with_frames);
+
+	return true;
+}
+
+bool ParameterManager::getExtractImagesParameters(int& view_number, int& start_frame, int& end_frame, bool with_frames)
+{
+	ParameterDialog parameter_dialog("Extract Images Parameters", MainWindow::getInstance());
+	parameter_dialog.addParameter(view_number_);
+	parameter_dialog.addParameter(start_frame_);
+	parameter_dialog.addParameter(end_frame_);
+	addFrameParameters(&parameter_dialog, with_frames);
+	if (!parameter_dialog.exec() == QDialog::Accepted)
+		return false;
+
+	view_number = *view_number_;
 	start_frame = *start_frame_;
 	end_frame = *end_frame_;
 	getFrameparametersImpl(start_frame, end_frame, with_frames);

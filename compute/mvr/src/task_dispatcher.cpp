@@ -455,6 +455,7 @@ void TaskDispatcher::dispatchTaskDenoiseBySerialOrder()
 		point_cloud->denoise(segment_threshold);
 		point_cloud->removeNoise();
 	}
+	std::cout << "finished!" << std::endl;
 
 	return;
 }
@@ -498,6 +499,61 @@ void TaskDispatcher::dispatchTaskDataCompletion()
 	}
 
 	std::cout << "Data Completion Finished!" << std::endl;
+
+	return;
+}
+
+TaskExtractImages::TaskExtractImages(int frame, int view_number, std::string folder)
+	:TaskImpl(frame, -1), view_number_(view_number), folder_(folder)
+{}
+
+TaskExtractImages::~TaskExtractImages(void)
+{}
+
+void TaskExtractImages::run(void) const
+{
+
+	FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+	std::string images_folder = model->getPointsFolder(frame_);
+
+	QString image_dir = QString("%1/view_%2/snapshot.jpg")
+		.arg(images_folder.c_str()).arg(view_number_, 2, 10, QChar('0'));
+
+	QString save_dir = QString("%1/snapshot_%2_%3.jpg")
+		.arg(folder_.c_str()).arg(view_number_).arg(frame_);
+
+	QImage image;
+	bool flag = image.load(image_dir);
+	
+	if (flag)
+		image.save(save_dir);
+
+	return;
+}
+
+void TaskDispatcher::dispatchTaskExtractImages(void)
+{
+	QString save_directory;
+	save_directory = QFileDialog::getExistingDirectory(MainWindow::getInstance(),QString("Extract Images"));
+
+	if (save_directory.isEmpty())
+		return;
+
+	if (!extract_images_tasks_.isEmpty())
+	{
+		QMessageBox::warning(MainWindow::getInstance(), "Extract Images Task Warning",
+			"Run extract images task after the previous one has finished");
+		return;
+	}
+
+	int view_number, start_frame, end_frame;
+	if (!ParameterManager::getInstance().getExtractImagesParameters(view_number, start_frame, end_frame))
+		return;
+
+	for (int frame = start_frame; frame <= end_frame; frame ++)
+		extract_images_tasks_.push_back(Task(new TaskExtractImages(frame, view_number, save_directory.toStdString())));
+
+	runTasks(extract_images_tasks_, "Extract Images");
 
 	return;
 }

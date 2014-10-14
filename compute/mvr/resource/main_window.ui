@@ -69,6 +69,7 @@
      <string>Data Processing</string>
     </property>
     <addaction name="actionDataCompletion"/>
+    <addaction name="actionExtractImages"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuRendering"/>
@@ -192,6 +193,11 @@
   <action name="actionDataCompletion">
    <property name="text">
     <string>Data Completion</string>
+   </property>
+  </action>
+  <action name="actionExtractImages">
+   <property name="text">
+    <string>Extract Images</string>
    </property>
   </action>
  </widget>

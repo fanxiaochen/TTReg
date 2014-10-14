@@ -89,6 +89,19 @@ private:
 	int segment_threshold_;
 };
 
+class TaskExtractImages : public TaskImpl
+{
+public:
+	TaskExtractImages(int frame, int view_number, std::string folder);
+	virtual ~TaskExtractImages();
+
+	virtual void run(void) const;
+
+private:
+	int view_number_;
+	std::string folder_;
+};
+
 class TaskDispatcher : public QObject
 {
   Q_OBJECT
@@ -105,7 +118,8 @@ public slots:
   void dispatchTaskRegistration(void);
   void dispatchTaskDenoise(void); // could not be used, I don't know why...
   void dispatchTaskDenoiseBySerialOrder(void);
-  void dispatchTaskDataCompletion(void);
+  void dispatchTaskDataCompletion(void);// useless
+  void dispatchTaskExtractImages(void);
   void updateDisplayQueue(int frame, int view);
   void clearDisplayQueue(void);
   void removeFinishedWatchers(void);
@@ -119,6 +133,7 @@ private:
   QList<Task>                         points_generation_tasks_;
   QList<Task>                         registration_tasks_;
   QList<Task>						  denoise_tasks_;
+  QList<Task>						  extract_images_tasks_;
 
   std::vector<QObject*>               active_watchers_;
   typedef std::list<std::pair<int, int> > DisplayQueue;
