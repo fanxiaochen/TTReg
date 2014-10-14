@@ -460,48 +460,6 @@ void TaskDispatcher::dispatchTaskDenoiseBySerialOrder()
 	return;
 }
 
-void TaskDispatcher::dispatchTaskDataCompletion()
-{
-	int start_frame, end_frame;
-	if (!ParameterManager::getInstance().getDataCompletionParameters(start_frame, end_frame))
-		return;
-
-	FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
-	int boundary = model->getStartFrame();
-
-	for (int frame = start_frame; frame <= end_frame; frame ++)
-	{	
-		std::cout << "Data Completion: frame " << frame << std::endl;
-
-		if (frame == boundary)
-			continue;
-
-		PointCloud* source = model->getPointCloud(frame-1);
-		PointCloud* target = model->getPointCloud(frame);
-
-		target->insert(target->end(), source->begin(), source->end());
-	
-		std::vector<size_t> indices(target->size());
-		for (size_t i = 0, i_end = indices.size(); i < i_end; ++ i)
-			indices[i] = i;
-		std::random_shuffle(indices.begin(), indices.end());
-		
-		osg::ref_ptr<PointCloud> full_target(new PointCloud());
-		size_t points_size = indices.size()/2;
-		for (size_t i = 0; i < points_size; i ++)
-		{
-			full_target->push_back(target->at(indices[i]));
-		}
-		model->updatePointCloudCache(frame, full_target);
-		
-		/*std::string points_folder = model->getPointsFolder(frame);
-		target->save(points_folder + "/points.pcd");*/
-	}
-
-	std::cout << "Data Completion Finished!" << std::endl;
-
-	return;
-}
 
 TaskExtractImages::TaskExtractImages(int frame, int view_number, std::string folder)
 	:TaskImpl(frame, -1), view_number_(view_number), folder_(folder)
@@ -554,6 +512,48 @@ void TaskDispatcher::dispatchTaskExtractImages(void)
 		extract_images_tasks_.push_back(Task(new TaskExtractImages(frame, view_number, save_directory.toStdString())));
 
 	runTasks(extract_images_tasks_, "Extract Images");
+
+	return;
+}
+
+
+TaskDataCut::TaskDataCut(int frame)
+	:TaskImpl(frame, -1)
+{}
+
+TaskDataCut::~TaskDataCut(void)
+{}
+
+void TaskDataCut::run(void) const
+{
+
+	FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+	PointCloud* point_cloud = model->getPointCloud(frame_);
+
+	point_cloud->extractByPlane();
+	point_cloud->removeNoise();
+
+	return;
+
+}
+
+void TaskDispatcher::dispatchTaskDataCut()
+{
+	if (!data_cut_tasks_.isEmpty())
+	{
+		QMessageBox::warning(MainWindow::getInstance(), "Data Cut Task Warning",
+			"Run data cut task after the previous one has finished");
+		return;
+	}
+
+	int start_frame, end_frame;
+	if (!ParameterManager::getInstance().getDataCutParameters(start_frame, end_frame))
+		return;
+
+	for (int frame = start_frame; frame <= end_frame; frame ++)
+		data_cut_tasks_.push_back(Task(new TaskDataCut(frame)));
+
+	runTasks(data_cut_tasks_, "Data Cut");
 
 	return;
 }

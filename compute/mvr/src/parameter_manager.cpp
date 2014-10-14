@@ -226,9 +226,9 @@ bool ParameterManager::getDenoiseParameters(int& segment_threshold, int& start_f
 	return true;
 }
 
-bool ParameterManager::getDataCompletionParameters(int& start_frame, int& end_frame, bool with_frames)
+bool ParameterManager::getDataCutParameters(int& start_frame, int& end_frame, bool with_frames)
 {
-	ParameterDialog parameter_dialog("Data Completion Parameters", MainWindow::getInstance());
+	ParameterDialog parameter_dialog("Data Cut Parameters", MainWindow::getInstance());
 	parameter_dialog.addParameter(start_frame_);
 	parameter_dialog.addParameter(end_frame_);
 	addFrameParameters(&parameter_dialog, with_frames);

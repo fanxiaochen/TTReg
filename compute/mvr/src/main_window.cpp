@@ -130,9 +130,8 @@ void MainWindow::init(void)
   connect(ui_.actionRegistrationProcess, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskRegistration()));
   //connect(ui_.actionDenoise, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDenoise())); // cannot be used in parallel mode
   connect(ui_.actionDenoise, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDenoiseBySerialOrder()));
-  connect(ui_.actionDataCompletion, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDataCompletion()));
   connect(ui_.actionExtractImages, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskExtractImages()));
-
+  connect(ui_.actionDataCut, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDataCut()));
 
   loadSettings();
 

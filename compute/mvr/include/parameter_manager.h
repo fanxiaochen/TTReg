@@ -38,7 +38,7 @@ public:
   bool getRegistrationParameters(int& frame, int& segment_threshold);
   
   bool getDenoiseParameters(int& segment_threshold, int& start_frame, int& end_frame, bool with_frames=true);
-  bool getDataCompletionParameters(int& start_frame, int& end_frame, bool with_frames=true);
+  bool getDataCutParameters(int& start_frame, int& end_frame, bool with_frames=true);
   bool getExtractImagesParameters(int& view_number, int& start_frame, int& end_frame, bool with_frames=true);
 
 protected:

@@ -336,7 +336,7 @@ void Registrator::saveRegisteredPoints(int frame)
   for (size_t i = 0; i < view_number; ++ i)
   {
     osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame, i);
-	point_cloud->extractByPlane();
+	//point_cloud->extractByPlane();
 
 	// if I put the denoise code here, the program couldn't run in parallel mode...
 	// Delaunay Triangulation Denoise Method
@@ -353,8 +353,8 @@ void Registrator::saveRegisteredPoints(int frame)
     {
       PCLRichPoint registered_point = point_cloud->at(j);
 
-	  if (point_cloud->isNoise(j))
-		  continue;
+	  /*if (point_cloud->isNoise(j))
+	  continue;*/
 
       osg::Vec3 point(registered_point.x, registered_point.y, registered_point.z);
       point = matrix.preMult(point);

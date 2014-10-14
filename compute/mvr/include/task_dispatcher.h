@@ -102,6 +102,15 @@ private:
 	std::string folder_;
 };
 
+class TaskDataCut : public TaskImpl
+{
+public:
+	TaskDataCut(int frame);
+	virtual ~TaskDataCut();
+
+	virtual void run(void) const;
+};
+
 class TaskDispatcher : public QObject
 {
   Q_OBJECT
@@ -118,8 +127,8 @@ public slots:
   void dispatchTaskRegistration(void);
   void dispatchTaskDenoise(void); // could not be used, I don't know why...
   void dispatchTaskDenoiseBySerialOrder(void);
-  void dispatchTaskDataCompletion(void);// useless
   void dispatchTaskExtractImages(void);
+  void dispatchTaskDataCut(void);
   void updateDisplayQueue(int frame, int view);
   void clearDisplayQueue(void);
   void removeFinishedWatchers(void);
@@ -134,6 +143,8 @@ private:
   QList<Task>                         registration_tasks_;
   QList<Task>						  denoise_tasks_;
   QList<Task>						  extract_images_tasks_;
+  QList<Task>						  data_cut_tasks_;
+
 
   std::vector<QObject*>               active_watchers_;
   typedef std::list<std::pair<int, int> > DisplayQueue;

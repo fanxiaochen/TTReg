@@ -68,8 +68,8 @@
     <property name="title">
      <string>Data Processing</string>
     </property>
-    <addaction name="actionDataCompletion"/>
     <addaction name="actionExtractImages"/>
+    <addaction name="actionDataCut"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuRendering"/>
@@ -198,6 +198,11 @@
   <action name="actionExtractImages">
    <property name="text">
     <string>Extract Images</string>
+   </property>
+  </action>
+  <action name="actionDataCut">
+   <property name="text">
+    <string>Data Cut</string>
    </property>
   </action>
  </widget>
