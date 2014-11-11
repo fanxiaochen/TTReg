@@ -20,7 +20,8 @@ ParameterManager::ParameterManager(void)
   generator_sat_threshold_(new IntParameter("SAT Threshold", "SAT Threshold", 500, 1, 1000, 1)),
   triangle_length_(new DoubleParameter("Triangle Length", "Triangle Length", 2.5, 1.0, 8.0, 0.1)),
   segment_threshold_(new IntParameter("Segment Threshold", "Segment Threshold", 10, 10, 500, 10)),
-  view_number_(new IntParameter("View Number", "View Number", 0, 0, 20, 1))
+  view_number_(new IntParameter("View Number", "View Number", 0, 0, 20, 1)),
+  sample_ratio_(new IntParameter("Sample Ratio", "Sample Ratio", 10, 10, 1000, 10))
 {
 }
 
@@ -253,6 +254,24 @@ bool ParameterManager::getExtractImagesParameters(int& view_number, int& start_f
 		return false;
 
 	view_number = *view_number_;
+	start_frame = *start_frame_;
+	end_frame = *end_frame_;
+	getFrameparametersImpl(start_frame, end_frame, with_frames);
+
+	return true;
+}
+
+bool ParameterManager::getDownsamplingParameters(int& sample_ratio, int& start_frame, int& end_frame, bool with_frames)
+{
+	ParameterDialog parameter_dialog("Downsampling Parameters", MainWindow::getInstance());
+	parameter_dialog.addParameter(sample_ratio_);
+	parameter_dialog.addParameter(start_frame_);
+	parameter_dialog.addParameter(end_frame_);
+	addFrameParameters(&parameter_dialog, with_frames);
+	if (!parameter_dialog.exec() == QDialog::Accepted)
+		return false;
+
+	sample_ratio = *sample_ratio_;
 	start_frame = *start_frame_;
 	end_frame = *end_frame_;
 	getFrameparametersImpl(start_frame, end_frame, with_frames);

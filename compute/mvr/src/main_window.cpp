@@ -132,6 +132,7 @@ void MainWindow::init(void)
   connect(ui_.actionDenoise, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDenoiseBySerialOrder()));
   connect(ui_.actionExtractImages, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskExtractImages()));
   connect(ui_.actionDataCut, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDataCut()));
+  connect(ui_.actionDownsampling, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDownsampling()));
 
   loadSettings();
 

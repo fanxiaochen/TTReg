@@ -68,8 +68,9 @@
     <property name="title">
      <string>Data Processing</string>
     </property>
-    <addaction name="actionExtractImages"/>
+    <addaction name="actionDownsampling"/>
     <addaction name="actionDataCut"/>
+    <addaction name="actionExtractImages"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuRendering"/>
@@ -203,6 +204,11 @@
   <action name="actionDataCut">
    <property name="text">
     <string>Data Cut</string>
+   </property>
+  </action>
+  <action name="actionDownsampling">
+   <property name="text">
+    <string>Downsampling</string>
    </property>
   </action>
  </widget>

@@ -557,3 +557,81 @@ void TaskDispatcher::dispatchTaskDataCut()
 
 	return;
 }
+
+TaskDownsampling::TaskDownsampling(int frame, int sample_ratio, std::string folder)
+	:TaskImpl(frame, -1), folder_(folder), sample_ratio_(sample_ratio)
+{}
+
+TaskDownsampling::~TaskDownsampling(void)
+{}
+
+void TaskDownsampling::run(void) const
+{
+	FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+
+	osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame_);
+	if(point_cloud == NULL || point_cloud->size() == 0)
+	{
+		std::cout<<"Frame:"<<frame_<<" where is the point cloud?"<<std::endl;
+		return;
+	}
+
+	std::cout << "Downsampling Frame:" << frame_ << std::endl;
+
+	std::vector<size_t> indices(point_cloud->size());
+	for (size_t i = 0, i_end = indices.size(); i < i_end; ++ i)
+		indices[i] = i;
+	std::random_shuffle(indices.begin(), indices.end());
+
+	PointCloud extract_cloud;  
+	size_t extract_point_size = indices.size()/sample_ratio_;
+	assert(extract_point_size != 0);
+	while(extract_point_size > 0)
+	{
+		extract_cloud.push_back(point_cloud->at(indices[extract_point_size - 1]));
+		extract_point_size --;
+	}
+
+	QString root_folder = QString("%1").arg(folder_.c_str());
+	QDir root_path(root_folder);
+	root_path.mkdir("points");
+	
+	QString points_folder = QString("%1/points").arg(root_folder);
+	QDir points_dir(points_folder);
+
+	QString point_file = QString("frame_%1").arg(frame_, 5, 10, QChar('0'));
+	points_dir.mkdir(point_file);
+	
+	QString path = QString("%1/points/%2/points.pcd").arg(root_folder).arg(point_file);
+
+	extract_cloud.save(path.toStdString());
+
+	return;
+}
+
+void TaskDispatcher::dispatchTaskDownsampling(void)
+{
+	QString save_directory;
+	save_directory = QFileDialog::getExistingDirectory(MainWindow::getInstance(),QString("Downsampling"));
+
+	if (save_directory.isEmpty())
+		return;
+
+	if (!downsampling_tasks_.isEmpty())
+	{
+		QMessageBox::warning(MainWindow::getInstance(), "Downsampling Task Warning",
+			"Run Downsampling task after the previous one has finished");
+		return;
+	}
+
+	int start_frame, end_frame, sample_ratio;
+	if (!ParameterManager::getInstance().getDownsamplingParameters(sample_ratio, start_frame, end_frame))
+		return;
+
+	for (int frame = start_frame; frame <= end_frame; frame ++)
+		downsampling_tasks_.push_back(Task(new TaskDownsampling(frame, sample_ratio, save_directory.toStdString())));
+
+	runTasks(downsampling_tasks_, "Downsampling");
+
+	return;
+}

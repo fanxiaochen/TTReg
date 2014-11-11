@@ -102,6 +102,19 @@ private:
 	std::string folder_;
 };
 
+class TaskDownsampling : public TaskImpl
+{
+public:
+	TaskDownsampling(int frame, int sample_ratio, std::string folder);
+	virtual ~TaskDownsampling();
+
+	virtual void run(void) const;
+
+private:
+	int sample_ratio_;
+	std::string folder_;
+};
+
 class TaskDataCut : public TaskImpl
 {
 public:
@@ -129,6 +142,7 @@ public slots:
   void dispatchTaskDenoiseBySerialOrder(void);
   void dispatchTaskExtractImages(void);
   void dispatchTaskDataCut(void);
+  void dispatchTaskDownsampling(void);
   void updateDisplayQueue(int frame, int view);
   void clearDisplayQueue(void);
   void removeFinishedWatchers(void);
@@ -144,6 +158,7 @@ private:
   QList<Task>						  denoise_tasks_;
   QList<Task>						  extract_images_tasks_;
   QList<Task>						  data_cut_tasks_;
+  QList<Task>						  downsampling_tasks_;
 
 
   std::vector<QObject*>               active_watchers_;
