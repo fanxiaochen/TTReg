@@ -41,6 +41,7 @@ public:
   bool getDataCutParameters(int& start_frame, int& end_frame, bool with_frames=true);
   bool getExtractImagesParameters(int& view_number, int& start_frame, int& end_frame, bool with_frames=true);
   bool getDownsamplingParameters(int& sample_ratio, int& start_frame, int& end_frame, bool with_frames=true);
+  bool getExtractPointsParameters(int& interval, int& start_frame, int& end_frame, bool with_frames=true);
 
 protected:
   void addFrameParameters(ParameterDialog* parameter_dialog, bool with_frames);
@@ -64,6 +65,7 @@ private:
   IntParameter*                                       segment_threshold_;
   IntParameter*										  view_number_;
   IntParameter*										  sample_ratio_;
+  IntParameter*										  interval_;
 
   DoubleParameter*                                    transformation_epsilon_;
   DoubleParameter*                                    euclidean_fitness_epsilon_;

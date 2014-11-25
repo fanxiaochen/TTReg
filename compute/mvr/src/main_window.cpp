@@ -133,6 +133,7 @@ void MainWindow::init(void)
   connect(ui_.actionExtractImages, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskExtractImages()));
   connect(ui_.actionDataCut, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDataCut()));
   connect(ui_.actionDownsampling, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDownsampling()));
+  connect(ui_.actionExtractPoints, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskExtractPoints()));
 
   loadSettings();
 

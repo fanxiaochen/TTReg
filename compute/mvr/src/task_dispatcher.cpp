@@ -635,3 +635,63 @@ void TaskDispatcher::dispatchTaskDownsampling(void)
 
 	return;
 }
+
+TaskExtractPoints::TaskExtractPoints(int frame, int interval, std::string folder)
+	:TaskImpl(frame, -1), interval_(interval), folder_(folder)
+{}
+
+TaskExtractPoints::~TaskExtractPoints(void)
+{}
+
+void TaskExtractPoints::run(void) const
+{
+
+	FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+	std::string points_folder = model->getPointsFolder(frame_);
+	int start_frame = model->getStartFrame();
+	int new_index = (frame_ - start_frame) / interval_;
+
+	QString points_dir = QString("%1/points.pcd")
+		.arg(points_folder.c_str());
+
+	QDir root_folder = QString(folder_.c_str());
+	root_folder.mkdir("points");
+	QDir points_path = QString(folder_.c_str()) + "/points/";
+	QString frame_folder = QString("frame_%1").arg(new_index, 5, 10, QChar('0'));
+	points_path.mkdir(frame_folder);
+
+	QString save_dir = points_path.absolutePath() + "/" + frame_folder + QString("/points.pcd");
+
+	QFile points_file(points_dir);
+	if (points_file.exists())
+		QFile::copy(points_dir, save_dir);
+
+	return;
+}
+
+void TaskDispatcher::dispatchTaskExtractPoints(void)
+{
+	QString save_directory;
+	save_directory = QFileDialog::getExistingDirectory(MainWindow::getInstance(),QString("Extract Points"));
+
+	if (save_directory.isEmpty())
+		return;
+
+	if (!extract_points_tasks_.isEmpty())
+	{
+		QMessageBox::warning(MainWindow::getInstance(), "Extract Points Task Warning",
+			"Run extract points task after the previous one has finished");
+		return;
+	}
+
+	int start_frame, end_frame, interval;
+	if (!ParameterManager::getInstance().getExtractPointsParameters(interval, start_frame, end_frame))
+		return;
+
+	for (int frame = start_frame; frame <= end_frame; frame += interval)
+		extract_points_tasks_.push_back(Task(new TaskExtractPoints(frame, interval, save_directory.toStdString())));
+
+	runTasks(extract_points_tasks_, "Extract Points");
+
+	return;
+}

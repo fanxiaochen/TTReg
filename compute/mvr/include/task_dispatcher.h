@@ -124,6 +124,19 @@ public:
 	virtual void run(void) const;
 };
 
+class TaskExtractPoints : public TaskImpl
+{
+public:
+	TaskExtractPoints(int frame, int interval, std::string folder);
+	virtual ~TaskExtractPoints();
+
+	virtual void run(void) const;
+
+private:
+	int interval_;
+	std::string folder_;
+};
+
 class TaskDispatcher : public QObject
 {
   Q_OBJECT
@@ -143,6 +156,7 @@ public slots:
   void dispatchTaskExtractImages(void);
   void dispatchTaskDataCut(void);
   void dispatchTaskDownsampling(void);
+  void dispatchTaskExtractPoints(void);
   void updateDisplayQueue(int frame, int view);
   void clearDisplayQueue(void);
   void removeFinishedWatchers(void);
@@ -159,7 +173,7 @@ private:
   QList<Task>						  extract_images_tasks_;
   QList<Task>						  data_cut_tasks_;
   QList<Task>						  downsampling_tasks_;
-
+  QList<Task>						  extract_points_tasks_;
 
   std::vector<QObject*>               active_watchers_;
   typedef std::list<std::pair<int, int> > DisplayQueue;
