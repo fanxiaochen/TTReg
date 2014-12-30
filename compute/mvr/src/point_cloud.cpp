@@ -572,7 +572,7 @@ void PointCloud::removeNoise()
 	std::string filename = folder+"/points.pcd";
 	save(filename);
 
-	model->updatePointCloud(frame);
+//	model->updatePointCloud(frame);
 }
 
 void PointCloud::indicateNoise(size_t i)

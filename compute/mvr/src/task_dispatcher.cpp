@@ -406,12 +406,12 @@ TaskDenoise::~TaskDenoise(void)
 void TaskDenoise::run(void) const
 {
 	FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
-	PointCloud* point_cloud = model->getPointCloud(frame_);
+	osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame_);
 	// Delaunay Triangulation Denoise Method
-	point_cloud->denoise(segment_threshold_, ParameterManager::getInstance().getTriangleLength());
+	// point_cloud->denoise(segment_threshold_, ParameterManager::getInstance().getTriangleLength());
 
 	// Point Density Denoise Method
-	// point_cloud->denoise(segment_threshold);
+    point_cloud->denoise(segment_threshold_);
 	point_cloud->removeNoise();
 
 	return;
@@ -528,7 +528,7 @@ void TaskDataCut::run(void) const
 {
 
 	FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
-	PointCloud* point_cloud = model->getPointCloud(frame_);
+	osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame_);
 
 	point_cloud->extractByPlane();
 	point_cloud->removeNoise();
