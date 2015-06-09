@@ -49,6 +49,7 @@ public:
   void denoise(int k);
   void removeNoise(void);
   void extractByPlane(void);
+  void extractBySphere(void);
 
   int getFrame(void) const;
   int getView(void) const;
@@ -88,7 +89,7 @@ protected:
 
   boost::PointGraph*              point_graph_;
   double                          point_graph_threshold_;
-  mutable CGAL::Delaunay*         triangulation_;
+ // mutable CGAL::Delaunay*         triangulation_;
 
 private:
   osg::ref_ptr<osgManipulator::TranslateAxisDragger>  translate_dragger_;

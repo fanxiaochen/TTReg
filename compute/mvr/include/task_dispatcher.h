@@ -124,6 +124,15 @@ public:
 	virtual void run(void) const;
 };
 
+class TaskRemoveOutliers : public TaskImpl
+{
+public:
+	TaskRemoveOutliers(int frame);
+	virtual ~TaskRemoveOutliers();
+
+	virtual void run(void) const;
+};
+
 class TaskExtractPoints : public TaskImpl
 {
 public:
@@ -151,10 +160,11 @@ public slots:
   void cancelRunningTasks(bool wait=false);
   void dispatchTaskPointsGeneration(void);
   void dispatchTaskRegistration(void);
-  void dispatchTaskDenoise(void); // could not be used, I don't know why...
+  void dispatchTaskDenoise(void);
   void dispatchTaskDenoiseBySerialOrder(void);
   void dispatchTaskExtractImages(void);
   void dispatchTaskDataCut(void);
+  void dispatchTaskRemoveOutliers(void);
   void dispatchTaskDownsampling(void);
   void dispatchTaskExtractPoints(void);
   void updateDisplayQueue(int frame, int view);
@@ -172,6 +182,7 @@ private:
   QList<Task>						  denoise_tasks_;
   QList<Task>						  extract_images_tasks_;
   QList<Task>						  data_cut_tasks_;
+  QList<Task>						  remove_outliers_tasks_;
   QList<Task>						  downsampling_tasks_;
   QList<Task>						  extract_points_tasks_;
 

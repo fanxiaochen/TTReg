@@ -10,6 +10,7 @@
 
 
 class Registrator;
+class SphereBall;
 class TaskDispatcher;
 class FileSystemModel;
 class OSGViewerWidget;
@@ -34,6 +35,7 @@ public:
   FileViewerWidget* getFileViewerWidget(void) {return file_viewer_widget_;}
   FileSystemModel* getFileSystemModel(void);
   Registrator* getRegistrator(void) {return registrator_;}
+  SphereBall* getSphereBall(void) {return sphere_ball_;}
 
   void updateStatusMessage(const QString& message);
 
@@ -58,6 +60,7 @@ private:
 private:
   Ui::MainWindow                  ui_;
   Registrator*                    registrator_;
+  SphereBall*					  sphere_ball_;
   TaskDispatcher*				  task_dispatcher_;
   OSGViewerWidget*                osg_viewer_widget_;
   FileViewerWidget*               file_viewer_widget_;

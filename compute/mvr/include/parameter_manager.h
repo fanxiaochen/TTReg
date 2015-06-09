@@ -39,6 +39,7 @@ public:
   
   bool getDenoiseParameters(int& segment_threshold, int& start_frame, int& end_frame, bool with_frames=true);
   bool getDataCutParameters(int& start_frame, int& end_frame, bool with_frames=true);
+  bool getRemoveOutliersParameters(int& start_frame, int& end_frame, bool with_frames=true);
   bool getExtractImagesParameters(int& view_number, int& start_frame, int& end_frame, bool with_frames=true);
   bool getDownsamplingParameters(int& sample_ratio, int& start_frame, int& end_frame, bool with_frames=true);
   bool getExtractPointsParameters(int& interval, int& start_frame, int& end_frame, bool with_frames=true);

@@ -11,6 +11,7 @@
 
 #include "point_cloud.h"
 #include "registrator.h"
+#include "sphere_ball.h"
 #include "task_dispatcher.h"
 #include "toggle_handler.h"
 #include "parameter_manager.h"
@@ -21,6 +22,7 @@
 
 MainWindow::MainWindow(void)
   :registrator_(new Registrator),
+  sphere_ball_(new SphereBall),
   task_dispatcher_(new TaskDispatcher(this)),
   osg_viewer_widget_(NULL),
   file_viewer_widget_(NULL),
@@ -96,6 +98,9 @@ void MainWindow::init(void)
   osg_viewer_widget_->addEventHandler(new ToggleHandler(registrator_, 'r', "Toggle Registrator."));
   osg_viewer_widget_->addChild(registrator_, false);
 
+  osg_viewer_widget_->addEventHandler(new ToggleHandler(sphere_ball_, 'b', "Toggle SphereBall."));
+  osg_viewer_widget_->addChild(sphere_ball_, false);
+
   setCentralWidget(osg_viewer_widget_);
   osg_viewer_widget_->startRendering();
 
@@ -128,12 +133,13 @@ void MainWindow::init(void)
   //batch tasks menu
   connect(ui_.actionPointCloudGeneration, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskPointsGeneration()));
   connect(ui_.actionRegistrationProcess, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskRegistration()));
-  //connect(ui_.actionDenoise, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDenoise())); // cannot be used in parallel mode
-  connect(ui_.actionDenoise, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDenoiseBySerialOrder()));
+  connect(ui_.actionDenoise, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDenoise())); 
+//  connect(ui_.actionDenoise, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDenoiseBySerialOrder()));
   connect(ui_.actionExtractImages, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskExtractImages()));
   connect(ui_.actionDataCut, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDataCut()));
   connect(ui_.actionDownsampling, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskDownsampling()));
   connect(ui_.actionExtractPoints, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskExtractPoints()));
+  connect(ui_.actionRemoveOutliers, SIGNAL(triggered()), task_dispatcher_, SLOT(dispatchTaskRemoveOutliers()));
 
   loadSettings();
 

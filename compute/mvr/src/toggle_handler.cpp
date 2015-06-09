@@ -1,3 +1,4 @@
+#include <iostream>
 #include "renderable.h"
 #include "toggle_handler.h"
 

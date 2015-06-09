@@ -1,4 +1,5 @@
 #include <sstream>
+#include <iostream>
 #include <algorithm>
 
 #include <osg/Geode>
@@ -63,7 +64,6 @@ void Renderable::clear()
 void Renderable::toggleRendering()
 {
   hidden_ = !hidden_;
-
   expire();
 
   return;

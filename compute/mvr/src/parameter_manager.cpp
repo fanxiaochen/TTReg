@@ -245,6 +245,22 @@ bool ParameterManager::getDataCutParameters(int& start_frame, int& end_frame, bo
 	return true;
 }
 
+bool ParameterManager::getRemoveOutliersParameters(int& start_frame, int& end_frame, bool with_frames)
+{
+	ParameterDialog parameter_dialog("Remove Outliers Parameters", MainWindow::getInstance());
+	parameter_dialog.addParameter(start_frame_);
+	parameter_dialog.addParameter(end_frame_);
+	addFrameParameters(&parameter_dialog, with_frames);
+	if (!parameter_dialog.exec() == QDialog::Accepted)
+		return false;
+
+	start_frame = *start_frame_;
+	end_frame = *end_frame_;
+	getFrameparametersImpl(start_frame, end_frame, with_frames);
+
+	return true;
+}
+
 bool ParameterManager::getExtractImagesParameters(int& view_number, int& start_frame, int& end_frame, bool with_frames)
 {
 	ParameterDialog parameter_dialog("Extract Images Parameters", MainWindow::getInstance());

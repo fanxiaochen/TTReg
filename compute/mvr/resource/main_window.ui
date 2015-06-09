@@ -70,6 +70,7 @@
     </property>
     <addaction name="actionDownsampling"/>
     <addaction name="actionDataCut"/>
+    <addaction name="actionRemoveOutliers"/>
     <addaction name="actionExtractImages"/>
     <addaction name="actionExtractPoints"/>
    </widget>
@@ -215,6 +216,11 @@
   <action name="actionExtractPoints">
    <property name="text">
     <string>Extract Points</string>
+   </property>
+  </action>
+  <action name="actionRemoveOutliers">
+   <property name="text">
+    <string>Remove Outliers</string>
    </property>
   </action>
  </widget>

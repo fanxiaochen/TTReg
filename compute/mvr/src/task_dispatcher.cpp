@@ -558,6 +558,46 @@ void TaskDispatcher::dispatchTaskDataCut()
 	return;
 }
 
+TaskRemoveOutliers::TaskRemoveOutliers(int frame)
+	:TaskImpl(frame, -1)
+{}
+
+TaskRemoveOutliers::~TaskRemoveOutliers(void)
+{}
+
+void TaskRemoveOutliers::run(void) const
+{
+	FileSystemModel* model = MainWindow::getInstance()->getFileSystemModel();
+	osg::ref_ptr<PointCloud> point_cloud = model->getPointCloud(frame_);
+	point_cloud->extractBySphere();
+	point_cloud->removeNoise();
+
+	return;
+
+}
+
+void TaskDispatcher::dispatchTaskRemoveOutliers()
+{
+	if (!remove_outliers_tasks_.isEmpty())
+	{
+		QMessageBox::warning(MainWindow::getInstance(), "Remove Outliers Task Warning",
+			"Run remove outliers task after the previous one has finished");
+		return;
+	}
+
+	int start_frame, end_frame;
+	if (!ParameterManager::getInstance().getRemoveOutliersParameters(start_frame, end_frame))
+		return;
+
+	for (int frame = start_frame; frame <= end_frame; frame ++)
+		remove_outliers_tasks_.push_back(Task(new TaskRemoveOutliers(frame)));
+
+	runTasks(remove_outliers_tasks_, "Remove Outliers");
+
+	return;
+}
+
+
 TaskDownsampling::TaskDownsampling(int frame, int sample_ratio, std::string folder)
 	:TaskImpl(frame, -1), folder_(folder), sample_ratio_(sample_ratio)
 {}

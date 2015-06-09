@@ -13,6 +13,7 @@
 
 #include "parameter.h"
 #include "registrator.h"
+#include "sphere_ball.h"
 #include "main_window.h"
 #include "light_source.h"
 #include "update_visitor.h"
@@ -191,6 +192,7 @@ void OSGViewerWidget::centerSceneIfNecessary(void)
     return;
 
   MainWindow::getInstance()->getRegistrator()->init();
+  MainWindow::getInstance()->getSphereBall()->init();
 
   osg::Vec3d eye, center, up;
   getCamera()->getViewMatrixAsLookAt(eye, center, up);
