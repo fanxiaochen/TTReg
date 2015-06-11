@@ -630,9 +630,6 @@ void PointCloud::extractBySphere()
 	osg::Vec3 center = sphere_ball->getCenter();
 	double radius = sphere_ball->getRadius();
 
-	std::cout << center << std::endl;
-	std::cout << radius << std::endl;
-
 	for (size_t i = 0, i_end = size();i < i_end; i++) 
 	{
 		const PCLRichPoint& point = at(i);
